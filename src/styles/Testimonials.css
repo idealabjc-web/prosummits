@@ -1,0 +1,36 @@
+/* ── TESTIMONIALS ── */
+.test-section {
+  background: rgba(0,0,0,.35);
+  border-top: 1px solid rgba(255,255,255,.07);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  position: relative; z-index: 1; backdrop-filter: blur(10px);
+}
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.t-card {
+  background: rgba(4,16,28,.6); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r); padding: 30px; position: relative; overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+.t-card::before {
+  content: '"'; position: absolute; top: -12px; left: 14px;
+  font-family: var(--fd); font-size: 7rem; line-height: 1;
+  color: rgba(255,255,255,.05); pointer-events: none;
+}
+.t-stars { font-size: .8rem; margin-bottom: 12px; letter-spacing: 3px; }
+.t-txt   { font-size: .83rem; color: rgba(255,255,255,.65); line-height: 1.82; margin-bottom: 20px; font-style: italic; }
+.t-auth  { display: flex; align-items: center; gap: 11px; }
+.t-av {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fd); font-size: .95rem; font-weight: 600; color: #fff; flex-shrink: 0;
+}
+.t-name { font-weight: 600; font-size: .82rem; color: #fff; }
+.t-role { font-size: .67rem; color: rgba(255,255,255,.5); }
+
+/* ── Responsive ── */
+@media (max-width: 1050px) {
+  .test-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .test-grid { grid-template-columns: 1fr; }
+}

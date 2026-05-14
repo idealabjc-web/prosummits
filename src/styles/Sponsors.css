@@ -1,0 +1,25 @@
+/* ── SPONSORS ── */
+.sponsors-row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; }
+.sp-logo {
+  padding: 14px 30px; border: 1px solid rgba(255,255,255,.1); border-radius: 10px;
+  background: rgba(4,16,28,.6); font-family: var(--fd); font-size: 1rem;
+  font-weight: 600; color: rgba(255,255,255,.55); letter-spacing: .04em;
+  transition: border-color .25s, color .25s, background .25s; backdrop-filter: blur(8px);
+}
+.sp-logo:hover { color: #fff; background: rgba(255,255,255,.08); }
+
+.sp-img {
+  height: 32px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.8;
+  filter: brightness(0) invert(1);
+  transition: opacity .25s, filter .25s;
+}
+
+.sp-logo:hover .sp-img {
+  opacity: 1;
+  filter: brightness(1) invert(0);
+}

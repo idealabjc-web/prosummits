@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Design Tokens ── */
+:root {
+  --g:  #F47B20;
+  --gl: #F9C515;
+  --gd: rgba(244,123,32,.14);
+  --d:  #04101C;
+  --dm: #071422;
+  --dl: #0C1E36;
+  --w:  #FFFFFF;
+  --grey: #B0C0D0;
+  --b: rgba(244,123,32,.22);
+  --fd: 'Playfair Display', serif;
+  --fb: 'Outfit', sans-serif;
+  --r:  18px;
+}
+
+/* ── Base ── */
+html  { margin: 0; padding: 0; }
+body  { background: var(--d); color: var(--w); font-family: var(--fb); overflow-x: hidden; }
+
+::selection          { background: #F47B20; color: #04101C; }
+::-webkit-scrollbar  { width: 3px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7B2FBE, #F47B20, #6DBE45, #00A79D);
+  border-radius: 2px;
+}
+
+/* ── Canvas background ── */
+.canvas-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── Shared Section Utilities ── */
+section { position: relative; z-index: 1; }
+.glass  { background: rgba(4,16,28,.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.wrap   { max-width: 1200px; margin: 0 auto; padding: 88px 5vw; }
+
+.section-tag {
+  font-size: .66rem; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 12px; display: block;
+}
+.section-title {
+  font-family: var(--fd); font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+  font-weight: 700; line-height: 1.18; color: #fff; margin-bottom: 14px;
+  text-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+.section-title em { font-style: italic; }
+.section-desc {
+  color: rgba(255,255,255,.65); font-size: .95rem; line-height: 1.78; max-width: 520px;
+}
+.sec-head      { margin-bottom: 56px; }
+.sec-head.ctr  { text-align: center; }
+.sec-head.ctr .section-desc { margin: 0 auto; }
+
+/* ── Buttons ── */
+.btn-g {
+  padding: 14px 34px;
+  background: linear-gradient(135deg,#7B2FBE,#E01F5C);
+  color: #fff; border: none; border-radius: 8px;
+  font-family: var(--fb); font-size: .88rem; font-weight: 600;
+  letter-spacing: .07em; text-transform: uppercase; cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  text-decoration: none; display: inline-block;
+}
+.btn-g:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(224,31,92,.4); }
+
+.btn-o {
+  padding: 14px 34px;
+  background: rgba(255,255,255,.08); color: #fff;
+  border: 1px solid rgba(255,255,255,.25); border-radius: 8px;
+  font-family: var(--fb); font-size: .88rem; font-weight: 500;
+  letter-spacing: .07em; text-transform: uppercase; cursor: pointer;
+  transition: border-color .25s, color .25s, background .25s;
+  text-decoration: none; display: inline-block; backdrop-filter: blur(8px);
+}
+.btn-o:hover { border-color: #F47B20; color: #F47B20; background: rgba(244,123,32,.1); }
+
+.btn-sm {
+  padding: 8px 18px; border-radius: 6px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; font-size: .7rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  transition: background .2s, border-color .2s; font-family: var(--fb);
+}
+.btn-sm:hover { background: rgba(244,123,32,.3); border-color: #F47B20; color: #F47B20; }
+
+/* ── Fade-Up Animation ── */
+.fu { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+.fu.on { opacity: 1; transform: translateY(0); }
+.fu:nth-child(2) { transition-delay: .09s; }
+.fu:nth-child(3) { transition-delay: .18s; }
+.fu:nth-child(4) { transition-delay: .27s; }
+.fu:nth-child(5) { transition-delay: .36s; }
+.fu:nth-child(6) { transition-delay: .45s; }
+.fu:nth-child(7) { transition-delay: .54s; }
+.fu:nth-child(8) { transition-delay: .63s; }
+
+/* ── Page Fade-In Animation ── */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-fade {
+  animation: pageFadeIn 0.8s ease-out forwards;
+}
+
+/* ── Responsive (shared breakpoints) ── */
+@media (max-width: 700px) {
+  .burger { display: flex; }
+}

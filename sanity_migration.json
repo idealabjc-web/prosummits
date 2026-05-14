@@ -1,0 +1,4804 @@
+[
+  {
+    "_id": "drafts.year-2026",
+    "_type": "eventYear",
+    "year": "2026",
+    "title": "2026 Conferences",
+    "subtitle": "ProSummits Hybrid Conferences 2026",
+    "description": "A landmark year of global hybrid summits empowering women leaders, entrepreneurs, wellness experts, and changemakers across New York, Toronto, and Dubai.",
+    "accentColor": "#F47B20",
+    "slug": {
+      "_type": "slug",
+      "current": "2026-conferences"
+    }
+  },
+  {
+    "_id": "drafts.year-2027",
+    "_type": "eventYear",
+    "year": "2027",
+    "title": "2027 Conferences",
+    "subtitle": "ProSummits Hybrid Conferences 2027",
+    "description": "An expansive series of global hybrid summits in Paris, Tokyo, and Miami covering leadership, wellness, healthcare, and AI innovation.",
+    "accentColor": "#7B2FF4",
+    "slug": {
+      "_type": "slug",
+      "current": "2027-conferences"
+    }
+  },
+  {
+    "_id": "drafts.event-nextgen-her-voice-summit-2026",
+    "_type": "event",
+    "title": "NextGen HER Voice Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "nextgen-her-voice-summit-2026"
+    },
+    "date": "July 20–23, 2026",
+    "location": "New York, USA",
+    "type": "🌍 Hybrid",
+    "badge": "NextGen",
+    "bdColor": "#E74C3C",
+    "dateColor": "#E74C3C",
+    "chips": [
+      "Leadership",
+      "Women Empowerment",
+      "Innovation",
+      "New York 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the NextGen HER Voice Summit 2026, scheduled to take place in New York, USA. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world to connect, collaborate, and inspire transformation."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Amplifying Voices. Uniting Purpose. Igniting Change.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-nextgen-women-of-influence-summit-2026",
+    "_type": "event",
+    "title": "NextGen Women of Influence Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "nextgen-women-of-influence-summit-2026"
+    },
+    "date": "July 20–23, 2026",
+    "location": "New York, USA",
+    "type": "🌍 Hybrid",
+    "badge": "NextGen",
+    "bdColor": "#E74C3C",
+    "dateColor": "#E74C3C",
+    "chips": [
+      "Women Empowerment",
+      "Influence",
+      "Leadership",
+      "New York 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the NextGen Women of Influence Summit 2026, scheduled to take place in New York, USA. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world to connect, collaborate, and inspire transformation."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Empowering Voices, Inspiring Leadership, Driving Change.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-nextgen-visionary-women-summit-2026",
+    "_type": "event",
+    "title": "NextGen Visionary Women Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "nextgen-visionary-women-summit-2026"
+    },
+    "date": "July 20–23, 2026",
+    "location": "New York, USA",
+    "type": "🌍 Hybrid",
+    "badge": "NextGen",
+    "bdColor": "#E74C3C",
+    "dateColor": "#E74C3C",
+    "chips": [
+      "Visionary Leadership",
+      "Women Empowerment",
+      "Global Impact",
+      "New York 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the NextGen Visionary Women Summit 2026, scheduled to take place in New York, USA. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Dream Boldly. Lead Courageously. Impact Globally.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-nextgen-mind-body-spirit-summit-2026",
+    "_type": "event",
+    "title": "NextGen Mind, Body & Spirit Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "nextgen-mind-body-spirit-summit-2026"
+    },
+    "date": "July 20–23, 2026",
+    "location": "New York, USA",
+    "type": "🌍 Hybrid",
+    "badge": "NextGen",
+    "bdColor": "#E74C3C",
+    "dateColor": "#E74C3C",
+    "chips": [
+      "Wellness",
+      "Mindfulness",
+      "Spirituality",
+      "New York 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the NextGen Mind, Body & Spirit Summit 2026, scheduled to take place in New York, USA. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Awaken Your Inner Harmony. Transform Your Life.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-quantum-global-women-leadership-impact-summit-2026",
+    "_type": "event",
+    "title": "Quantum Global Women Leadership & Impact Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "quantum-global-women-leadership-impact-summit-2026"
+    },
+    "date": "November 12–13, 2026",
+    "location": "Toronto, Canada",
+    "type": "🌍 Hybrid",
+    "badge": "Quantum",
+    "bdColor": "#8E44AD",
+    "dateColor": "#8E44AD",
+    "chips": [
+      "Leadership",
+      "Global Impact",
+      "Women Empowerment",
+      "Toronto 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Quantum Global Women Leadership & Impact Summit 2026, scheduled to take place in Toronto, Canada. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Leading with Vision. Creating Impact. Shaping the Future.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-quantum-sheroes-rising-summit-2026",
+    "_type": "event",
+    "title": "Quantum SHEroes Rising Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "quantum-sheroes-rising-summit-2026"
+    },
+    "date": "November 12–13, 2026",
+    "location": "Toronto, Canada",
+    "type": "🌍 Hybrid",
+    "badge": "Quantum",
+    "bdColor": "#8E44AD",
+    "dateColor": "#8E44AD",
+    "chips": [
+      "Women Empowerment",
+      "Rising Leaders",
+      "Transformation",
+      "Toronto 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Quantum SHEroes Rising Summit 2026, scheduled to take place in Toronto, Canada. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Rising Together: Empowering Women, Transforming the World.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-quantum-global-women-changemakers-summit-2026",
+    "_type": "event",
+    "title": "Quantum Global Women Changemakers Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "quantum-global-women-changemakers-summit-2026"
+    },
+    "date": "November 12–13, 2026",
+    "location": "Toronto, Canada",
+    "type": "🌍 Hybrid",
+    "badge": "Quantum",
+    "bdColor": "#8E44AD",
+    "dateColor": "#8E44AD",
+    "chips": [
+      "Changemakers",
+      "Innovation",
+      "Women Leadership",
+      "Toronto 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Quantum Global Women Changemakers Summit 2026, scheduled to take place in Toronto, Canada. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Innovate. Inspire. Impact: Women Leading the Future.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-quantum-global-wellness-spirituality-summit-2026",
+    "_type": "event",
+    "title": "Quantum Global Wellness & Spirituality Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "quantum-global-wellness-spirituality-summit-2026"
+    },
+    "date": "November 12–13, 2026",
+    "location": "Toronto, Canada",
+    "type": "🌍 Hybrid",
+    "badge": "Quantum",
+    "bdColor": "#8E44AD",
+    "dateColor": "#8E44AD",
+    "chips": [
+      "Wellness",
+      "Spirituality",
+      "Mindfulness",
+      "Toronto 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Quantum Global Wellness & Spirituality Summit 2026, scheduled to take place in Toronto, Canada. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Mindful Today, Thriving Tomorrow: Harnessing Positivity to Shape the Future.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-global-women-rise-lead-summit-2026",
+    "_type": "event",
+    "title": "Global Women Rise & Lead Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "global-women-rise-lead-summit-2026"
+    },
+    "date": "November 25–27, 2026",
+    "location": "Dubai, UAE",
+    "type": "🌍 Hybrid",
+    "badge": "Global",
+    "bdColor": "#E67E22",
+    "dateColor": "#E67E22",
+    "chips": [
+      "Leadership",
+      "Women Empowerment",
+      "Global",
+      "Dubai 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Global Women Rise & Lead Summit 2026, scheduled to take place in Dubai, UAE. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Empowering Women to Lead, Inspire, and Transform the World.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-global-women-impact-summit-2026",
+    "_type": "event",
+    "title": "Global Women Impact Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "global-women-impact-summit-2026"
+    },
+    "date": "November 25–27, 2026",
+    "location": "Dubai, UAE",
+    "type": "🌍 Hybrid",
+    "badge": "Global",
+    "bdColor": "#E67E22",
+    "dateColor": "#E67E22",
+    "chips": [
+      "Global Impact",
+      "Women Leaders",
+      "Change",
+      "Dubai 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Global Women Impact Summit 2026, scheduled to take place in Dubai, UAE. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Connecting Leaders. Inspiring Change. Creating Global Impact.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-global-innovative-leadership-summit-2026",
+    "_type": "event",
+    "title": "Global Innovative Leadership Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "global-innovative-leadership-summit-2026"
+    },
+    "date": "November 25–27, 2026",
+    "location": "Dubai, UAE",
+    "type": "🌍 Hybrid",
+    "badge": "Global",
+    "bdColor": "#E67E22",
+    "dateColor": "#E67E22",
+    "chips": [
+      "Innovation",
+      "Leadership",
+      "Future Leaders",
+      "Dubai 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Global Innovative Leadership Summit 2026, scheduled to take place in Dubai, UAE. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Driving Innovation, Empowering Leaders, Shaping Tomorrow.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-holistic-healing-spiritual-growth-summit-2026",
+    "_type": "event",
+    "title": "Holistic Healing & Spiritual Growth Summit 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "holistic-healing-spiritual-growth-summit-2026"
+    },
+    "date": "November 25–27, 2026",
+    "location": "Dubai, UAE",
+    "type": "🌍 Hybrid",
+    "badge": "Global",
+    "bdColor": "#E67E22",
+    "dateColor": "#E67E22",
+    "chips": [
+      "Holistic Healing",
+      "Spirituality",
+      "Wellness",
+      "Dubai 2026"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Holistic Healing & Spiritual Growth Summit 2026, scheduled to take place in Dubai, UAE. This international summit brings together influential women leaders, entrepreneurs, executives, educators, innovators, professionals, coaches, wellness experts, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Restoring Balance, Nurturing the Soul, Inspiring Transformation.\", the conference focuses on leadership development, women empowerment, innovation, professional growth, collaboration, wellness, and global impact."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2026"
+    }
+  },
+  {
+    "_id": "drafts.event-elite-women-leadership-summit-2027",
+    "_type": "event",
+    "title": "Elite Women Leadership Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "elite-women-leadership-summit-2027"
+    },
+    "date": "March 08–11, 2027",
+    "location": "Paris, France",
+    "type": "🌍 Hybrid",
+    "badge": "Elite",
+    "bdColor": "#2980B9",
+    "dateColor": "#2980B9",
+    "chips": [
+      "Leadership",
+      "Women Empowerment",
+      "Innovation",
+      "Paris 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Innovation",
+        "description": "Conference session focused on leadership & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowerment Today",
+        "description": "Conference session focused on women empowerment today."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Leaders",
+        "description": "Conference session focused on building future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Purpose-Driven Success",
+        "description": "Conference session focused on purpose-driven success."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Collaboration",
+        "description": "Conference session focused on global women collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Positive Change",
+        "description": "Conference session focused on inspiring positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Entrepreneurship",
+        "description": "Conference session focused on women in entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Growth",
+        "description": "Conference session focused on innovation for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering the Next Generation",
+        "description": "Conference session focused on empowering the next generation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership",
+        "description": "Conference session focused on strategic leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Lasting Impact",
+        "description": "Conference session focused on creating lasting impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset for Success",
+        "description": "Conference session focused on mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Influence",
+        "description": "Conference session focused on the power of influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤝",
+        "title": "Collaboration for Change",
+        "description": "Conference session focused on collaboration for change."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Networking Forum",
+        "description": "Conference session focused on global networking forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💎",
+        "title": "Resilience & Growth",
+        "description": "Conference session focused on resilience & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Communities",
+        "description": "Conference session focused on women inspiring communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🔄",
+        "title": "Transformational Leadership",
+        "description": "Conference session focused on transformational leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Opportunities",
+        "description": "Conference session focused on creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Future-Focused Leadership",
+        "description": "Conference session focused on future-focused leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Globally",
+        "description": "Conference session focused on women leading globally."
+      },
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership",
+        "description": "Conference session focused on visionary leadership."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Elite Women Leadership Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Leading with Vision. Inspiring Global Influence.\", the conference will focus on empowering future leaders, promoting innovation, encouraging collaboration, and creating positive change across industries and communities worldwide."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-innerglow-mental-wellness-summit-2027",
+    "_type": "event",
+    "title": "InnerGlow Mental Wellness Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "innerglow-mental-wellness-summit-2027"
+    },
+    "date": "March 08–11, 2027",
+    "location": "Paris, France",
+    "type": "🌍 Hybrid",
+    "badge": "InnerGlow",
+    "bdColor": "#27AE60",
+    "dateColor": "#27AE60",
+    "chips": [
+      "Mental Wellness",
+      "Emotional Well-Being",
+      "Mindfulness",
+      "Paris 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🧘",
+        "title": "Mental Wellness Matters",
+        "description": "Conference session focused on mental wellness matters."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Emotional Resilience",
+        "description": "Conference session focused on building emotional resilience."
+      },
+      {
+        "_type": "object",
+        "icon": "🌿",
+        "title": "Mindfulness for Everyday Life",
+        "description": "Conference session focused on mindfulness for everyday life."
+      },
+      {
+        "_type": "object",
+        "icon": "💚",
+        "title": "Healing Through Positivity",
+        "description": "Conference session focused on healing through positivity."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Well-Being & Growth",
+        "description": "Conference session focused on emotional well-being & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Stress Management Strategies",
+        "description": "Conference session focused on stress management strategies."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Self-Care for Success",
+        "description": "Conference session focused on self-care for success."
+      },
+      {
+        "_type": "object",
+        "icon": "🪬",
+        "title": "Inner Peace & Balance",
+        "description": "Conference session focused on inner peace & balance."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness & Personal Transformation",
+        "description": "Conference session focused on wellness & personal transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Positive Thinking for Growth",
+        "description": "Conference session focused on positive thinking for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "🌿",
+        "title": "Mindfulness & Meditation",
+        "description": "Conference session focused on mindfulness & meditation."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Strength for Leaders",
+        "description": "Conference session focused on emotional strength for leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "🧘",
+        "title": "Mental Health Awareness Today",
+        "description": "Conference session focused on mental health awareness today."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Beyond Boundaries",
+        "description": "Conference session focused on wellness beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating a Balanced Lifestyle",
+        "description": "Conference session focused on creating a balanced lifestyle."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Confidence & Positivity",
+        "description": "Conference session focused on building confidence & positivity."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Power of Self-Healing",
+        "description": "Conference session focused on the power of self-healing."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Through Mindfulness",
+        "description": "Conference session focused on wellness through mindfulness."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Intelligence & Leadership",
+        "description": "Conference session focused on emotional intelligence & leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Transforming Your Mindset",
+        "description": "Conference session focused on transforming your mindset."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Science of Happiness",
+        "description": "Conference session focused on the science of happiness."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness for Future Generations",
+        "description": "Conference session focused on wellness for future generations."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Living with Purpose & Peace",
+        "description": "Conference session focused on living with purpose & peace."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Emotional Wellness",
+        "description": "Conference session focused on inspiring emotional wellness."
+      },
+      {
+        "_type": "object",
+        "icon": "🌀",
+        "title": "Holistic Wellness & Growth",
+        "description": "Conference session focused on holistic wellness & growth."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the InnerGlow Mental Wellness Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Empowering Minds. Inspiring Emotional Well-Being.\", the conference will focus on mental health, mindfulness, emotional resilience, and holistic wellness."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-nova-women-in-medicine-science-summit-2027",
+    "_type": "event",
+    "title": "Nova Women in Medicine & Science Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "nova-women-in-medicine-science-summit-2027"
+    },
+    "date": "March 08–11, 2027",
+    "location": "Paris, France",
+    "type": "🌍 Hybrid",
+    "badge": "Nova",
+    "bdColor": "#16A085",
+    "dateColor": "#16A085",
+    "chips": [
+      "Medicine",
+      "Science",
+      "Healthcare Innovation",
+      "Paris 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Healthcare Innovation",
+        "description": "Conference session focused on women leading healthcare innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Medical Science",
+        "description": "Conference session focused on future of medical science."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in STEM Leadership",
+        "description": "Conference session focused on women in stem leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation in Global Healthcare",
+        "description": "Conference session focused on innovation in global healthcare."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Researchers Forum",
+        "description": "Conference session focused on women researchers forum."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Advances in Medical Technology",
+        "description": "Conference session focused on advances in medical technology."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare Leadership Today",
+        "description": "Conference session focused on healthcare leadership today."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Scientific Innovation & Discovery",
+        "description": "Conference session focused on scientific innovation & discovery."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Transforming Medicine",
+        "description": "Conference session focused on women transforming medicine."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI in Healthcare Innovation",
+        "description": "Conference session focused on ai in healthcare innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Health Challenges",
+        "description": "Conference session focused on global health challenges."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership in Medical Research",
+        "description": "Conference session focused on leadership in medical research."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Women Scientists",
+        "description": "Conference session focused on future women scientists."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation in Clinical Practice",
+        "description": "Conference session focused on innovation in clinical practice."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Biotechnology",
+        "description": "Conference session focused on women in biotechnology."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Advancing Public Health",
+        "description": "Conference session focused on advancing public health."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Healthcare Transformation",
+        "description": "Conference session focused on digital healthcare transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Future of Women in STEM",
+        "description": "Conference session focused on the future of women in stem."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare & Scientific Collaboration",
+        "description": "Conference session focused on healthcare & scientific collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Precision Medicine & Innovation",
+        "description": "Conference session focused on precision medicine & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Scientific Change",
+        "description": "Conference session focused on women inspiring scientific change."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Modern Challenges in Healthcare",
+        "description": "Conference session focused on modern challenges in healthcare."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Medical Research Forum",
+        "description": "Conference session focused on global medical research forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation Through Science",
+        "description": "Conference session focused on innovation through science."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering Women in Healthcare",
+        "description": "Conference session focused on empowering women in healthcare."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Nova Women in Medicine & Science Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Innovating Healthcare. Empowering Women in Science.\", the conference will focus on empowering women in STEM, advancing medical research, and driving healthcare innovation."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-futureher-ai-summit-2027",
+    "_type": "event",
+    "title": "FutureHER AI Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "futureher-ai-summit-2027"
+    },
+    "date": "March 08–11, 2027",
+    "location": "Paris, France",
+    "type": "🌍 Hybrid",
+    "badge": "FutureHER",
+    "bdColor": "#8E44AD",
+    "dateColor": "#8E44AD",
+    "chips": [
+      "Artificial Intelligence",
+      "Women in Tech",
+      "Innovation",
+      "Paris 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Artificial Intelligence",
+        "description": "Conference session focused on women in artificial intelligence."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI Innovation for the Future",
+        "description": "Conference session focused on ai innovation for the future."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Digital Transformation",
+        "description": "Conference session focused on women leading digital transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "⚖️",
+        "title": "Ethical AI & Responsible Innovation",
+        "description": "Conference session focused on ethical ai & responsible innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Technology Leadership",
+        "description": "Conference session focused on future technology leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI in Healthcare & Science",
+        "description": "Conference session focused on ai in healthcare & science."
+      },
+      {
+        "_type": "object",
+        "icon": "🖥️",
+        "title": "Machine Learning & Innovation",
+        "description": "Conference session focused on machine learning & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Future Tech",
+        "description": "Conference session focused on women in future tech."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Rise of Women in AI",
+        "description": "Conference session focused on the rise of women in ai."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI for Social Impact",
+        "description": "Conference session focused on ai for social impact."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation Through Technology",
+        "description": "Conference session focused on innovation through technology."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in STEM & AI",
+        "description": "Conference session focused on women in stem & ai."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Careers in Artificial Intelligence",
+        "description": "Conference session focused on future careers in artificial intelligence."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Leadership & Growth",
+        "description": "Conference session focused on digital leadership & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI & Entrepreneurship",
+        "description": "Conference session focused on ai & entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Smart Solutions",
+        "description": "Conference session focused on women creating smart solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Technology Collaboration",
+        "description": "Conference session focused on global technology collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI & Human Transformation",
+        "description": "Conference session focused on ai & human transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Future of Intelligent Systems",
+        "description": "Conference session focused on the future of intelligent systems."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Innovators Forum",
+        "description": "Conference session focused on women innovators forum."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI Beyond Boundaries",
+        "description": "Conference session focused on ai beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership in Emerging Technologies",
+        "description": "Conference session focused on leadership in emerging technologies."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Artificial Intelligence for Good",
+        "description": "Conference session focused on artificial intelligence for good."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Digital Opportunities",
+        "description": "Conference session focused on future digital opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Shaping Tomorrow's Technology",
+        "description": "Conference session focused on women shaping tomorrow's technology."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the FutureHER AI Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Women Transforming the Future of Artificial Intelligence.\", the conference will focus on AI innovation, ethical technology, and women leading the digital revolution."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-quantum-women-leaders-summit-2027",
+    "_type": "event",
+    "title": "Quantum Women Leaders Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "quantum-women-leaders-summit-2027"
+    },
+    "date": "May 10–11, 2027",
+    "location": "Tokyo, Japan",
+    "type": "🌍 Hybrid",
+    "badge": "Quantum",
+    "bdColor": "#C0392B",
+    "dateColor": "#C0392B",
+    "chips": [
+      "Leadership",
+      "Visionary",
+      "Women Empowerment",
+      "Tokyo 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👁️",
+        "title": "Visionary Leadership Today",
+        "description": "Conference session focused on visionary leadership today."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Global Change",
+        "description": "Conference session focused on women creating global change."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation Through Leadership",
+        "description": "Conference session focused on innovation through leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Leaders Forum",
+        "description": "Conference session focused on future leaders forum."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women & Entrepreneurship",
+        "description": "Conference session focused on women & entrepreneurship."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Leadership for Growth",
+        "description": "Conference session focused on strategic leadership for growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Executive Roles",
+        "description": "Conference session focused on women in executive roles."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Future Opportunities",
+        "description": "Conference session focused on building future opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Innovation",
+        "description": "Conference session focused on leadership beyond innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowering Communities",
+        "description": "Conference session focused on women empowering communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership in a Digital Era",
+        "description": "Conference session focused on leadership in a digital era."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Transformation",
+        "description": "Conference session focused on women driving transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Future Leaders",
+        "description": "Conference session focused on inspiring future leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Innovation",
+        "description": "Conference session focused on women supporting innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Networking",
+        "description": "Conference session focused on global women networking."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership for Tomorrow",
+        "description": "Conference session focused on leadership for tomorrow."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Technology Leadership",
+        "description": "Conference session focused on women in technology leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Future of Women Leaders",
+        "description": "Conference session focused on the future of women leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Influencing the World",
+        "description": "Conference session focused on women influencing the world."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership with Purpose",
+        "description": "Conference session focused on leadership with purpose."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women & Strategic Growth",
+        "description": "Conference session focused on women & strategic growth."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Positive Change",
+        "description": "Conference session focused on innovation for positive change."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Impact",
+        "description": "Conference session focused on women creating impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Leadership Excellence",
+        "description": "Conference session focused on global leadership excellence."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Quantum Women Leaders Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Visionary Leadership for a Transforming World.\", the conference will focus on empowering future leaders, promoting innovation, and creating positive change."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-mindrise-global-wellness-summit-2027",
+    "_type": "event",
+    "title": "MindRise Global Wellness Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "mindrise-global-wellness-summit-2027"
+    },
+    "date": "May 10–11, 2027",
+    "location": "Tokyo, Japan",
+    "type": "🌍 Hybrid",
+    "badge": "MindRise",
+    "bdColor": "#1ABC9C",
+    "dateColor": "#1ABC9C",
+    "chips": [
+      "Wellness",
+      "Mindfulness",
+      "Balance",
+      "Tokyo 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🌿",
+        "title": "Mindfulness for Modern Life",
+        "description": "Conference session focused on mindfulness for modern life."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Wellness & Balance",
+        "description": "Conference session focused on emotional wellness & balance."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Self-Care & Personal Growth",
+        "description": "Conference session focused on self-care & personal growth."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Emotional Strength",
+        "description": "Conference session focused on building emotional strength."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Positive Living Strategies",
+        "description": "Conference session focused on positive living strategies."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Through Mindfulness",
+        "description": "Conference session focused on wellness through mindfulness."
+      },
+      {
+        "_type": "object",
+        "icon": "🧘",
+        "title": "Mental Wellness for Leaders",
+        "description": "Conference session focused on mental wellness for leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "🌀",
+        "title": "Holistic Living Today",
+        "description": "Conference session focused on holistic living today."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating Inner Harmony",
+        "description": "Conference session focused on creating inner harmony."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Beyond Stress",
+        "description": "Conference session focused on wellness beyond stress."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Intelligence & Growth",
+        "description": "Conference session focused on emotional intelligence & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Meditation & Transformation",
+        "description": "Conference session focused on meditation & transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Science of Mindfulness",
+        "description": "Conference session focused on the science of mindfulness."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Resilience Through Wellness",
+        "description": "Conference session focused on building resilience through wellness."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Leadership Forum",
+        "description": "Conference session focused on wellness leadership forum."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Living with Purpose & Peace",
+        "description": "Conference session focused on living with purpose & peace."
+      },
+      {
+        "_type": "object",
+        "icon": "🧘",
+        "title": "Mental Health Awareness",
+        "description": "Conference session focused on mental health awareness."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Transforming Your Mindset",
+        "description": "Conference session focused on transforming your mindset."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness for Everyday Success",
+        "description": "Conference session focused on wellness for everyday success."
+      },
+      {
+        "_type": "object",
+        "icon": "💚",
+        "title": "Healing Through Positivity",
+        "description": "Conference session focused on healing through positivity."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Wellness & Leadership",
+        "description": "Conference session focused on emotional wellness & leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Healthy Living",
+        "description": "Conference session focused on inspiring healthy living."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Journey to Self-Healing",
+        "description": "Conference session focused on the journey to self-healing."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness & Human Transformation",
+        "description": "Conference session focused on wellness & human transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Global Wellness",
+        "description": "Conference session focused on future of global wellness."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the MindRise Global Wellness Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Mindfulness. Balance. Human Transformation.\", the conference will focus on holistic wellness, mindfulness practices, and emotional well-being."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-nextgen-women-in-healthcare-summit-2027",
+    "_type": "event",
+    "title": "NextGen Women in Healthcare Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "nextgen-women-in-healthcare-summit-2027"
+    },
+    "date": "May 10–11, 2027",
+    "location": "Tokyo, Japan",
+    "type": "🌍 Hybrid",
+    "badge": "NextGen",
+    "bdColor": "#2980B9",
+    "dateColor": "#2980B9",
+    "chips": [
+      "Healthcare",
+      "Scientific Innovation",
+      "Women in STEM",
+      "Tokyo 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Healthcare Leadership",
+        "description": "Conference session focused on women in healthcare leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Global Medicine",
+        "description": "Conference session focused on future of global medicine."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation in Medical Science",
+        "description": "Conference session focused on innovation in medical science."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Researchers Forum",
+        "description": "Conference session focused on women researchers forum."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare & Biotechnology",
+        "description": "Conference session focused on healthcare & biotechnology."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI in Modern Healthcare",
+        "description": "Conference session focused on ai in modern healthcare."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Health Innovation",
+        "description": "Conference session focused on digital health innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Scientific Discovery & Progress",
+        "description": "Conference session focused on scientific discovery & progress."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Transforming Healthcare",
+        "description": "Conference session focused on women transforming healthcare."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Public Health & Innovation",
+        "description": "Conference session focused on public health & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🏥",
+        "title": "Medical Technology Today",
+        "description": "Conference session focused on medical technology today."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in STEM Excellence",
+        "description": "Conference session focused on women in stem excellence."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare Research Leadership",
+        "description": "Conference session focused on healthcare research leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Healthcare Solutions",
+        "description": "Conference session focused on future healthcare solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation in Clinical Practice",
+        "description": "Conference session focused on innovation in clinical practice."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Scientific Change",
+        "description": "Conference session focused on women leading scientific change."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Advances in Medical Research",
+        "description": "Conference session focused on advances in medical research."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Biotechnology Leadership",
+        "description": "Conference session focused on women in biotechnology leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare Collaboration & Growth",
+        "description": "Conference session focused on healthcare collaboration & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Scientific Innovation",
+        "description": "Conference session focused on global scientific innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Precision Medicine & Technology",
+        "description": "Conference session focused on precision medicine & technology."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Women Scientists",
+        "description": "Conference session focused on future women scientists."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare Beyond Boundaries",
+        "description": "Conference session focused on healthcare beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "🏥",
+        "title": "Medical Innovation Forum",
+        "description": "Conference session focused on medical innovation forum."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Advancing Science",
+        "description": "Conference session focused on women advancing science."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the NextGen Women in Healthcare Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Advancing Medicine. Inspiring Scientific Innovation.\", the conference will focus on women in healthcare, medical research leadership, and biotechnology."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-ai-visionary-women-summit-2027",
+    "_type": "event",
+    "title": "AI Visionary Women Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "ai-visionary-women-summit-2027"
+    },
+    "date": "May 10–11, 2027",
+    "location": "Tokyo, Japan",
+    "type": "🌍 Hybrid",
+    "badge": "AI Visionary",
+    "bdColor": "#8E44AD",
+    "dateColor": "#8E44AD",
+    "chips": [
+      "AI",
+      "Women in Tech",
+      "Intelligence Revolution",
+      "Tokyo 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading AI Innovation",
+        "description": "Conference session focused on women leading ai innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Artificial Intelligence",
+        "description": "Conference session focused on future of artificial intelligence."
+      },
+      {
+        "_type": "object",
+        "icon": "⚖️",
+        "title": "Ethical AI & Technology",
+        "description": "Conference session focused on ethical ai & technology."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Digital Transformation",
+        "description": "Conference session focused on women in digital transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "🖥️",
+        "title": "Machine Learning & Innovation",
+        "description": "Conference session focused on machine learning & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI for Social Good",
+        "description": "Conference session focused on ai for social good."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Robotics & Future Technology",
+        "description": "Conference session focused on robotics & future technology."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in STEM Leadership",
+        "description": "Conference session focused on women in stem leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Careers in AI",
+        "description": "Conference session focused on future careers in ai."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI & Smart Innovation",
+        "description": "Conference session focused on ai & smart innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "💻",
+        "title": "Technology Leadership Today",
+        "description": "Conference session focused on technology leadership today."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Shaping Future Tech",
+        "description": "Conference session focused on women shaping future tech."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI in Healthcare & Science",
+        "description": "Conference session focused on ai in healthcare & science."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Innovation & Growth",
+        "description": "Conference session focused on digital innovation & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Emerging Technologies",
+        "description": "Conference session focused on women in emerging technologies."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global AI Collaboration",
+        "description": "Conference session focused on global ai collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Technology Solutions",
+        "description": "Conference session focused on future technology solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI Entrepreneurship Forum",
+        "description": "Conference session focused on ai entrepreneurship forum."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Data & Intelligence",
+        "description": "Conference session focused on women in data & intelligence."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership in Future Tech",
+        "description": "Conference session focused on leadership in future tech."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation Through Artificial Intelligence",
+        "description": "Conference session focused on innovation through artificial intelligence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Digital Impact",
+        "description": "Conference session focused on women creating digital impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Opportunities in AI",
+        "description": "Conference session focused on future opportunities in ai."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI Beyond Boundaries",
+        "description": "Conference session focused on ai beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Intelligence Revolution",
+        "description": "Conference session focused on the intelligence revolution."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the AI Visionary Women Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Women Leading the Intelligence Revolution.\", the conference will focus on AI, machine learning, robotics, and women shaping the future of technology."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-elevateher-leadership-summit-2027",
+    "_type": "event",
+    "title": "ElevateHER Leadership Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "elevateher-leadership-summit-2027"
+    },
+    "date": "September 08–10, 2027",
+    "location": "Miami, USA",
+    "type": "🌍 Hybrid",
+    "badge": "ElevateHER",
+    "bdColor": "#E74C3C",
+    "dateColor": "#E74C3C",
+    "chips": [
+      "Leadership",
+      "Women Empowerment",
+      "Global Impact",
+      "Miami 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading with Purpose",
+        "description": "Conference session focused on women leading with purpose."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership & Global Influence",
+        "description": "Conference session focused on leadership & global influence."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Entrepreneurs Forum",
+        "description": "Conference session focused on women entrepreneurs forum."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Leadership Confidence",
+        "description": "Conference session focused on building leadership confidence."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation Through Leadership",
+        "description": "Conference session focused on innovation through leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Driving Change",
+        "description": "Conference session focused on women driving change."
+      },
+      {
+        "_type": "object",
+        "icon": "📊",
+        "title": "Strategic Growth & Success",
+        "description": "Conference session focused on strategic growth & success."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Executive Leadership",
+        "description": "Conference session focused on women in executive leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Limits",
+        "description": "Conference session focused on leadership beyond limits."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Opportunities",
+        "description": "Conference session focused on women creating opportunities."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Women Networking",
+        "description": "Conference session focused on global women networking."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Women Leaders",
+        "description": "Conference session focused on future women leaders."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Supporting Women",
+        "description": "Conference session focused on women supporting women."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership for Transformation",
+        "description": "Conference session focused on leadership for transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women & Innovation",
+        "description": "Conference session focused on women & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Future of Leadership",
+        "description": "Conference session focused on the future of leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Mindset for Success",
+        "description": "Conference session focused on leadership mindset for success."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Empowering Communities",
+        "description": "Conference session focused on women empowering communities."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Impact Through Leadership",
+        "description": "Conference session focused on global impact through leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Business Excellence",
+        "description": "Conference session focused on women in business excellence."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership Beyond Boundaries",
+        "description": "Conference session focused on leadership beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Change",
+        "description": "Conference session focused on women inspiring change."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership for Future Generations",
+        "description": "Conference session focused on leadership for future generations."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Influencing the World",
+        "description": "Conference session focused on women influencing the world."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Empowerment Through Collaboration",
+        "description": "Conference session focused on empowerment through collaboration."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the ElevateHER Leadership Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Empowering Women. Creating Global Impact.\", the conference will focus on leadership excellence, entrepreneurship, and empowering women across industries."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-thrive-women-wellness-summit-2027",
+    "_type": "event",
+    "title": "Thrive Women Wellness Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "thrive-women-wellness-summit-2027"
+    },
+    "date": "September 08–10, 2027",
+    "location": "Miami, USA",
+    "type": "🌍 Hybrid",
+    "badge": "Thrive",
+    "bdColor": "#27AE60",
+    "dateColor": "#27AE60",
+    "chips": [
+      "Wellness",
+      "Mental Health",
+      "Emotional Resilience",
+      "Miami 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "🧘",
+        "title": "Mental Wellness for Success",
+        "description": "Conference session focused on mental wellness for success."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Emotional Resilience",
+        "description": "Conference session focused on building emotional resilience."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Self-Care & Healthy Living",
+        "description": "Conference session focused on self-care & healthy living."
+      },
+      {
+        "_type": "object",
+        "icon": "🌿",
+        "title": "Mindfulness & Inner Peace",
+        "description": "Conference session focused on mindfulness & inner peace."
+      },
+      {
+        "_type": "object",
+        "icon": "💚",
+        "title": "Healing Through Positivity",
+        "description": "Conference session focused on healing through positivity."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Leadership Today",
+        "description": "Conference session focused on wellness leadership today."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Intelligence & Growth",
+        "description": "Conference session focused on emotional intelligence & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "🎨",
+        "title": "Creating a Balanced Lifestyle",
+        "description": "Conference session focused on creating a balanced lifestyle."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Science of Happiness",
+        "description": "Conference session focused on the science of happiness."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Beyond Stress",
+        "description": "Conference session focused on wellness beyond stress."
+      },
+      {
+        "_type": "object",
+        "icon": "🧘",
+        "title": "Mental Health Awareness",
+        "description": "Conference session focused on mental health awareness."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Confidence & Wellness",
+        "description": "Conference session focused on building confidence & wellness."
+      },
+      {
+        "_type": "object",
+        "icon": "🧠",
+        "title": "Mindset Transformation",
+        "description": "Conference session focused on mindset transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Wellness & Leadership",
+        "description": "Conference session focused on emotional wellness & leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness for Everyday Life",
+        "description": "Conference session focused on wellness for everyday life."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Positive Thinking Strategies",
+        "description": "Conference session focused on positive thinking strategies."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women & Mental Health",
+        "description": "Conference session focused on women & mental health."
+      },
+      {
+        "_type": "object",
+        "icon": "✨",
+        "title": "Inspiring Emotional Growth",
+        "description": "Conference session focused on inspiring emotional growth."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "The Journey to Self-Healing",
+        "description": "Conference session focused on the journey to self-healing."
+      },
+      {
+        "_type": "object",
+        "icon": "🌀",
+        "title": "Holistic Wellness & Balance",
+        "description": "Conference session focused on holistic wellness & balance."
+      },
+      {
+        "_type": "object",
+        "icon": "🌺",
+        "title": "Wellness Through Mindfulness",
+        "description": "Conference session focused on wellness through mindfulness."
+      },
+      {
+        "_type": "object",
+        "icon": "🏗️",
+        "title": "Building Stronger Futures",
+        "description": "Conference session focused on building stronger futures."
+      },
+      {
+        "_type": "object",
+        "icon": "❤️",
+        "title": "Emotional Strength & Success",
+        "description": "Conference session focused on emotional strength & success."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Living with Purpose & Wellness",
+        "description": "Conference session focused on living with purpose & wellness."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Global Wellness",
+        "description": "Conference session focused on future of global wellness."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Thrive Women Wellness Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Healing Minds. Building Stronger Futures.\", the conference will focus on mental wellness, emotional resilience, self-care, and holistic living."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-global-women-medical-science-summit-2027",
+    "_type": "event",
+    "title": "Global Women Medical & Science Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "global-women-medical-science-summit-2027"
+    },
+    "date": "September 08–10, 2027",
+    "location": "Miami, USA",
+    "type": "🌍 Hybrid",
+    "badge": "Global",
+    "bdColor": "#16A085",
+    "dateColor": "#16A085",
+    "chips": [
+      "Healthcare",
+      "Medical Science",
+      "Women in STEM",
+      "Miami 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Global Healthcare",
+        "description": "Conference session focused on women in global healthcare."
+      },
+      {
+        "_type": "object",
+        "icon": "🏥",
+        "title": "Medical Innovation & Leadership",
+        "description": "Conference session focused on medical innovation & leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Healthcare Technology",
+        "description": "Conference session focused on future of healthcare technology."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Researchers Forum",
+        "description": "Conference session focused on women researchers forum."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Scientific Discovery Today",
+        "description": "Conference session focused on scientific discovery today."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Biotechnology",
+        "description": "Conference session focused on women in biotechnology."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Public Health & Innovation",
+        "description": "Conference session focused on public health & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI in Healthcare Solutions",
+        "description": "Conference session focused on ai in healthcare solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "🏥",
+        "title": "Medical Research Leadership",
+        "description": "Conference session focused on medical research leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Women Scientists",
+        "description": "Conference session focused on future women scientists."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation in Clinical Practice",
+        "description": "Conference session focused on innovation in clinical practice."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare Beyond Boundaries",
+        "description": "Conference session focused on healthcare beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Advancing Medical Science",
+        "description": "Conference session focused on women advancing medical science."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Health Challenges",
+        "description": "Conference session focused on global health challenges."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in STEM Excellence",
+        "description": "Conference session focused on women in stem excellence."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Healthcare Innovation",
+        "description": "Conference session focused on digital healthcare innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership in Scientific Research",
+        "description": "Conference session focused on leadership in scientific research."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Transforming Medicine",
+        "description": "Conference session focused on women transforming medicine."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Healthcare Solutions",
+        "description": "Conference session focused on future healthcare solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Precision Medicine & Technology",
+        "description": "Conference session focused on precision medicine & technology."
+      },
+      {
+        "_type": "object",
+        "icon": "⚕️",
+        "title": "Healthcare Collaboration & Growth",
+        "description": "Conference session focused on healthcare collaboration & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Inspiring Scientific Change",
+        "description": "Conference session focused on women inspiring scientific change."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Advances in Global Medicine",
+        "description": "Conference session focused on advances in global medicine."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Scientific Innovation Forum",
+        "description": "Conference session focused on scientific innovation forum."
+      },
+      {
+        "_type": "object",
+        "icon": "💪",
+        "title": "Empowering Women in Healthcare",
+        "description": "Conference session focused on empowering women in healthcare."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Global Women Medical & Science Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Women Advancing the Future of Healthcare.\", the conference will focus on medical innovation, biotechnology, AI in healthcare, and women advancing science."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  },
+  {
+    "_id": "drafts.event-women-in-ai-future-tech-summit-2027",
+    "_type": "event",
+    "title": "Women in AI & Future Tech Summit 2027",
+    "slug": {
+      "_type": "slug",
+      "current": "women-in-ai-future-tech-summit-2027"
+    },
+    "date": "September 08–10, 2027",
+    "location": "Miami, USA",
+    "type": "🌍 Hybrid",
+    "badge": "Future Tech",
+    "bdColor": "#2980B9",
+    "dateColor": "#2980B9",
+    "chips": [
+      "AI",
+      "Future Technology",
+      "Digital Innovation",
+      "Miami 2027"
+    ],
+    "themes": [
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Future Technology",
+        "description": "Conference session focused on women leading future technology."
+      },
+      {
+        "_type": "object",
+        "icon": "📌",
+        "title": "Artificial Intelligence & Innovation",
+        "description": "Conference session focused on artificial intelligence & innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Digital Leadership",
+        "description": "Conference session focused on women in digital leadership."
+      },
+      {
+        "_type": "object",
+        "icon": "⚖️",
+        "title": "Ethical AI & Smart Innovation",
+        "description": "Conference session focused on ethical ai & smart innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Careers in Technology",
+        "description": "Conference session focused on future careers in technology."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in Emerging Technologies",
+        "description": "Conference session focused on women in emerging technologies."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI & Human Transformation",
+        "description": "Conference session focused on ai & human transformation."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation Through Machine Learning",
+        "description": "Conference session focused on innovation through machine learning."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women in STEM & AI",
+        "description": "Conference session focused on women in stem & ai."
+      },
+      {
+        "_type": "object",
+        "icon": "💻",
+        "title": "Technology Entrepreneurship Today",
+        "description": "Conference session focused on technology entrepreneurship today."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Transformation & Growth",
+        "description": "Conference session focused on digital transformation & growth."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Smart Solutions",
+        "description": "Conference session focused on women creating smart solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI for Social Good",
+        "description": "Conference session focused on ai for social good."
+      },
+      {
+        "_type": "object",
+        "icon": "🎯",
+        "title": "Leadership in Future Tech",
+        "description": "Conference session focused on leadership in future tech."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Innovators Forum",
+        "description": "Conference session focused on women innovators forum."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future of Artificial Intelligence",
+        "description": "Conference session focused on future of artificial intelligence."
+      },
+      {
+        "_type": "object",
+        "icon": "🌍",
+        "title": "Global Technology Collaboration",
+        "description": "Conference session focused on global technology collaboration."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI in Healthcare",
+        "description": "Conference session focused on ai in healthcare."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Shaping Tomorrow's Innovation",
+        "description": "Conference session focused on women shaping tomorrow's innovation."
+      },
+      {
+        "_type": "object",
+        "icon": "📱",
+        "title": "Digital Leadership Excellence",
+        "description": "Conference session focused on digital leadership excellence."
+      },
+      {
+        "_type": "object",
+        "icon": "🤖",
+        "title": "AI Beyond Boundaries",
+        "description": "Conference session focused on ai beyond boundaries."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Creating Tech Solutions",
+        "description": "Conference session focused on women creating tech solutions."
+      },
+      {
+        "_type": "object",
+        "icon": "💡",
+        "title": "Innovation for Global Impact",
+        "description": "Conference session focused on innovation for global impact."
+      },
+      {
+        "_type": "object",
+        "icon": "🔮",
+        "title": "Future Smart Technologies",
+        "description": "Conference session focused on future smart technologies."
+      },
+      {
+        "_type": "object",
+        "icon": "👩",
+        "title": "Women Leading Digital Change",
+        "description": "Conference session focused on women leading digital change."
+      }
+    ],
+    "description": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Prosummits Hybrid Conferences proudly presents the Women in AI & Future Tech Summit 2027, bringing together global leaders, entrepreneurs, innovators, educators, wellness experts, researchers, and changemakers from around the world."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Centered around the theme \"Innovation. Intelligence. Women Shaping Tomorrow.\", the conference will focus on AI, machine learning, digital transformation, and women pioneering future technologies."
+          }
+        ]
+      }
+    ],
+    "eventYear": {
+      "_type": "reference",
+      "_ref": "year-2027"
+    }
+  }
+]

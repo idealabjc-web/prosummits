@@ -1,0 +1,334 @@
+[
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "date",
+        "type": "string"
+      },
+      {
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            "🌍 Hybrid",
+            "💻 Online"
+          ]
+        },
+        "name": "type",
+        "type": "string"
+      },
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "bdColor",
+        "type": "string",
+        "title": "Badge Color (Hex)"
+      },
+      {
+        "name": "dateColor",
+        "type": "string",
+        "title": "Date Color (Hex)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "legacyImageUrl",
+        "type": "url",
+        "title": "Legacy Image URL"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "chips",
+        "type": "array",
+        "title": "Chips/Tags"
+      },
+      {
+        "initialValue": "Free",
+        "name": "price",
+        "type": "string"
+      }
+    ],
+    "name": "event",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "title": "Sponsor Name"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Logo"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "legacyImageUrl",
+        "type": "url",
+        "title": "Legacy Image URL"
+      }
+    ],
+    "name": "sponsor",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Profile Image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "legacyImageUrl",
+        "type": "url",
+        "title": "Legacy Image URL"
+      },
+      {
+        "name": "initials",
+        "type": "string"
+      }
+    ],
+    "name": "speaker",
+    "type": "document",
+    "title": "Speaker / Ambassador"
+  },
+  {
+    "fields": [
+      {
+        "name": "quote",
+        "type": "text"
+      },
+      {
+        "name": "author",
+        "type": "string",
+        "title": "Author Name"
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "title": "Author Role"
+      }
+    ],
+    "name": "testimonial",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "question",
+        "type": "string"
+      },
+      {
+        "name": "answer",
+        "type": "text"
+      },
+      {
+        "options": {
+          "list": [
+            "General",
+            "Events & Attendance",
+            "Speakers & Content",
+            "Partnerships & Sponsorship",
+            "Policies"
+          ]
+        },
+        "name": "category",
+        "type": "string"
+      }
+    ],
+    "name": "faq",
+    "type": "document",
+    "title": "FAQ"
+  },
+  {
+    "fields": [
+      {
+        "name": "icon",
+        "type": "string",
+        "title": "Icon (Emoji)"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "title": "Partner Name"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "organizer",
+    "type": "document",
+    "title": "Organizer / Partner"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "ProSummits",
+        "name": "title",
+        "type": "string",
+        "title": "Site Title"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "text",
+                "type": "string"
+              },
+              {
+                "name": "color",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "marqueeItems",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "number",
+                "type": "string"
+              },
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "color",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "heroStats",
+        "type": "array"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document"
+  }
+]
