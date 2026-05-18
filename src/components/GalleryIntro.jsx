@@ -36,17 +36,21 @@ function FlipCard({ src, index, phase, target }) {
 
 
 const lerp = (start, end, t) => start * (1 - t) + end * t;
-const MAX_SCROLL = 3000;
 
 export default function GalleryIntro({ images = [] }) {
     const [introPhase, setIntroPhase] = useState("scatter");
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const containerRef = useRef(null);
-    
-    // Tile the available gallery images up to 20 for a dense circle
-    const displayImages = images.length > 0 
-        ? Array.from({ length: 20 }, (_, i) => images[i % images.length]) 
-        : [];
+
+    const isMobile = containerSize.width > 0 ? containerSize.width < 768 : window.innerWidth < 768;
+    const maxScroll = isMobile ? 800 : 1200;
+
+    // Tile the available gallery images: 8 on mobile (for huge performance boost), 20 on desktop
+    const displayImages = useMemo(() => {
+        if (images.length === 0) return [];
+        const maxImages = isMobile ? 8 : 20;
+        return Array.from({ length: maxImages }, (_, i) => images[i % images.length]);
+    }, [images, isMobile]);
     const TOTAL_IMAGES = Math.max(displayImages.length, 1);
 
     useEffect(() => {
@@ -70,39 +74,41 @@ export default function GalleryIntro({ images = [] }) {
         if (!container) return;
         const handleWheel = (e) => {
             const isScrollingDown = e.deltaY > 0;
-            const atBottom = scrollRef.current >= MAX_SCROLL;
+            const atBottom = scrollRef.current >= maxScroll;
             const atTop = scrollRef.current <= 0;
-            
+
             // Do not trap user from scrolling the actual page if they reach bounds
             if ((isScrollingDown && atBottom) || (!isScrollingDown && atTop)) {
                 return;
             }
             e.preventDefault();
-            const newScroll = Math.min(Math.max(scrollRef.current + e.deltaY, 0), MAX_SCROLL);
+            // Speed up scroll step: multiply by 1.8 to make it feel extremely snappy!
+            const newScroll = Math.min(Math.max(scrollRef.current + e.deltaY * 1.8, 0), maxScroll);
             scrollRef.current = newScroll;
             virtualScroll.set(newScroll);
         };
-        
+
         let touchStartY = 0;
         const handleTouchStart = (e) => { touchStartY = e.touches[0].clientY; };
         const handleTouchMove = (e) => {
             const touchY = e.touches[0].clientY;
-            const deltaY = touchStartY - touchY;
+            // Speed up touch movement: multiply touch delta by 2.2 to make mobile swipe feel incredibly fast and responsive!
+            const deltaY = (touchStartY - touchY) * 2.2;
             touchStartY = touchY;
-            
+
             const isScrollingDown = deltaY > 0;
-            const atBottom = scrollRef.current >= MAX_SCROLL;
+            const atBottom = scrollRef.current >= maxScroll;
             const atTop = scrollRef.current <= 0;
-            
+
             if ((isScrollingDown && atBottom) || (!isScrollingDown && atTop)) {
                 return;
             }
             e.preventDefault();
-            const newScroll = Math.min(Math.max(scrollRef.current + deltaY, 0), MAX_SCROLL);
+            const newScroll = Math.min(Math.max(scrollRef.current + deltaY, 0), maxScroll);
             scrollRef.current = newScroll;
             virtualScroll.set(newScroll);
         };
-        
+
         container.addEventListener("wheel", handleWheel, { passive: false });
         container.addEventListener("touchstart", handleTouchStart, { passive: false });
         container.addEventListener("touchmove", handleTouchMove, { passive: false });
@@ -111,11 +117,11 @@ export default function GalleryIntro({ images = [] }) {
             container.removeEventListener("touchstart", handleTouchStart);
             container.removeEventListener("touchmove", handleTouchMove);
         };
-    }, [virtualScroll]);
+    }, [virtualScroll, maxScroll]);
 
-    const morphProgress = useTransform(virtualScroll, [0, 600], [0, 1]);
+    const morphProgress = useTransform(virtualScroll, [0, isMobile ? 250 : 350], [0, 1]);
     const smoothMorph = useSpring(morphProgress, { stiffness: 40, damping: 20 });
-    const scrollRotate = useTransform(virtualScroll, [600, 3000], [0, 360]);
+    const scrollRotate = useTransform(virtualScroll, [isMobile ? 250 : 350, maxScroll], [0, 360]);
     const smoothScrollRotate = useSpring(scrollRotate, { stiffness: 40, damping: 20 });
 
     const mouseX = useMotionValue(0);
@@ -167,9 +173,9 @@ export default function GalleryIntro({ images = [] }) {
     return (
         <div ref={containerRef} className="gallery-intro-container page-hero" style={{ minHeight: "100vh", padding: 0 }}>
             <Link to="/" className="page-hero-back" style={{ zIndex: 50 }}>← Back to Home</Link>
-            
+
             <div className="gallery-intro-perspective">
-                
+
                 {/* Intro Text - Disappears */}
                 <div className="gallery-intro-text-wrapper">
                     <motion.div
@@ -212,7 +218,7 @@ export default function GalleryIntro({ images = [] }) {
                     <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "auto" }}>
                         {displayImages.slice(0, TOTAL_IMAGES).map((src, i) => {
                             let target = { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1 };
-                            
+
                             if (introPhase === "scatter") {
                                 target = scatterPositions[i];
                             } else if (introPhase === "line") {
@@ -223,8 +229,8 @@ export default function GalleryIntro({ images = [] }) {
                             } else {
                                 const isMobile = containerSize.width < 768;
                                 const minDimension = Math.min(containerSize.width, containerSize.height);
-                                
-                                const circleRadius = Math.min(minDimension * 0.45, 450);
+
+                                const circleRadius = Math.min(minDimension * 0.40, 400);
                                 const circleAngle = (i / TOTAL_IMAGES) * 360;
                                 const circleRad = (circleAngle * Math.PI) / 180;
                                 const circlePos = {
@@ -240,11 +246,11 @@ export default function GalleryIntro({ images = [] }) {
                                 const spreadAngle = isMobile ? 100 : 130;
                                 const startAngle = -90 - (spreadAngle / 2);
                                 const step = spreadAngle / (TOTAL_IMAGES - 1);
-                                
+
                                 const scrollProgress = Math.min(Math.max(rotateValue / 360, 0), 1);
                                 const maxRotation = spreadAngle * 0.8;
                                 const boundedRotation = -scrollProgress * maxRotation;
-                                
+
                                 const currentArcAngle = startAngle + (i * step) + boundedRotation;
                                 const arcRad = (currentArcAngle * Math.PI) / 180;
 
@@ -268,20 +274,20 @@ export default function GalleryIntro({ images = [] }) {
                         })}
                     </div>
                 </div>
-                
+
                 {/* Initial Scroll Indicator */}
-                <motion.div 
-                    className="scroll-indicator" 
+                <motion.div
+                    className="scroll-indicator"
                     initial={{ opacity: 0 }}
                     animate={introPhase === "circle" && morphValue < 0.1 ? { opacity: 0.6 } : { opacity: 0 }}
                     style={{ pointerEvents: "none" }}
                 >
-                  <div className="mouse">
-                    <div className="wheel"></div>
-                  </div>
-                  <span className="scroll-text">View Gallery</span>
+                    <div className="mouse">
+                        <div className="wheel"></div>
+                    </div>
+                    <span className="scroll-text">View Gallery</span>
                 </motion.div>
-                
+
             </div>
         </div>
     );
