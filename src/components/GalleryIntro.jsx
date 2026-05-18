@@ -43,7 +43,7 @@ export default function GalleryIntro({ images = [] }) {
     const containerRef = useRef(null);
 
     const isMobile = containerSize.width > 0 ? containerSize.width < 768 : window.innerWidth < 768;
-    const maxScroll = isMobile ? 800 : 1200;
+    const maxScroll = isMobile ? 500 : 1000;
 
     // Tile the available gallery images: 8 on mobile (for huge performance boost), 20 on desktop
     const displayImages = useMemo(() => {
@@ -92,8 +92,8 @@ export default function GalleryIntro({ images = [] }) {
         const handleTouchStart = (e) => { touchStartY = e.touches[0].clientY; };
         const handleTouchMove = (e) => {
             const touchY = e.touches[0].clientY;
-            // Speed up touch movement: multiply touch delta by 2.2 to make mobile swipe feel incredibly fast and responsive!
-            const deltaY = (touchStartY - touchY) * 2.2;
+            // Speed up touch movement: multiply touch delta by 4.0 to make mobile swipe feel incredibly fast and responsive!
+            const deltaY = (touchStartY - touchY) * 4.0;
             touchStartY = touchY;
 
             const isScrollingDown = deltaY > 0;
@@ -119,9 +119,9 @@ export default function GalleryIntro({ images = [] }) {
         };
     }, [virtualScroll, maxScroll]);
 
-    const morphProgress = useTransform(virtualScroll, [0, isMobile ? 250 : 350], [0, 1]);
+    const morphProgress = useTransform(virtualScroll, [0, isMobile ? 120 : 350], [0, 1]);
     const smoothMorph = useSpring(morphProgress, { stiffness: 40, damping: 20 });
-    const scrollRotate = useTransform(virtualScroll, [isMobile ? 250 : 350, maxScroll], [0, 360]);
+    const scrollRotate = useTransform(virtualScroll, [isMobile ? 120 : 350, maxScroll], [0, 360]);
     const smoothScrollRotate = useSpring(scrollRotate, { stiffness: 40, damping: 20 });
 
     const mouseX = useMotionValue(0);
