@@ -57,6 +57,12 @@ export default function About() {
             world-class hybrid events that drive real change in Women's Rights, Mental Health,
             Cancer Research, AI, Entrepreneurship, and Autism Sciences.
           </p>
+          <div className="scroll-indicator">
+            <div className="mouse">
+              <div className="wheel"></div>
+            </div>
+            <span className="scroll-text">Our Mission</span>
+          </div>
         </section>
 
         <div className="page-content">

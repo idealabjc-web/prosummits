@@ -64,9 +64,9 @@ export default function EventsPage() {
   };
 
   const stats = [
-    { n: "17+", l: "Upcoming Events", c: "#F9C515", icon: "📅" },
-    { n: "6+", l: "Conference Themes", c: "#7B2FBE", icon: "🎯" },
-    { n: "6", l: "Global Cities", c: "#00A79D", icon: "🌍" },
+    { n: "24+", l: "Upcoming Events", c: "#F9C515", icon: "📅" },
+    { n: "20+", l: "Conference Themes", c: "#7B2FBE", icon: "🎯" },
+    { n: "4", l: "Global Cities", c: "#00A79D", icon: "🌍" },
     // { n: "Free", l: "Early Bird Access", c: "#6DBE45", icon: "🎟️" },
   ];
 
@@ -85,6 +85,12 @@ export default function EventsPage() {
           Women's Rights, Mental Health, Cancer Research, AI, Entrepreneurship,
           and Autism Sciences.
         </p>
+        <div className="scroll-indicator">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <span className="scroll-text">Explore Calendar</span>
+        </div>
       </section>
 
       <div className="page-content">

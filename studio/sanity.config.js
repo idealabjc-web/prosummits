@@ -188,6 +188,59 @@ export default defineConfig({
             description: 'Manually select and order the events that belong to this yearly series.'
           }
         ]
+      },
+      {
+        name: 'series',
+        title: 'Event Series',
+        type: 'document',
+        fields: [
+          { name: 'name', title: 'Series Name', type: 'string' },
+          { name: 'year', title: 'Year', type: 'number' },
+          {
+            name: 'events',
+            title: 'Events in Series',
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'event' }] }],
+            description: 'Manually select and order the events that belong to this yearly series.'
+          }
+        ]
+      },
+      {
+        name: 'gallery',
+        title: 'ProSummits Gallery',
+        type: 'document',
+        fields: [
+          {
+            name: 'images',
+            title: 'Gallery Images',
+            type: 'array',
+            of: [
+              {
+                type: 'object',
+                name: 'galleryImage',
+                title: 'Gallery Image',
+                fields: [
+                  { name: 'image', type: 'image', title: 'Upload Image', options: { hotspot: true } },
+                  { name: 'url', type: 'url', title: 'External URL (Fallback)' },
+                  {
+                    name: 'category',
+                    type: 'string',
+                    title: 'Category',
+                    initialValue: 'Conference Highlights',
+                    options: {
+                      list: [
+                        { title: 'Highlights', value: 'Speakers' },
+                        { title: 'Panel Discussions', value: 'Panels' },
+                        { title: 'Global Venues', value: 'Locations' },
+                        { title: 'Speakers', value: 'Highlights' }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ],
   },

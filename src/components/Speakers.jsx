@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useFadeUp } from "../hooks/useFadeUp";
 import { client, urlFor } from "../lib/sanity";
-import { AMB_COLORS } from "../data/constants";
+import { AMB_COLORS, SPEAKERS } from "../data/constants";
 import "../styles/Ambassadors.css";
 
 /**
@@ -17,9 +17,10 @@ export default function Speakers() {
     const fetchSpeakers = async () => {
       try {
         const data = await client.fetch(`*[_type == "speaker"]`);
-        setSpeakers(data);
+        setSpeakers(data && data.length > 0 ? data : SPEAKERS);
       } catch (err) {
         console.error("Error fetching speakers:", err);
+        setSpeakers(SPEAKERS);
       }
     };
     fetchSpeakers();
@@ -43,35 +44,39 @@ export default function Speakers() {
         </div>
 
         <div className="amb-grid">
-          {speakers.map((a, i) => (
-            <div
-              key={a._id || i}
-              className="amb-card fu"
-              style={{ borderColor: AMB_COLORS[i % AMB_COLORS.length] + "33" }}
-              onMouseEnter={ev => ev.currentTarget.style.borderColor = AMB_COLORS[i % AMB_COLORS.length] + "88"}
-              onMouseLeave={ev => ev.currentTarget.style.borderColor = AMB_COLORS[i % AMB_COLORS.length] + "33"}
-            >
-              {/* Avatar */}
+          {speakers.map((a, i) => {
+            const color = AMB_COLORS[i % AMB_COLORS.length];
+            return (
               <div
-                className="amb-av"
-                style={{
-                  borderColor: AMB_COLORS[i % AMB_COLORS.length],
-                  background:  `linear-gradient(135deg,${AMB_COLORS[i % AMB_COLORS.length]}22,${AMB_COLORS[(i + 1) % AMB_COLORS.length] || AMB_COLORS[0]}22)`,
+                key={a._id || i}
+                className="amb-card fu"
+                style={{ 
+                  '--accent': color,
+                  '--accent-glow': color + '22'
                 }}
               >
-                <img
-                  src={a.image ? urlFor(a.image).width(200).height(200).url() : (a.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80")}
-                  alt={a.name}
-                  onError={e => { e.target.style.display = "none"; }}
-                />
-                {a.initials}
-              </div>
+                {/* Avatar */}
+                <div
+                  className="amb-av"
+                  style={{
+                    borderColor: color,
+                    background:  `linear-gradient(135deg,${color}22,${AMB_COLORS[(i + 1) % AMB_COLORS.length] || AMB_COLORS[0]}22)`,
+                  }}
+                >
+                  <img
+                    src={a.image ? urlFor(a.image).width(200).height(200).url() : (a.img || a.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80")}
+                    alt={a.name}
+                    onError={e => { e.target.style.display = "none"; }}
+                  />
+                  {a.initials || a.init || (a.name ? a.name.split(' ').map(n => n[0]).join('') : "SP")}
+                </div>
 
-              <div className="amb-name">{a.name}</div>
-              <div className="amb-role" style={{ color: AMB_COLORS[i % AMB_COLORS.length] }}>{(a.role || "").replace('Brand Ambassador', 'Guest Speaker')}</div>
-              <div className="amb-loc">📍 {a.location}</div>
-            </div>
-          ))}
+                <div className="amb-name">{a.name}</div>
+                <div className="amb-role">{(a.role || "").replace('Brand Ambassador', 'Guest Speaker')}</div>
+                <div className="amb-loc">📍 {a.location}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

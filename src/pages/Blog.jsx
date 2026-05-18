@@ -24,6 +24,12 @@ export default function Blog() {
           Stay updated with the latest trends in global leadership, hybrid event technology, 
           and breakthroughs across our six conference themes.
         </p>
+        <div className="scroll-indicator">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <span className="scroll-text">Read Stories</span>
+        </div>
       </section>
 
       <section className="wrap" style={{ paddingTop: 0 }}>

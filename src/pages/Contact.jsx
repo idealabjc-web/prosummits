@@ -107,6 +107,12 @@ export default function Contact() {
           Have questions about our events, partnerships, or registration? 
           We're here to help you navigate your ProSummits journey.
         </p>
+        <div className="scroll-indicator">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <span className="scroll-text">Reach Out</span>
+        </div>
       </section>
 
       <div className="page-content">

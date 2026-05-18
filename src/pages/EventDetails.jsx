@@ -110,6 +110,12 @@ export default function EventDetails() {
               <Link to="/events" className="btn-browse-outline">← Browse All Events</Link>
             </div>
           </div>
+          <div className="scroll-indicator">
+            <div className="mouse">
+              <div className="wheel"></div>
+            </div>
+            <span className="scroll-text">Scroll for Details</span>
+          </div>
         </div>
 
         {/* Details card */}

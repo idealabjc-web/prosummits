@@ -138,15 +138,20 @@ export const EVENTS = [
 
 export const AMB_COLORS = ["#7B2FBE", "#E01F5C", "#F47B20", "#6DBE45", "#00A79D", "#2D73BE", "#C4187A", "#F9C515"];
 
+import julia from '../assets/Julia Evans.jpeg';
+import ignacio from '../assets/Dr. Ignacio Bonasa Alzuria.jpeg';
+import giselle from '../assets/Giselle Arellano - Geronimo.jpeg';
+import lydia from '../assets/Lydia gray.jpeg';
+import debra from '../assets/Debra Diana.jpeg';
+import amanda from '../assets/Dr. Amanda Fernandez.jpeg';
+
 export const SPEAKERS = [
-  { init: "SR", name: "Sophia Reynolds", role: "Brand Ambassador", loc: "New York, USA", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" },
-  { init: "AK", name: "Amara Kone", role: "Brand Ambassador", loc: "Dubai, UAE", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80" },
-  { init: "LM", name: "Lena Müller", role: "Brand Ambassador", loc: "Paris, France", img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&q=80" },
-  { init: "YS", name: "Yuki Sato", role: "Brand Ambassador", loc: "Tokyo, Japan", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&q=80" },
-  { init: "PR", name: "Priya Rao", role: "Brand Ambassador", loc: "Toronto, Canada", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80" },
-  { init: "NG", name: "Nina Garcia", role: "Brand Ambassador", loc: "Miami, FL, USA", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80" },
-  { init: "CW", name: "Claire Whitfield", role: "Brand Ambassador", loc: "London, UK", img: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=200&q=80" },
-  { init: "FO", name: "Fatima Osei", role: "Brand Ambassador", loc: "Nairobi, Kenya", img: "https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=200&q=80" },
+  { init: "JE", name: "Julia Evans", role: "Guest Speaker", loc: "New York, USA", img: julia },
+  { init: "IB", name: "Dr. Ignacio Bonasa Alzuria", role: "Guest Speaker", loc: "Dubai, UAE", img: ignacio },
+  { init: "GA", name: "Giselle Arellano - Geronimo", role: "Guest Speaker", loc: "Paris, France", img: giselle },
+  { init: "LG", name: "Lydia gray", role: "Guest Speaker", loc: "Tokyo, Japan", img: lydia },
+  { init: "DD", name: "Debra Diana", role: "Guest Speaker", loc: "Toronto, Canada", img: debra },
+  { init: "AF", name: "Dr. Amanda Fernandez", role: "Guest Speaker", loc: "Miami, FL, USA", img: amanda },
 ];
 
 export const TEST_COLORS = [

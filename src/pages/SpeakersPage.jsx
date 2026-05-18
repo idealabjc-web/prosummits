@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import { client, urlFor } from "../lib/sanity";
-import { AMB_COLORS } from "../data/constants";
+import { AMB_COLORS, SPEAKERS } from "../data/constants";
 import "../styles/pages.css";
 import "../styles/Ambassadors.css";
 
@@ -21,9 +21,10 @@ export default function SpeakersPage() {
     const fetchSpeakers = async () => {
       try {
         const data = await client.fetch(`*[_type == "speaker"]`);
-        setSpeakers(data);
+        setSpeakers(data && data.length > 0 ? data : SPEAKERS);
       } catch (err) {
         console.error("Error fetching speakers:", err);
+        setSpeakers(SPEAKERS);
       } finally {
         setLoading(false);
       }
@@ -58,10 +59,15 @@ export default function SpeakersPage() {
           <em>World-Class Speakers</em>
         </h1>
         <p className="page-hero-desc">
-          Our speakers are world-renowned experts, researchers, and changemakers who represent
-          the ProSummits mission across the globe — sharing insights and driving
-          innovation in every field.
+          Meet the visionary experts, industry leaders, and researchers who 
+          shape the conversations at ProSummits conferences worldwide.
         </p>
+        <div className="scroll-indicator">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <span className="scroll-text">Meet Speakers</span>
+        </div>
       </section>
 
       {/* Featured Cover Image */}
@@ -76,24 +82,17 @@ export default function SpeakersPage() {
 
       {/* Full-Page Side-by-Side Banners */}
       <div className="page-content" style={{ paddingTop: 0 }}>
-        <div className="poster-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '20px',
-          marginBottom: '48px'
-        }}>
+        <div className="poster-grid">
           <motion.div {...fadeIn}>
             <img
               src="https://prosummits.org/wp-content/uploads/2025/09/Prosummits-BA-Banner-2.jpeg"
-              alt="Ambassador Info 1"
-              style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}
+              alt="Ambassador Info 2"
             />
           </motion.div>
           <motion.div {...fadeIn}>
             <img
               src="https://prosummits.org/wp-content/uploads/2025/09/Prosummits-BA-Banner-1.jpeg"
-              alt="Ambassador Info 2"
-              style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}
+              alt="Ambassador Info 1"
             />
           </motion.div>
         </div>
@@ -107,33 +106,37 @@ export default function SpeakersPage() {
               Loading speakers...
             </div>
           ) : (
-            speakers.map((a, i) => (
-              <div
-                key={a._id || i}
-                className="amb-card"
-                style={{ borderColor: AMB_COLORS[i % AMB_COLORS.length] + "33" }}
-                onMouseEnter={ev => ev.currentTarget.style.borderColor = AMB_COLORS[i % AMB_COLORS.length] + "88"}
-                onMouseLeave={ev => ev.currentTarget.style.borderColor = AMB_COLORS[i % AMB_COLORS.length] + "33"}
-              >
+            speakers.map((a, i) => {
+              const color = AMB_COLORS[i % AMB_COLORS.length];
+              return (
                 <div
-                  className="amb-av"
-                  style={{
-                    borderColor: AMB_COLORS[i % AMB_COLORS.length],
-                    background: `linear-gradient(135deg,${AMB_COLORS[i % AMB_COLORS.length]}22,${AMB_COLORS[(i + 1) % AMB_COLORS.length] || AMB_COLORS[0]}22)`,
+                  key={a._id || i}
+                  className="amb-card"
+                  style={{ 
+                    '--accent': color,
+                    '--accent-glow': color + '22'
                   }}
                 >
-                  <img
-                    src={a.image ? urlFor(a.image).width(200).height(200).url() : (a.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80")}
-                    alt={a.name}
-                    onError={e => { e.target.style.display = "none"; }}
-                  />
-                  {a.initials}
+                  <div
+                    className="amb-av"
+                    style={{
+                      borderColor: color,
+                      background: `linear-gradient(135deg,${color}22,${AMB_COLORS[(i + 1) % AMB_COLORS.length] || AMB_COLORS[0]}22)`,
+                    }}
+                  >
+                    <img
+                      src={a.image ? urlFor(a.image).width(200).height(200).url() : (a.img || a.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80")}
+                      alt={a.name}
+                      onError={e => { e.target.style.display = "none"; }}
+                    />
+                    {a.initials || a.init || (a.name ? a.name.split(' ').map(n => n[0]).join('') : "SP")}
+                  </div>
+                  <div className="amb-name">{a.name}</div>
+                  <div className="amb-role">{(a.role || "").replace('Brand Ambassador', 'Guest Speaker')}</div>
+                  <div className="amb-loc">📍 {a.location}</div>
                 </div>
-                <div className="amb-name">{a.name}</div>
-                <div className="amb-role" style={{ color: AMB_COLORS[i % AMB_COLORS.length] }}>{(a.role || "").replace('Brand Ambassador', 'Guest Speaker')}</div>
-                <div className="amb-loc">📍 {a.location}</div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 

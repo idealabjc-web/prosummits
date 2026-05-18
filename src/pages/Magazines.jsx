@@ -24,6 +24,12 @@ export default function Magazines() {
           Explore our seasonal publications featuring in-depth interviews with industry leaders, 
           scientific breakthroughs, and post-summit white papers.
         </p>
+        <div className="scroll-indicator">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <span className="scroll-text">View Issues</span>
+        </div>
       </section>
 
       <section className="wrap" style={{ paddingTop: 0 }}>

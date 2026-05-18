@@ -35,7 +35,7 @@
 }
 
 .reg-hero-sub {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 1rem;
   max-width: 520px;
   margin: 0 auto;
@@ -45,8 +45,8 @@
 .reg-card {
   max-width: 900px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
   padding: 48px 52px;
   backdrop-filter: blur(12px);
@@ -65,7 +65,7 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .reg-divider span {
@@ -109,7 +109,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .reg-field input,
@@ -117,8 +117,8 @@
 .reg-field textarea {
   width: 100%;
   padding: 14px 18px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   color: #fff;
   font-size: 0.95rem;
@@ -129,7 +129,7 @@
 
 .reg-field input::placeholder,
 .reg-field textarea::placeholder {
-  color: rgba(255,255,255,0.2);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .reg-field input:focus,
@@ -163,10 +163,10 @@
 .reg-phone-wrap {
   display: flex;
   gap: 0;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow: hidden;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   transition: all 0.3s;
 }
 
@@ -178,7 +178,7 @@
 .reg-code-select {
   width: 105px !important;
   border: none !important;
-  border-right: 1px solid rgba(255,255,255,0.08) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 0 !important;
   font-size: 0.85rem !important;
   padding: 14px 12px !important;
@@ -223,7 +223,7 @@
 }
 
 .reg-summary-pkg {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.85rem;
 }
 
@@ -257,9 +257,11 @@
 .reg-continue-btn::after {
   content: '';
   position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transform: rotate(45deg);
   transition: 0.6s;
 }
@@ -283,7 +285,7 @@
   text-align: center;
   margin-top: 20px;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -332,7 +334,7 @@
 }
 
 .reg-success p {
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 40px;
@@ -341,7 +343,7 @@
 .reg-back-link {
   display: inline-block;
   padding: 14px 36px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff;
   text-decoration: none;
   border-radius: 12px;
@@ -351,14 +353,25 @@
 }
 
 .reg-back-link:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 /* ══════════ Responsive ══════════ */
 @media (max-width: 768px) {
-  .reg-page { padding: 120px 4vw 60px; }
-  .reg-card { padding: 32px 20px; }
-  .reg-row { grid-template-columns: 1fr; }
-  .reg-code-select { width: 90px !important; }
+  .reg-page {
+    padding: 120px 4vw 60px;
+  }
+
+  .reg-card {
+    padding: 32px 20px;
+  }
+
+  .reg-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reg-code-select {
+    width: 90px !important;
+  }
 }

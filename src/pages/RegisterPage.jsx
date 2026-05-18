@@ -85,15 +85,36 @@ export default function RegisterPage() {
     };
 
     try {
+      // 1. Send Email via EmailJS
       await emailjs.send(
         'service_on0qng6', 
         'template_mxjq749', 
         templateParams, 
         { publicKey: '8Ka9LvGqor29zIVHa' }
       );
+
+      // 2. Save to Google Sheets
+      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
+      if (GOOGLE_SCRIPT_URL) {
+        const formData = new FormData();
+        // Add a timestamp parameter
+        formData.append("timestamp", new Date().toISOString());
+        // Append all template parameters
+        Object.keys(templateParams).forEach(key => {
+          formData.append(key, templateParams[key]);
+        });
+        
+        // Use no-cors mode to avoid cross-origin issues with Google Apps Script
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        });
+      }
+
       setSubmitted(true);
     } catch (err) {
-      console.error("Full EmailJS Error:", err.text || err);
+      console.error("Full Registration Error:", err.text || err);
       alert("There was an error sending your registration. Please check your browser console for details.");
     } finally {
       setIsSubmitting(false);
