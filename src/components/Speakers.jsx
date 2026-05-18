@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { useFadeUp } from "../hooks/useFadeUp";
-import { client, urlFor } from "../lib/sanity";
-import { AMB_COLORS, SPEAKERS } from "../data/constants";
-import "../styles/Ambassadors.css";
+import { client } from "../lib/sanity";
+import { SPEAKERS } from "../data/constants";
+import AnimatedSpeakersGallery from "./AnimatedSpeakersGallery";
 
 /**
  * Speakers (Guest Speakers & Faculty)
@@ -43,41 +43,7 @@ export default function Speakers() {
           </p>
         </div>
 
-        <div className="amb-grid">
-          {speakers.map((a, i) => {
-            const color = AMB_COLORS[i % AMB_COLORS.length];
-            return (
-              <div
-                key={a._id || i}
-                className="amb-card fu"
-                style={{ 
-                  '--accent': color,
-                  '--accent-glow': color + '22'
-                }}
-              >
-                {/* Avatar */}
-                <div
-                  className="amb-av"
-                  style={{
-                    borderColor: color,
-                    background:  `linear-gradient(135deg,${color}22,${AMB_COLORS[(i + 1) % AMB_COLORS.length] || AMB_COLORS[0]}22)`,
-                  }}
-                >
-                  <img
-                    src={a.image ? urlFor(a.image).width(200).height(200).url() : (a.img || a.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80")}
-                    alt={a.name}
-                    onError={e => { e.target.style.display = "none"; }}
-                  />
-                  {a.initials || a.init || (a.name ? a.name.split(' ').map(n => n[0]).join('') : "SP")}
-                </div>
-
-                <div className="amb-name">{a.name}</div>
-                <div className="amb-role">{(a.role || "").replace('Brand Ambassador', 'Guest Speaker')}</div>
-                <div className="amb-loc">📍 {a.location}</div>
-              </div>
-            );
-          })}
-        </div>
+        <AnimatedSpeakersGallery speakers={speakers} />
       </div>
     </section>
   );

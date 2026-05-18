@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { client, urlFor } from "../lib/sanity";
 import "../styles/pages.css";
 import "../styles/Gallery.css";
+import GalleryIntro from "../components/GalleryIntro";
 
 // Constants for labels and colors
 const CATEGORY_META = {
@@ -108,24 +109,7 @@ export default function GalleryPage() {
   return (
     <>
       <div className="page-fade">
-        <section className="page-hero">
-        <Link to="/" className="page-hero-back">← Back to Home</Link>
-        <span className="page-hero-tag" style={{ color: "#6DBE45" }}>Event Gallery</span>
-        <h1>
-          Moments That<br />
-          <em>Define ProSummits</em>
-        </h1>
-        <p className="page-hero-desc">
-          A visual journey through our global conferences, showcasing world-class
-          speakers, interactive sessions, and impactful moments.
-        </p>
-        <div className="scroll-indicator">
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <span className="scroll-text">View Gallery</span>
-        </div>
-      </section>
+        <GalleryIntro images={activeImages.map(getSrc).filter(Boolean)} />
 
       <div className="page-content">
         {loading ? (

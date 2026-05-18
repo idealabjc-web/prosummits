@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
-import { client, urlFor } from "../lib/sanity";
-import { AMB_COLORS, SPEAKERS } from "../data/constants";
+import { client } from "../lib/sanity";
+import { SPEAKERS } from "../data/constants";
 import "../styles/pages.css";
 import "../styles/Ambassadors.css";
+import AnimatedSpeakersGallery from "../components/AnimatedSpeakersGallery";
 
 /**
  * SpeakersPage
@@ -100,43 +101,13 @@ export default function SpeakersPage() {
 
       <div className="page-content">
         {/* Speaker Grid */}
-        <div className="amb-grid" style={{ marginBottom: 64 }}>
+        <div style={{ marginBottom: 64 }}>
           {loading ? (
-            <div style={{ textAlign: 'center', gridColumn: '1/-1', padding: '40px', color: 'rgba(255,255,255,.4)' }}>
+            <div style={{ textAlign: 'center', padding: '40px', color: 'rgba(255,255,255,.4)' }}>
               Loading speakers...
             </div>
           ) : (
-            speakers.map((a, i) => {
-              const color = AMB_COLORS[i % AMB_COLORS.length];
-              return (
-                <div
-                  key={a._id || i}
-                  className="amb-card"
-                  style={{ 
-                    '--accent': color,
-                    '--accent-glow': color + '22'
-                  }}
-                >
-                  <div
-                    className="amb-av"
-                    style={{
-                      borderColor: color,
-                      background: `linear-gradient(135deg,${color}22,${AMB_COLORS[(i + 1) % AMB_COLORS.length] || AMB_COLORS[0]}22)`,
-                    }}
-                  >
-                    <img
-                      src={a.image ? urlFor(a.image).width(200).height(200).url() : (a.img || a.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80")}
-                      alt={a.name}
-                      onError={e => { e.target.style.display = "none"; }}
-                    />
-                    {a.initials || a.init || (a.name ? a.name.split(' ').map(n => n[0]).join('') : "SP")}
-                  </div>
-                  <div className="amb-name">{a.name}</div>
-                  <div className="amb-role">{(a.role || "").replace('Brand Ambassador', 'Guest Speaker')}</div>
-                  <div className="amb-loc">📍 {a.location}</div>
-                </div>
-              );
-            })
+            <AnimatedSpeakersGallery speakers={speakers} />
           )}
         </div>
 
