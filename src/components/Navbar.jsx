@@ -44,7 +44,17 @@ export default function Navbar() {
         <ul className="nav-links">
           {mainLinks.map((link) => (
             <li key={link.label}>
-              <Link to={link.href}>{link.label}</Link>
+              {link.external ? (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link to={link.href}>{link.label}</Link>
+              )}
             </li>
           ))}
 
@@ -90,11 +100,22 @@ export default function Navbar() {
 
       {/* Mobile nav */}
       <div className={`mob-nav${mob ? " open" : ""}`}>
-        {mainLinks.map((link) => (
-          <Link key={link.label} to={link.href}>
-            {link.label}
-          </Link>
-        ))}
+        {mainLinks.map((link) =>
+          link.external ? (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+          ) : (
+            <Link key={link.label} to={link.href}>
+              {link.label}
+            </Link>
+          )
+        )}
 
         <div style={{ padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
           <span style={{ fontSize: "0.75rem", color: "var(--grey)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Resources</span>
