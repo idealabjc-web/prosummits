@@ -211,9 +211,9 @@ export const MARQUEE_ITEMS = [
 ];
 
 export const HERO_STATS = [
-  { n: "19+", l: "Upcoming Events", c: "#F9C515" },
-  { n: "Free", l: "Early Bird Access", c: "#6DBE45" },
-  { n: "6+", l: "Conference Themes", c: "#00A79D" },
+  { n: "24+", l: "Upcoming Events", c: "#F9C515" },
+  { n: "200+", l: "Speakers", c: "#6DBE45" },
+  { n: "20+", l: "Conference Themes", c: "#00A79D" },
   { n: "Global", l: "Hybrid Format", c: "#E01F5C" },
 ];
 

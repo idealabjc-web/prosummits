@@ -19,10 +19,10 @@ export default function Navbar() {
   const mainLinks = [
     { label: "Home", href: "/" },
     { label: "Events", href: "/events" },
-    { label: "Ambassadors", href: "/speakers" },
+    { label: "Speakers", href: "/speakers" },
     { label: "Gallery", href: "/gallery" },
-    { label: "About Us", href: "/about" },
-    { label: "Contact Us", href: "/contact" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const resourceLinks = [

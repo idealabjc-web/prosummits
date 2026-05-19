@@ -37,10 +37,10 @@ export default function Hero() {
     <>
       {/* Hero */}
       <section className="hero">
-        <div className="hero-pill">
-          <div className="pill-dot" />
-          17 Upcoming Events — Early Bird Access Open
-        </div>
+        {/* <div className="hero-pill"> */}
+        {/* <div className="pill-dot" /> */}
+        {/* 17 Upcoming Events — Early Bird Access Open */}
+        {/* </div> */}
 
         <h1>
           Speaker Rules Meets<br />
@@ -61,10 +61,10 @@ export default function Hero() {
         </div>
 
         <Stats />
-      </section>
+      </section >
 
       {/* Marquee */}
-      <div className="mq-wrap">
+      < div className="mq-wrap" >
         <div className="mq-track">
           {[...Array(3)].flatMap((_, dupIdx) =>
             marquee.map((item, idx) => (
@@ -75,12 +75,12 @@ export default function Hero() {
                     background: item.color + "B3", flexShrink: 0,
                   }}
                 />
-                <span style={{ 
-                  color: item.color + "B3", 
-                  fontWeight: 500, 
-                  fontSize: '0.9rem', 
-                  textTransform: 'uppercase', 
-                  letterSpacing: '0.5px' 
+                <span style={{
+                  color: item.color + "B3",
+                  fontWeight: 500,
+                  fontSize: '0.9rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
                 }}>
                   {item.text}
                 </span>
@@ -88,7 +88,7 @@ export default function Hero() {
             ))
           )}
         </div>
-      </div>
+      </div >
     </>
   );
 }
