@@ -102,7 +102,7 @@ export default function Footer() {
           <div className="ft-h" style={{ color: "#6DBE45" }}>Support</div>
           <ul className="ft-list">
             <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/contact#faqs">Refund & Policy</Link></li>
+            <li><Link to="/policies">Refund &amp; Policy</Link></li>
             <li><Link to="/events">Upcoming Events</Link></li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/prosummit.logo.jpeg";
+import logo from "../assets/PROSUMMITS Logo..png";
 import "../styles/Navbar.css";
 
 /**
@@ -27,7 +27,7 @@ export default function Navbar() {
 
   const resourceLinks = [
     { label: "Blog", href: "/blog" },
-    { label: "Magazines", href: "/magazines" },
+    { label: "Magazines", href: "https://www.winspire.live/", external: true },
     { label: "Sponsors", href: "/sponsors" },
   ];
 
@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="logo-wrapper">
             <img src={logo} alt="ProSummits logo" />
           </div>
-          <span className="logo-text">ProSummits</span>
+          {/* <span className="logo-text">ProSummits</span> */}
         </Link>
 
         <ul className="nav-links">
@@ -52,9 +52,22 @@ export default function Navbar() {
           <li className="nav-item-dropdown">
             <span>MORE<small style={{ fontSize: '0.6rem', marginLeft: 4 }}>▼</small></span>
             <div className="dropdown-menu">
-              {resourceLinks.map((link) => (
-                <Link key={link.label} to={link.href}>{link.label}</Link>
-              ))}
+              {resourceLinks.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link key={link.label} to={link.href}>
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
           </li>
 
@@ -86,11 +99,22 @@ export default function Navbar() {
         <div style={{ padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
           <span style={{ fontSize: "0.75rem", color: "var(--grey)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Resources</span>
           <div className="mob-dropdown">
-            {resourceLinks.map((link) => (
-              <Link key={link.label} to={link.href}>
-                {link.label}
-              </Link>
-            ))}
+            {resourceLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.label} to={link.href}>
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
         </div>
 

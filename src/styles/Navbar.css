@@ -46,10 +46,15 @@
 }
 
 .logo-wrapper img {
-  height: 45px;
+  height: 120px;
   width: auto;
   object-fit: contain;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo-wrapper img:hover {
+  transform: scale(1.03);
 }
 
 .logo-text {
