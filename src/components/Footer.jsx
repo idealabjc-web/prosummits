@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { SPONSORS } from "../data/constants";
 import "../styles/Footer.css";
 import "../styles/Sponsors.css";
-import logo from "../assets/prosummit.logo.jpeg";
+import logo from "../assets/PROSUMMITS Logo..png";
 
 
 /**
@@ -77,7 +77,7 @@ export default function Footer() {
             <div className="logo-wrapper">
               <img src={logo} alt="ProSummits logo" />
             </div>
-            <span className="logo-text">ProSummits</span>
+            {/* <span className="logo-text">ProSummits</span> */}
           </Link>
           <p className="ft-brand-desc">
             Speaker rules meets modern, elegant online conference platforms. Celebrating
@@ -93,7 +93,7 @@ export default function Footer() {
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/sponsors">Sponsors</Link></li>
-            <li><Link to="/ambassadors">Ambassadors</Link></li>
+            <li><Link to="/ambassadors">Speakers</Link></li>
           </ul>
         </div>
 

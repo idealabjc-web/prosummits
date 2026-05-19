@@ -19,15 +19,15 @@ export default function Navbar() {
   const mainLinks = [
     { label: "Home", href: "/" },
     { label: "Events", href: "/events" },
-    { label: "Speakers", href: "/speakers" },
+    { label: "Magazines", href: "https://www.winspire.live/", external: true },
     { label: "Gallery", href: "/gallery" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
 
   const resourceLinks = [
+    { label: "Speakers", href: "/speakers" },
     { label: "Blog", href: "/blog" },
-    { label: "Magazines", href: "https://www.winspire.live/", external: true },
     { label: "Sponsors", href: "/sponsors" },
   ];
 
