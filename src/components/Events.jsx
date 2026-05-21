@@ -16,7 +16,7 @@ export default function Events() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const data = await client.fetch(`*[_type == "event" && eventYear->year in ["2026", "2027"]]`);
+        const data = await client.fetch(`*[_type == "event" && eventYear->year in ["2026", "2027"]]{ ..., slug }`);
         // Shuffle the events randomly
         const shuffled = [...data].sort(() => 0.5 - Math.random());
         setEvents(shuffled.slice(0, 6));
@@ -65,7 +65,7 @@ export default function Events() {
                     {e.price || "Free"}<small>Early Bird Access</small>
                   </div> */}
                   <Link
-                    to={`/events/${e._id}`}
+                  to={`/events/${e.slug?.current || e._id}`}
                     className="btn-sm"
                     onMouseEnter={ev => {
                       ev.currentTarget.style.background = (e.bdColor || "#7B2FBE") + "33";

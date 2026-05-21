@@ -26,7 +26,7 @@ export default function EventsPage() {
     const fetchContent = async () => {
       try {
         const [eventsData, yearsData] = await Promise.all([
-          client.fetch(`*[_type == "event"]{..., eventYear->} | order(date asc)`),
+          client.fetch(`*[_type == "event"]{ ..., slug, eventYear-> } | order(date asc)`),
           client.fetch(`*[_type == "eventYear"]{..., events[]->} | order(year asc)`)
         ]);
         setEvents(eventsData);
@@ -256,7 +256,7 @@ export default function EventsPage() {
                             {/* <div className="ev-price" style={{ color: e.dateColor || "#fff" }}>
                               {e.price || "Free"}<small>Early Bird Access</small>
                             </div> */}
-                            <Link to={`/events/${e._id}`} className="btn-sm">
+                            <Link to={`/events/${e.slug?.current || e._id}`} className="btn-sm">
                               View Details →
                             </Link>
                           </div>

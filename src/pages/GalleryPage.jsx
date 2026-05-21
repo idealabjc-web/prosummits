@@ -36,20 +36,35 @@ const CATEGORY_META = {
 
 const CATEGORY_ORDER = ["Highlights", "Speakers", "Panels", "Locations"];
 
+// Normalize raw category values from Sanity to the 4 bucket keys
+function normalizeCategory(raw) {
+  if (!raw) return null;
+  const lower = raw.toLowerCase().trim();
+  if (lower.includes("highlight") || lower === "conference highlights") return "Highlights";
+  if (lower.includes("speaker")) return "Speakers";
+  if (lower.includes("panel")) return "Panels";
+  if (lower.includes("location") || lower.includes("venue")) return "Locations";
+  return null;
+}
+
 // Content-based categorization with heuristics for legacy data
 function categorizeImage(item) {
-  if (item.category && item.category !== "Highlights") return item.category;
+  // Try normalizing the stored category first
+  const normalized = normalizeCategory(item.category);
+  if (normalized) return normalized;
 
+  // Fallback: heuristics based on filename / asset ref
   const name = item.filename || item.url || "";
   const assetRef = item.asset?._ref || "";
 
-  if (name.includes("WL-WH") || assetRef.includes("image-") || item.category === "Highlights") return "Highlights";
+  if (name.includes("WL-WH") || assetRef.includes("image-")) return "Highlights";
   if (name.includes("Paris") || name.includes("September")) return "Locations";
   if (name.includes("Panel")) return "Panels";
-  if (name.includes("Speaker") || name.includes("IMG") || item.category === "Speakers") return "Speakers";
+  if (name.includes("Speaker") || name.includes("IMG")) return "Speakers";
 
   return "Highlights";
 }
+
 
 function getSrc(item) {
   if (item.url) return item.url;

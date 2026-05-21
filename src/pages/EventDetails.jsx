@@ -12,7 +12,7 @@ import "../styles/EventDetails.css";
  * Now fetches live data from Sanity.
  */
 export default function EventDetails() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,17 @@ export default function EventDetails() {
 
     const fetchEvent = async () => {
       try {
-        const data = await client.fetch(`*[_type == "event" && _id == $id][0]{ ..., eventYear-> }`, { id });
+        // Try slug first, fall back to _id for backward compat with old UUID URLs
+        let data = await client.fetch(
+          `*[_type == "event" && slug.current == $slug][0]{ ..., eventYear-> }`,
+          { slug }
+        );
+        if (!data) {
+          data = await client.fetch(
+            `*[_type == "event" && _id == $slug][0]{ ..., eventYear-> }`,
+            { slug }
+          );
+        }
         setEvent(data);
       } catch (err) {
         console.error("Error fetching event:", err);
@@ -31,7 +41,7 @@ export default function EventDetails() {
     };
 
     fetchEvent();
-  }, [id]);
+  }, [slug]);
 
   if (loading) {
     return (
@@ -106,7 +116,7 @@ export default function EventDetails() {
                 </div>
               </div>
 
-              <Link to={`/register?event=${event._id}`} className="btn-register-gold">Register Now</Link>
+              <Link to={`/register?event=${event.slug?.current || event._id}`} className="btn-register-gold">Register Now</Link>
               <Link to="/events" className="btn-browse-outline">← Browse All Events</Link>
             </div>
           </div>

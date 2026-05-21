@@ -160,18 +160,30 @@ export default function RegisterPage() {
       // Auto-set the year if pre-selected event is found
       if (preEvent) {
         let matchedYearId = "";
-        const ev = evData.find((e) => e._id === preEvent);
-        if (ev?.eventYear?._id) {
-          matchedYearId = ev.eventYear._id;
-        } else {
+        let actualEventId = preEvent;
+        const ev = evData.find((e) => e._id === preEvent || e.slug?.current === preEvent);
+        if (ev) {
+          actualEventId = ev._id;
+          if (ev.eventYear?._id) {
+            matchedYearId = ev.eventYear._id;
+          }
+        }
+        
+        if (!matchedYearId) {
           // Look in manual events arrays
-          const yr = yrData.find((y) => y.events?.some((e) => e._id === preEvent));
+          const yr = yrData.find((y) => y.events?.some((e) => {
+            if (e._id === preEvent || e.slug?.current === preEvent) {
+              actualEventId = e._id;
+              return true;
+            }
+            return false;
+          }));
           if (yr) {
             matchedYearId = yr._id;
           }
         }
         if (matchedYearId) {
-          setForm((f) => ({ ...f, yearId: matchedYearId, eventId: preEvent }));
+          setForm((f) => ({ ...f, yearId: matchedYearId, eventId: actualEventId }));
         }
       }
     }).catch(console.error);

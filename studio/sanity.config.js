@@ -8,7 +8,28 @@ export default defineConfig({
   projectId: 'gmr7l147',
   dataset: 'production',
 
-  plugins: [structureTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            // Gallery section (shows existing document)
+            S.listItem()
+              .title('🖼️ Gallery')
+              .id('gallery')
+              .child(
+                S.documentTypeList('gallery')
+                  .title('Gallery')
+              ),
+            S.divider(),
+            // All other document types (auto-generated)
+            ...S.documentTypeListItems().filter(
+              (item) => !['gallery'].includes(item.getId())
+            ),
+          ]),
+    }),
+  ],
 
   schema: {
     types: [
@@ -18,7 +39,7 @@ export default defineConfig({
         type: 'document',
         fields: [
           { name: 'title', type: 'string', title: 'Title' },
-          { name: 'slug', type: 'slug', title: 'Slug', options: { source: 'title' } },
+          { name: 'slug', type: 'slug', title: 'Slug', options: { source: 'title', maxLength: 96 } },
           { name: 'date', type: 'string', title: 'Date' },
           { name: 'location', type: 'string', title: 'Location' },
           { name: 'type', type: 'string', title: 'Type', options: { list: ['🌍 Hybrid', '💻 Online'] } },
@@ -229,10 +250,10 @@ export default defineConfig({
                     initialValue: 'Conference Highlights',
                     options: {
                       list: [
-                        { title: 'Highlights', value: 'Speakers' },
+                        { title: 'Highlights', value: 'Highlights' },
+                        { title: 'Speakers', value: 'Speakers' },
                         { title: 'Panel Discussions', value: 'Panels' },
-                        { title: 'Global Venues', value: 'Locations' },
-                        { title: 'Speakers', value: 'Highlights' }
+                        { title: 'Global Venues', value: 'Locations' }
                       ]
                     }
                   }
