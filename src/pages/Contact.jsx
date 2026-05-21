@@ -3,12 +3,6 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
 import "../styles/pages.css";
-
-/**
- * Contact Us Page
- * Professional, CMS-driven contact hub with real email delivery.
- */
-
 const CAT_COLORS = {
   "General": "#7B2FBE",
   "Events & Attendance": "#F47B20",
@@ -23,8 +17,8 @@ export default function Contact() {
   const [openIndex, setOpenIndex] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  /* scroll to top and load Calendly resources */
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -38,30 +32,6 @@ export default function Contact() {
       }
     };
     fetchFaqs();
-
-    // Load Calendly CSS for popup modal
-    const link = document.createElement('link');
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-
-    // Load Calendly JS script
-    let script;
-    if (!window.Calendly) {
-      script = document.createElement('script');
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-
-    return () => {
-      if (script && document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-    };
   }, []);
 
   const toggleItem = (idx) => {
@@ -77,31 +47,100 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus(null);
+    setErrorMessage("");
 
     const formData = new FormData(e.target);
-    // This is a verified access key for contact@prosummits.org
-    formData.append("access_key", "55a1608e-176c-4860-93a0-569429ba7d96");
+    const rawPhone = formData.get("phone") || "";
+    const countryCode = formData.get("countryCode") || "";
+    const fullPhone = countryCode ? `${countryCode} ${rawPhone}`.trim() : rawPhone;
+
+    // 1. Submit to Google Sheets (secondary / background storage)
+    const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
+    let sheetsSuccess = false;
+
+    if (GOOGLE_SCRIPT_URL) {
+      const sheetForm = new FormData();
+      sheetForm.append("timestamp", new Date().toISOString());
+      sheetForm.append("form_type", "Contact Form");
+      sheetForm.append("name", formData.get("name") || "");
+      sheetForm.append("email", formData.get("email") || "");
+      sheetForm.append("phone", fullPhone);
+      sheetForm.append("subject", formData.get("subject") || "");
+      sheetForm.append("message", formData.get("message") || "");
+      sheetForm.append("from_name", formData.get("name") || "");
+      sheetForm.append("user_email", formData.get("email") || "");
+      sheetForm.append("requirements", formData.get("message") || "");
+      sheetForm.append("event_title", formData.get("subject") || "");
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          body: sheetForm,
+          mode: "no-cors"
+        });
+        sheetsSuccess = true;
+      } catch (sheetErr) {
+        console.error("Google Sheets storage error:", sheetErr);
+      }
+    }
+
+    // 2. Submit to Web3Forms via JSON
+    const WEB3_KEY = import.meta.env.VITE_WEB3FORMS_KEY || "0fa70225-4703-4b87-8c3a-0967339de033";
+    let web3Success = false;
+    let web3Error = "";
+
+    const submitterName = formData.get("name") || "";
+    const submitterEmail = formData.get("email") || "";
+    const submitterSubject = formData.get("subject") || "General Enquiry";
+    const submitterMessage = formData.get("message") || "";
+
+    // Note: Web3Forms does not render HTML in the message field.
+    // Send clean plain-text fields; Web3Forms formats them in its own template.
+    const payload = {
+      access_key: WEB3_KEY.trim(),
+      subject: `🔔 ProSummits Contact: ${submitterSubject} — from ${submitterName}`,
+      from_name: "ProSummits Website",
+      replyto: submitterEmail,
+      Name: submitterName,
+      Email: submitterEmail,
+      Phone: fullPhone || "Not provided",
+      "Enquiry Type": submitterSubject,
+      Message: submitterMessage,
+      botcheck: "",
+    };
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload),
       });
-
       const data = await response.json();
-
+      console.log("Web3Forms response:", data);
       if (data.success) {
-        setStatus("success");
-        e.target.reset();
+        web3Success = true;
       } else {
-        setStatus("error");
+        web3Error = data.message || "Submission failed";
+        console.warn("Web3Forms warning:", data);
       }
-    } catch (error) {
-      console.error("Form error:", error);
-      setStatus("error");
-    } finally {
-      setIsSubmitting(false);
+    } catch (err) {
+      console.error("Web3Forms error:", err);
+      web3Error = err.message;
     }
+
+    // Determine final status based on Web3Forms (primary)
+    if (web3Success) {
+      setStatus("success");
+      e.target.reset();
+      if (!sheetsSuccess && GOOGLE_SCRIPT_URL) {
+        console.warn("Saved via Web3Forms, but Google Sheets failed.");
+      }
+    } else {
+      setStatus("error");
+      setErrorMessage(web3Error || "Something went wrong. Please email us at contact@prosummits.org");
+    }
+
+    setIsSubmitting(false);
   };
 
   const filteredFaqs = faqs.filter(f => f.category === activeCategory);
@@ -130,109 +169,6 @@ export default function Contact() {
       </section>
 
       <div className="page-content">
-        {/* Calendly Section */}
-        <div className="sec-head ctr" style={{ marginBottom: 40 }}>
-          <span className="section-tag" style={{ color: "#7B2FBE" }}>Schedule a Call</span>
-          <h2 className="section-title">
-            Book a <em style={{ color: "#7B2FBE" }}>Meeting</em>
-          </h2>
-          <p className="section-desc" style={{ margin: "0 auto" }}>
-            Select a time that works for you to discuss partnership or speaker opportunities.
-          </p>
-        </div>
-
-        <div className="booking-cta-card" style={{
-          background: 'linear-gradient(135deg, rgba(4, 16, 28, 0.6) 0%, rgba(12, 30, 50, 0.8) 100%)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '24px',
-          padding: '60px 40px',
-          textAlign: 'center',
-          marginBottom: '80px',
-          boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}>
-          {/* Subtle decorative glow circles */}
-          <div style={{
-            position: 'absolute',
-            top: '-50px',
-            left: '-50px',
-            width: '150px',
-            height: '150px',
-            background: 'rgba(123, 47, 190, 0.15)',
-            filter: 'blur(50px)',
-            borderRadius: '50%',
-            pointerEvents: 'none'
-          }}></div>
-          <div style={{
-            position: 'absolute',
-            bottom: '-50px',
-            right: '-50px',
-            width: '150px',
-            height: '150px',
-            background: 'rgba(0, 167, 157, 0.15)',
-            filter: 'blur(50px)',
-            borderRadius: '50%',
-            pointerEvents: 'none'
-          }}></div>
-
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: '3rem', marginBottom: '20px' }}>📅</div>
-            <h3 style={{ 
-              fontFamily: 'var(--fd)', 
-              fontSize: '2rem', 
-              fontWeight: 700, 
-              color: '#ffffff', 
-              marginBottom: '16px' 
-            }}>
-              Schedule a 1-on-1 Discovery Call
-            </h3>
-            <p style={{ 
-              color: 'rgba(255, 255, 255, 0.65)', 
-              maxWidth: '600px', 
-              margin: '0 auto 32px',
-              fontSize: '1.05rem',
-              lineHeight: 1.6
-            }}>
-              Have questions about ProSummits 2026? Speak directly with our event coordination team. Select a convenient time for a 15-minute virtual consultation.
-            </p>
-            <button 
-              onClick={() => {
-                if (window.Calendly) {
-                  window.Calendly.initPopupWidget({
-                    url: 'https://calendly.com/prosummitsvirtual/15min?hide_gdpr_banner=1'
-                  });
-                } else {
-                  window.open('https://calendly.com/prosummitsvirtual/15min?hide_gdpr_banner=1', '_blank');
-                }
-              }}
-              className="booking-btn"
-              style={{
-                background: 'linear-gradient(135deg, #7B2FBE 0%, #00A79D 100%)',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '100px',
-                padding: '16px 36px',
-                fontSize: '1rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                boxShadow: '0 10px 25px rgba(123, 47, 190, 0.3)',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.boxShadow = '0 15px 30px rgba(123, 47, 190, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(123, 47, 190, 0.3)';
-              }}
-            >
-              Book Appointment Now
-            </button>
-          </div>
-        </div>
-
         {/* Contact Form Section */}
         <div className="contact-container" style={{ marginBottom: 100 }}>
           <div className="contact-main-grid">
@@ -253,7 +189,40 @@ export default function Contact() {
                 <div className="f-row">
                   <div className="f-group">
                     <label>Phone Number</label>
-                    <input type="tel" name="phone" placeholder="+971 XX XXX XXXX" required />
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <select
+                        name="countryCode"
+                        defaultValue="+1"
+                        style={{
+                          width: '105px',
+                          padding: '14px 12px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          borderRadius: '12px',
+                          color: '#fff',
+                          fontSize: '0.95rem',
+                          outline: 'none',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+1">+1 US</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+44">+44 UK</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+91">+91 IN</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+971">+971 UAE</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+49">+49 DE</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+33">+33 FR</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+61">+61 AU</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+81">+81 JP</option>
+                        <option style={{ background: '#04101C', color: '#fff' }} value="+65">+65 SG</option>
+                      </select>
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone number"
+                        required
+                        style={{ flex: 1 }}
+                      />
+                    </div>
                   </div>
                   <div className="f-group">
                     <label>Subject</label>
@@ -281,7 +250,7 @@ export default function Contact() {
                 )}
                 {status === "error" && (
                   <p style={{ color: "#E01F5C", marginTop: 15, textAlign: "center", fontWeight: 500 }}>
-                    ✕ Something went wrong. Please email us at contact@prosummits.org
+                    ✕ {errorMessage || "Something went wrong. Please email us at contact@prosummits.org"}
                   </p>
                 )}
               </form>
@@ -289,14 +258,6 @@ export default function Contact() {
 
             {/* Info */}
             <div className="contact-info-list">
-              <div className="c-info-item">
-                <div className="c-icon">📅</div>
-                <div>
-                  <h4>Schedule a Call</h4>
-                  <p>Book a 15-minute discovery call.</p>
-                  <a href="https://calendly.com/prosummitsvirtual/15min?background_color=04101c&text_color=ffffff&primary_color=7b2fbe" target="_blank" rel="noreferrer" style={{ color: "#7B2FBE", fontWeight: 600 }}>Book Appointment →</a>
-                </div>
-              </div>
 
               <div className="c-info-item">
                 <div className="c-icon">📧</div>
@@ -335,6 +296,40 @@ export default function Contact() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Calendly Inline Section */}
+        <div className="sec-head ctr" style={{ marginBottom: 40 }}>
+          <span className="section-tag" style={{ color: "#00A79D" }}>Schedule a Call</span>
+          <h2 className="section-title">
+            Book a <em style={{ color: "#00A79D" }}>1-on-1 Discovery Call</em>
+          </h2>
+          <p className="section-desc" style={{ margin: "0 auto" }}>
+            Select a convenient time slot below to speak directly with our event coordination team.
+          </p>
+        </div>
+
+        <div className="booking-premium-container" style={{ padding: '24px', background: 'rgba(4, 16, 28, 0.4)' }}>
+          {/* Decorative glowing orbs */}
+          <div className="booking-glow-orb orb-1"></div>
+          <div className="booking-glow-orb orb-2"></div>
+
+          <div style={{ position: 'relative', zIndex: 1, borderRadius: '20px', overflow: 'hidden' }}>
+            <iframe
+              src="https://calendly.com/prosummitsvirtual/15min?hide_gdpr_banner=1"
+              width="100%"
+              height="700"
+              frameBorder="0"
+              title="Calendly Inline Scheduler"
+              className="calendly-dark-iframe"
+              style={{
+                minWidth: '320px',
+                height: '700px',
+                border: 'none',
+                display: 'block'
+              }}
+            ></iframe>
           </div>
         </div>
 
