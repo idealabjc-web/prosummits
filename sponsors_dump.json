@@ -1,0 +1,121 @@
+[
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "01b39565-ad81-46e1-8514-df0d399cf3f3",
+    "_rev": "PkCti5erhLbeWRwoQIpsT9",
+    "_system": {
+      "base": {
+        "id": "01b39565-ad81-46e1-8514-df0d399cf3f3",
+        "rev": "PkCti5erhLbeWRwoQIpmCJ"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:34:32Z",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-fe6bd186d97f7c5f7c654b11c6aa2c032e59ef8d-7000x3000-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Global Partner"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "600f0c4c-3dd8-42e0-95d3-85396a30e90b",
+    "_rev": "8wOYbSS4z6JqpxhZWg3RHg",
+    "_system": {
+      "base": {
+        "id": "600f0c4c-3dd8-42e0-95d3-85396a30e90b",
+        "rev": "Tl8TPWlstF1riKjWvflv3S"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:42:55Z",
+    "name": "Gold Sponsor"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "6dafdd2e-a05f-4702-98a5-93be57444681",
+    "_rev": "8wOYbSS4z6JqpxhZWg3v3M",
+    "_system": {
+      "base": {
+        "id": "6dafdd2e-a05f-4702-98a5-93be57444681",
+        "rev": "Tl8TPWlstF1riKjWvflv3S"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:43:09Z",
+    "name": "Diamond Sponsor"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "9ae83d6a-a139-42c2-980b-6282c9c59006",
+    "_rev": "PkCti5erhLbeWRwoQIrF0Z",
+    "_system": {
+      "base": {
+        "id": "9ae83d6a-a139-42c2-980b-6282c9c59006",
+        "rev": "Tl8TPWlstF1riKjWvflv3S"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:43:12Z",
+    "name": "Corporate Sponsor"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "a1ef7555-20ae-4959-bd3e-0316034e9fa1",
+    "_rev": "PkCti5erhLbeWRwoQIrFlz",
+    "_system": {
+      "base": {
+        "id": "a1ef7555-20ae-4959-bd3e-0316034e9fa1",
+        "rev": "2dvKNdqfEFb1n6hgDfAjSV"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:43:19Z",
+    "name": "Silver Partner"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "ba8323ff-db20-4ab4-bd5f-6079d70e453a",
+    "_rev": "8wOYbSS4z6JqpxhZWg3w8e",
+    "_system": {
+      "base": {
+        "id": "ba8323ff-db20-4ab4-bd5f-6079d70e453a",
+        "rev": "2dvKNdqfEFb1n6hgDfAjSV"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:43:26Z",
+    "name": "Platinum Partner"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "d6feaf8f-b406-4eec-b565-112b8b26dde2",
+    "_rev": "2m6L0sQfPY4xqiZQVSLkiV",
+    "_system": {
+      "base": {
+        "id": "d6feaf8f-b406-4eec-b565-112b8b26dde2",
+        "rev": "2dvKNdqfEFb1n6hgDfAjSV"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:43:35Z",
+    "name": "Live Event"
+  },
+  {
+    "_createdAt": "2026-05-08T05:42:30Z",
+    "_id": "fcfb0c5e-fe2a-4bab-a03a-84eda58ced82",
+    "_rev": "PkCti5erhLbeWRwoQIrHLz",
+    "_system": {
+      "base": {
+        "id": "fcfb0c5e-fe2a-4bab-a03a-84eda58ced82",
+        "rev": "2dvKNdqfEFb1n6hgDfAjSV"
+      }
+    },
+    "_type": "sponsor",
+    "_updatedAt": "2026-05-22T06:43:42Z",
+    "name": "Official Partner"
+  }
+]

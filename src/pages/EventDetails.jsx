@@ -117,7 +117,9 @@ export default function EventDetails() {
               </div>
 
               <Link to={`/register?event=${event.slug?.current || event._id}`} className="btn-register-gold">Register Now</Link>
-              <Link to="/events" className="btn-browse-outline">← Browse All Events</Link>
+              <Link to={event.eventYear?.year ? `/events?year=${event.eventYear.year}` : "/events"} className="btn-browse-outline">
+                ← Browse {event.eventYear?.year ? `${event.eventYear.year} Events` : "All Events"}
+              </Link>
             </div>
           </div>
           <div className="scroll-indicator">
@@ -216,11 +218,9 @@ export default function EventDetails() {
                 </div>
               </div>
             )}
-
-            {/* CTA */}
             <div className="ed-actions">
               <Link to={event.eventYear?.year ? `/events?year=${event.eventYear.year}` : "/events"} className="btn-o">
-                ← Back to {event.eventYear?.year ? `${event.eventYear.year} Series` : "All Events"}
+                ← Back to {event.eventYear?.year ? `${event.eventYear.year} Events` : "All Events"}
               </Link>
             </div>
           </div>

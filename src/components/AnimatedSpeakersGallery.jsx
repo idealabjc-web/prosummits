@@ -68,7 +68,7 @@ export default function AnimatedSpeakersGallery({ speakers = [] }) {
                     // Spread evenly across the circle
                     const angle = (index * 2 * Math.PI) / circleSpeakers.length;
                     const imgUrl = speaker.image
-                      ? urlFor(speaker.image).width(200).height(200).url()
+                      ? urlFor(speaker.image).width(200).url()
                       : speaker.img || speaker.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80";
 
                     return (
