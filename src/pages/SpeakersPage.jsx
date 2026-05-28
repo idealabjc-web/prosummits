@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
-import { client } from "../lib/sanity";
+import { client, urlFor } from "../lib/sanity";
 import { SPEAKERS } from "../data/constants";
 import "../styles/pages.css";
 import "../styles/Ambassadors.css";
@@ -16,23 +16,35 @@ export default function SpeakersPage() {
   const [speakers, setSpeakers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const location = useLocation();
+  const isAmbassadorsPage = location.pathname.includes("ambassadors");
+
   useEffect(() => { 
     window.scrollTo(0, 0); 
     
     const fetchSpeakers = async () => {
       try {
-        const data = await client.fetch(`*[_type == "speaker"]`);
-        setSpeakers(data && data.length > 0 ? data : SPEAKERS);
+        const query = isAmbassadorsPage 
+          ? `*[_type == "speaker" && personType == "ambassador"]`
+          : `*[_type == "speaker" && (personType == "speaker" || !defined(personType))]`;
+          
+        const data = await client.fetch(query);
+        const fallbackData = SPEAKERS.filter(s => 
+          isAmbassadorsPage ? s.personType === "ambassador" : s.personType !== "ambassador"
+        );
+        setSpeakers(data && data.length > 0 ? data : fallbackData);
       } catch (err) {
         console.error("Error fetching speakers:", err);
-        setSpeakers(SPEAKERS);
+        setSpeakers(SPEAKERS.filter(s => 
+          isAmbassadorsPage ? s.personType === "ambassador" : s.personType !== "ambassador"
+        ));
       } finally {
         setLoading(false);
       }
     };
 
     fetchSpeakers();
-  }, []);
+  }, [isAmbassadorsPage]);
 
   const roles = [
     { icon: "🎤", title: "Expert Keynotes", desc: "Our speakers deliver high-impact keynote presentations at global conferences and panel discussions.", color: "#7B2FBE" },
@@ -54,20 +66,24 @@ export default function SpeakersPage() {
       {/* Hero */}
       <section className="page-hero">
         <Link to="/" className="page-hero-back">← Back to Home</Link>
-        <span className="page-hero-tag" style={{ color: "#7B2FBE" }}>Global Thought Leaders</span>
+        <span className="page-hero-tag" style={{ color: "#7B2FBE" }}>
+          {isAmbassadorsPage ? "Global Brand Ambassadors" : "Global Thought Leaders"}
+        </span>
         <h1>
           Meet Our<br />
-          <em>World-Class Speakers</em>
+          <em>{isAmbassadorsPage ? "Brand Ambassadors" : "World-Class Speakers"}</em>
         </h1>
         <p className="page-hero-desc">
-          Meet the visionary experts, industry leaders, and researchers who 
-          shape the conversations at ProSummits conferences worldwide.
+          {isAmbassadorsPage 
+            ? "Meet the dedicated brand ambassadors who represent and amplify the ProSummits mission across the globe."
+            : "Meet the visionary experts, industry leaders, and researchers who shape the conversations at ProSummits conferences worldwide."
+          }
         </p>
         <div className="scroll-indicator">
           <div className="mouse">
             <div className="wheel"></div>
           </div>
-          <span className="scroll-text">Meet Speakers</span>
+          <span className="scroll-text">Meet {isAmbassadorsPage ? "Ambassadors" : "Speakers"}</span>
         </div>
       </section>
 
@@ -100,11 +116,29 @@ export default function SpeakersPage() {
       </div>
 
       <div className="page-content">
-        {/* Speaker Grid */}
         <div style={{ marginBottom: 64 }}>
           {loading ? (
             <div style={{ textAlign: 'center', padding: '40px', color: 'rgba(255,255,255,.4)' }}>
               Loading speakers...
+            </div>
+          ) : isAmbassadorsPage ? (
+            <div className="amb-grid">
+              {speakers.map((s, i) => {
+                const imgUrl = s.image
+                  ? urlFor(s.image).width(400).url()
+                  : s.img || s.legacyImageUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80";
+                
+                return (
+                  <div key={s._id || i} className="amb-card">
+                    <div className="amb-av">
+                      {imgUrl ? <img src={imgUrl} alt={s.name || `Ambassador ${i}`} /> : (s.initials || "A")}
+                    </div>
+                    <div className="amb-name">{s.name}</div>
+                    <div className="amb-role">{s.role}</div>
+                    <div className="amb-loc">{s.location}</div>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             <AnimatedSpeakersGallery speakers={speakers} />

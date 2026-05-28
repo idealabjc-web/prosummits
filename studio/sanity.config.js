@@ -104,6 +104,19 @@ export default defineConfig({
         type: 'document',
         fields: [
           { name: 'name', type: 'string', title: 'Name' },
+          {
+            name: 'personType',
+            title: 'Type',
+            type: 'string',
+            options: {
+              list: [
+                { title: 'Speaker', value: 'speaker' },
+                { title: 'Ambassador', value: 'ambassador' }
+              ],
+              layout: 'radio'
+            },
+            initialValue: 'speaker'
+          },
           { name: 'role', type: 'string', title: 'Role' },
           { name: 'location', type: 'string', title: 'Location' },
           { name: 'image', type: 'image', title: 'Profile Image', options: { hotspot: true } },
@@ -172,7 +185,7 @@ export default defineConfig({
             name: 'gmailUser',
             type: 'string',
             title: 'Gmail User',
-            description: 'The email address to send from (e.g., prosummitsvirtual@gmail.com)'
+            description: 'The email address to send from (e.g., contact@prosummits.org)'
           },
           {
             name: 'gmailAppPassword',

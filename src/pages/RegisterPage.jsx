@@ -296,7 +296,7 @@ export default function RegisterPage() {
 
     const templateParams = {
       to_name: "ProSummits Team",
-      to_email: "prosummitsvirtual@gmail.com",
+      to_email: "contact@prosummits.org",
       reply_to: form.email,
       from_name: `${form.firstName} ${form.lastName}`,
       user_email: form.email,
@@ -318,7 +318,7 @@ export default function RegisterPage() {
     try {
       // 1. Send Email via EmailJS
       await emailjs.send(
-        'service_on0qng6',
+        'service_2ac0shf',
         'template_mxjq749',
         templateParams,
         { publicKey: '8Ka9LvGqor29zIVHa' }

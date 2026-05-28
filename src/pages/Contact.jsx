@@ -85,7 +85,7 @@ export default function Contact() {
     }
 
     // 2. Submit to Web3Forms via JSON
-    const WEB3_KEY = import.meta.env.VITE_WEB3FORMS_KEY || "0fa70225-4703-4b87-8c3a-0967339de033";
+    const WEB3_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "0fa70225-4703-4b87-8c3a-0967339de033";
     let web3Success = false;
     let web3Error = "";
 

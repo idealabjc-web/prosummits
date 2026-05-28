@@ -16,8 +16,8 @@ export default function Speakers() {
   useEffect(() => {
     const fetchSpeakers = async () => {
       try {
-        const data = await client.fetch(`*[_type == "speaker"]`);
-        setSpeakers(data && data.length > 0 ? data : SPEAKERS);
+        const data = await client.fetch(`*[_type == "speaker" && (personType == "speaker" || !defined(personType))]`);
+        setSpeakers(data && data.length > 0 ? data : SPEAKERS.filter(s => s.personType !== 'ambassador'));
       } catch (err) {
         console.error("Error fetching speakers:", err);
         setSpeakers(SPEAKERS);
