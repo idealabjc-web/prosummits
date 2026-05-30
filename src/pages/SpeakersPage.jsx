@@ -7,6 +7,9 @@ import { SPEAKERS } from "../data/constants";
 import "../styles/pages.css";
 import "../styles/Ambassadors.css";
 import AnimatedSpeakersGallery from "../components/AnimatedSpeakersGallery";
+import coverImg from "../assets/ambassadors/Ambassador-img.png";
+import banner2Img from "../assets/ambassadors/S_Calleri.jpg";
+import banner1Img from "../assets/ambassadors/T_Calleri.jpg";
 
 /**
  * SpeakersPage
@@ -91,7 +94,7 @@ export default function SpeakersPage() {
       <div className="page-content" style={{ paddingTop: 0 }}>
         <motion.div className="featured-banner" {...fadeIn}>
           <img
-            src="https://prosummits.org/wp-content/uploads/2025/10/Prosummits-Homepage-Cover.jpeg"
+            src={coverImg}
             alt="ProSummits Homepage Cover"
           />
         </motion.div>
@@ -102,13 +105,13 @@ export default function SpeakersPage() {
         <div className="poster-grid">
           <motion.div {...fadeIn}>
             <img
-              src="https://prosummits.org/wp-content/uploads/2025/09/Prosummits-BA-Banner-2.jpeg"
+              src={banner2Img}
               alt="Ambassador Info 2"
             />
           </motion.div>
           <motion.div {...fadeIn}>
             <img
-              src="https://prosummits.org/wp-content/uploads/2025/09/Prosummits-BA-Banner-1.jpeg"
+              src={banner1Img}
               alt="Ambassador Info 1"
             />
           </motion.div>

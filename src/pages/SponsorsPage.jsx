@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client, urlFor } from "../lib/sanity";
 import { SP_COLORS, ORG_COLORS } from "../data/constants";
+import { BrandLogosCloud, PixelCanvas } from "../components/PixelCanvas";
 import "../styles/pages.css";
 import "../styles/Sponsors.css";
 import "../styles/Organizers.css";
@@ -72,6 +73,15 @@ export default function SponsorsPage() {
           </div>
         ) : (
           <>
+            {/* Featured Brand Logos Premium Cloud */}
+            <div className="sec-head ctr" style={{ marginBottom: 32 }}>
+              <span className="section-tag" style={{ color: "#E01F5C" }}>Featured Global Partners</span>
+              <h2 className="section-title">
+                Supported by Industry <em style={{ color: "#E01F5C" }}>Leaders</em>
+              </h2>
+            </div>
+            <BrandLogosCloud />
+
             {/* Sponsor Tiers */}
             {tiers.map((tier, ti) => (
               <div key={ti} style={{ marginBottom: 56 }}>
@@ -81,21 +91,22 @@ export default function SponsorsPage() {
                 <div className="sponsors-row">
                   {tier.items.map((s, i) => {
                     const colorIdx = (ti * 4 + i) % SP_COLORS.length;
+                    const color = SP_COLORS[colorIdx];
                     return (
                       <div
                         key={s._id || i}
                         className="sp-logo"
+                        style={{ "--brand-border": color }}
                         onMouseEnter={ev => {
-                          ev.currentTarget.style.borderColor = SP_COLORS[colorIdx];
-                          ev.currentTarget.style.color = SP_COLORS[colorIdx];
-                          ev.currentTarget.style.background = SP_COLORS[colorIdx] + "15";
+                          ev.currentTarget.style.borderColor = color;
+                          ev.currentTarget.style.color = color;
                         }}
                         onMouseLeave={ev => {
-                          ev.currentTarget.style.borderColor = "rgba(255,255,255,.1)";
-                          ev.currentTarget.style.color = "rgba(255,255,255,.55)";
-                          ev.currentTarget.style.background = "rgba(4,16,28,.6)";
+                          ev.currentTarget.style.borderColor = "rgba(255,255,255,.08)";
+                          ev.currentTarget.style.color = "rgba(255,255,255,.5)";
                         }}
                       >
+                        <PixelCanvas colors={[color, "#ffffff"]} gap={6} speed={30} />
                         {s.image ? (
                           <img src={urlFor(s.image).height(80).url()} alt={s.name} className="sp-img" />
                         ) : (

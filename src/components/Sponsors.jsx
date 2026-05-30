@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { useFadeUp } from "../hooks/useFadeUp";
 import { client, urlFor } from "../lib/sanity";
 import { SP_COLORS } from "../data/constants";
+import { PixelCanvas } from "./PixelCanvas";
 import "../styles/Sponsors.css";
 
 /**
@@ -41,28 +42,31 @@ export default function Sponsors() {
         </div>
 
         <div className="sponsors-row">
-          {sponsors.map((s, i) => (
-            <div
-              key={s._id || i}
-              className="sp-logo"
-              onMouseEnter={ev => {
-                ev.currentTarget.style.borderColor = SP_COLORS[i % SP_COLORS.length];
-                ev.currentTarget.style.color = SP_COLORS[i % SP_COLORS.length];
-                ev.currentTarget.style.background = SP_COLORS[i % SP_COLORS.length] + "15";
-              }}
-              onMouseLeave={ev => {
-                ev.currentTarget.style.borderColor = "rgba(255,255,255,.1)";
-                ev.currentTarget.style.color = "rgba(255,255,255,.55)";
-                ev.currentTarget.style.background = "rgba(4,16,28,.6)";
-              }}
-            >
-              {s.image ? (
-                <img src={urlFor(s.image).height(80).url()} alt={s.name} className="sp-img" />
-              ) : (
-                s.legacyImageUrl ? <img src={s.legacyImageUrl} alt={s.name} className="sp-img" /> : s.name
-              )}
-            </div>
-          ))}
+          {sponsors.map((s, i) => {
+            const color = SP_COLORS[i % SP_COLORS.length];
+            return (
+              <div
+                key={s._id || i}
+                className="sp-logo"
+                style={{ "--brand-border": color }}
+                onMouseEnter={ev => {
+                  ev.currentTarget.style.borderColor = color;
+                  ev.currentTarget.style.color = color;
+                }}
+                onMouseLeave={ev => {
+                  ev.currentTarget.style.borderColor = "rgba(255,255,255,.08)";
+                  ev.currentTarget.style.color = "rgba(255,255,255,.5)";
+                }}
+              >
+                <PixelCanvas colors={[color, "#ffffff"]} gap={6} speed={30} />
+                {s.image ? (
+                  <img src={urlFor(s.image).height(80).url()} alt={s.name} className="sp-img" />
+                ) : (
+                  s.legacyImageUrl ? <img src={s.legacyImageUrl} alt={s.name} className="sp-img" /> : s.name
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
