@@ -193,7 +193,7 @@ export default function SpeakersPage() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: 24 }}>
-          <Link to="/about" className="btn-g" style={{ marginRight: 14 }}>
+          <Link to="/register" className="btn-g" style={{ marginRight: 14 }}>
             Apply to Speak
           </Link>
           <Link to="/events" className="btn-o">

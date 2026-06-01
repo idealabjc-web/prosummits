@@ -343,3 +343,284 @@
     grid-auto-rows: 250px;
   }
 }
+
+/* ── Integrated Premium Bento Design ── */
+.gallery-new-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: 60px 0;
+}
+
+@media (min-width: 768px) {
+  .gallery-new-layout {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.gallery-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.gallery-grid-new {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 50px 150px 50px 150px 50px;
+  gap: 16px;
+  width: 100%;
+}
+
+.gallery-cell-new {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.gallery-cell-new:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(224, 31, 92, 0.25);
+  z-index: 10;
+}
+
+.gallery-cell-new.cell-0 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+}
+
+.gallery-cell-new.cell-1 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
+}
+
+.gallery-cell-new.cell-2 {
+  grid-column: 1 / 2;
+  grid-row: 4 / 6;
+}
+
+.gallery-cell-new.cell-3 {
+  grid-column: 2 / 3;
+  grid-row: 3 / 5;
+}
+
+.gallery-cell-new img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.gallery-cell-new:hover img {
+  transform: scale(1.08);
+}
+
+/* ── ContainerScroll Layout ── */
+.scroll-container-main {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.scroll-bento-grid {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  width: 100%;
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 1fr 0.5fr 0.5fr 1fr;
+  box-sizing: border-box;
+}
+
+/* Bento cell transformations and origins */
+.scroll-bento-grid > *:first-child {
+  grid-column: span 8;
+  transform-origin: top right;
+}
+
+.scroll-bento-grid > *:nth-child(2) {
+  grid-column: span 2;
+  display: none;
+}
+
+.scroll-bento-grid > *:nth-child(3) {
+  grid-column: span 2;
+  transform-origin: bottom right;
+  display: none;
+}
+
+.scroll-bento-grid > *:nth-child(4) {
+  grid-column: span 4;
+  transform-origin: top right;
+}
+
+.scroll-bento-grid > *:nth-child(5) {
+  grid-column: span 4;
+}
+
+@media (min-width: 768px) {
+  .scroll-bento-grid > *:first-child {
+    grid-column: span 6;
+    grid-row: span 3;
+  }
+  .scroll-bento-grid > *:nth-child(2) {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: block;
+  }
+  .scroll-bento-grid > *:nth-child(3) {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: block;
+  }
+  .scroll-bento-grid > *:nth-child(4) {
+    grid-column: span 3;
+  }
+  .scroll-bento-grid > *:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+.scroll-bento-cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 20 !important;
+}
+
+.scroll-bento-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Central Scaling Text Container */
+.scroll-scale-content {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  z-index: 10 !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Tailwind Compatibility Styles for Bento Grid & Centering Animation */
+.h-\[350vh\] { height: 350vh !important; }
+.left-1\/2 { left: 50% !important; }
+.top-1\/2 { top: 50% !important; }
+.size-fit { width: fit-content !important; height: fit-content !important; }
+.size-full { width: 100% !important; height: 100% !important; }
+.sticky { position: sticky !important; }
+.left-0 { left: 0 !important; }
+.top-0 { top: 0 !important; }
+.z-0 { z-index: 0 !important; }
+.z-10 { z-index: 10 !important; }
+.z-20 { z-index: 20 !important; }
+.h-screen { height: 100vh !important; }
+.h-svh { height: 100svh !important; }
+.w-full { width: 100% !important; }
+.p-4 { padding: 1rem !important; }
+.text-center { text-align: center !important; }
+.overflow-hidden { overflow: hidden !important; }
+.rounded-xl { border-radius: 12px !important; }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.4) !important; }
+.object-cover { object-fit: cover !important; }
+.object-center { object-position: center !important; }
+.relative { position: relative !important; }
+.grid { display: grid !important; }
+.gap-4 { gap: 16px !important; }
+
+/* Margins, alignments, and widths for central content centering */
+.max-w-xl {
+  max-width: 36rem !important; /* 576px */
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.text-5xl { font-size: 3rem !important; line-height: 1.1 !important; }
+.font-bold { font-weight: 700 !important; }
+.tracking-tighter { letter-spacing: -0.05em !important; }
+.my-6 { margin-top: 1.5rem !important; margin-bottom: 1.5rem !important; }
+.text-sm { font-size: 0.875rem !important; }
+.flex { display: flex !important; }
+.items-center { align-items: center !important; }
+.justify-center { justify-content: center !important; }
+.gap-4 { gap: 16px !important; }
+
+@media (min-width: 768px) {
+  .md\:text-base { font-size: 1rem !important; }
+}
+
+/* Grid columns & rows class mapping */
+.grid-cols-8 {
+  grid-template-columns: repeat(8, 1fr) !important;
+}
+
+.grid-rows-\[1fr_0\.5fr_0\.5fr_1fr\] {
+  grid-template-rows: 1fr 0.5fr 0.5fr 1fr !important;
+}
+
+/* Bento cell children placement matching custom Tailwind directives */
+.grid-cols-8 > *:nth-child(1) {
+  grid-column: span 8 !important;
+  transform-origin: top right !important;
+}
+
+.grid-cols-8 > *:nth-child(2) {
+  grid-column: span 2 !important;
+  display: none !important;
+}
+
+.grid-cols-8 > *:nth-child(3) {
+  grid-column: span 2 !important;
+  transform-origin: bottom right !important;
+  display: none !important;
+}
+
+.grid-cols-8 > *:nth-child(4) {
+  grid-column: span 4 !important;
+  transform-origin: top right !important;
+}
+
+.grid-cols-8 > *:nth-child(5) {
+  grid-column: span 4 !important;
+}
+
+@media (min-width: 768px) {
+  .grid-cols-8 > *:nth-child(1) {
+    grid-column: span 6 !important;
+    grid-row: span 3 !important;
+  }
+  .grid-cols-8 > *:nth-child(2) {
+    grid-column: span 2 !important;
+    grid-row: span 2 !important;
+    display: block !important;
+  }
+  .grid-cols-8 > *:nth-child(3) {
+    grid-column: span 2 !important;
+    grid-row: span 2 !important;
+    display: block !important;
+  }
+  .grid-cols-8 > *:nth-child(4) {
+    grid-column: span 3 !important;
+  }
+  .grid-cols-8 > *:nth-child(5) {
+    grid-column: span 3 !important;
+  }
+}

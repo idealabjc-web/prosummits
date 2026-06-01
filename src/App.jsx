@@ -5,6 +5,7 @@ import EventDetails    from "./pages/EventDetails";
 import EventsPage      from "./pages/EventsPage";
 import SpeakersPage    from "./pages/SpeakersPage";
 import Blog            from "./pages/Blog";
+import BlogPost        from "./pages/BlogPost";
 import GalleryPage     from "./pages/GalleryPage";
 import SponsorsPage    from "./pages/SponsorsPage";
 import About           from "./pages/About";
@@ -69,6 +70,7 @@ export default function App() {
         <Route path="/speakers"     element={<SpeakersPage />}    />
         <Route path="/ambassadors"  element={<SpeakersPage />}    />
         <Route path="/blog"         element={<Blog />}            />
+        <Route path="/blog/:id"     element={<BlogPost />}        />
         <Route path="/gallery"      element={<GalleryPage />}     />
         <Route path="/sponsors"     element={<SponsorsPage />}    />
         <Route path="/about"        element={<About />}           />

@@ -14,6 +14,15 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            // Blog section
+            S.listItem()
+              .title('✍️ Blog Posts')
+              .id('post')
+              .child(
+                S.documentTypeList('post')
+                  .title('Blog Posts')
+              ),
+            S.divider(),
             // Gallery section (shows existing document)
             S.listItem()
               .title('🖼️ Gallery')
@@ -25,7 +34,7 @@ export default defineConfig({
             S.divider(),
             // All other document types (auto-generated)
             ...S.documentTypeListItems().filter(
-              (item) => !['gallery'].includes(item.getId())
+              (item) => !['gallery', 'post'].includes(item.getId())
             ),
           ]),
     }),
@@ -273,6 +282,145 @@ export default defineConfig({
                 ]
               }
             ]
+          }
+        ]
+      },
+      {
+        name: 'post',
+        title: 'Blog Post',
+        type: 'document',
+        fields: [
+          { name: 'title', type: 'string', title: 'Title' },
+          { name: 'slug', type: 'slug', title: 'Slug', options: { source: 'title', maxLength: 96 } },
+          { name: 'category', type: 'string', title: 'Category', initialValue: 'Science' },
+          { name: 'date', type: 'string', title: 'Date', initialValue: 'Jun 01, 2026' },
+          { name: 'color', type: 'string', title: 'Accent Color (Hex)', initialValue: '#00A79D' },
+          { name: 'image', type: 'image', title: 'Cover Image', options: { hotspot: true } },
+          { name: 'legacyImageUrl', type: 'string', title: 'Legacy Image URL (Fallback)' },
+          { name: 'description', type: 'text', title: 'Short Description' },
+          { name: 'content', type: 'text', title: 'Article Body (Plain Text / Simple)' },
+          { name: 'introParagraphs', type: 'array', title: 'Introduction Paragraphs', of: [{ type: 'text' }] },
+          { name: 'showGoldDivider', type: 'boolean', title: 'Show Gold Section Divider', initialValue: false },
+          {
+            name: 'sections',
+            type: 'array',
+            title: 'Content Sections',
+            of: [{
+              type: 'object',
+              name: 'section',
+              title: 'Section',
+              fields: [
+                { name: 'heading', type: 'string', title: 'Heading' },
+                { name: 'paragraphs', type: 'array', title: 'Paragraphs', of: [{ type: 'text' }] },
+                { name: 'showMitosisSimulator', type: 'boolean', title: 'Show Mitosis Simulator', initialValue: false },
+                { name: 'showDecaySimulator', type: 'boolean', title: 'Show Decay Simulator', initialValue: false },
+                {
+                  name: 'floatingCard',
+                  type: 'object',
+                  title: 'Floating Card (Image)',
+                  fields: [
+                    { name: 'image', type: 'image', title: 'Card Image', options: { hotspot: true } },
+                    { name: 'legacyImageUrl', type: 'string', title: 'Legacy Image URL' },
+                    { name: 'caption', type: 'string', title: 'Caption' }
+                  ]
+                },
+                {
+                  name: 'infoBox',
+                  type: 'object',
+                  title: 'Context / Info Box',
+                  fields: [
+                    { name: 'badge', type: 'string', title: 'Badge Text' },
+                    { name: 'title', type: 'string', title: 'Box Title' },
+                    { name: 'text', type: 'text', title: 'Box Content' },
+                    {
+                      name: 'colorTheme',
+                      type: 'string',
+                      title: 'Color Theme',
+                      options: {
+                        list: [
+                          { title: 'Gold Theme', value: 'gold' },
+                          { title: 'Green Theme', value: 'green' }
+                        ]
+                      },
+                      initialValue: 'gold'
+                    }
+                  ]
+                },
+                {
+                  name: 'pullQuote',
+                  type: 'object',
+                  title: 'Pull Quote',
+                  fields: [
+                    { name: 'text', type: 'text', title: 'Quote Text' },
+                    { name: 'citation', type: 'string', title: 'Citation' }
+                  ]
+                },
+                {
+                  name: 'bioethicsCard',
+                  type: 'object',
+                  title: 'Bioethics / Legacy Highlight Card',
+                  fields: [
+                    { name: 'title', type: 'string', title: 'Title' },
+                    { name: 'quote', type: 'text', title: 'Quote' },
+                    { name: 'meta', type: 'string', title: 'Meta Info' }
+                  ]
+                },
+                {
+                  name: 'timeline',
+                  type: 'object',
+                  title: 'Timeline Widget',
+                  fields: [
+                    { name: 'title', type: 'string', title: 'Timeline Title' },
+                    {
+                      name: 'milestones',
+                      type: 'array',
+                      title: 'Milestones',
+                      of: [{
+                        type: 'object',
+                        fields: [
+                          { name: 'year', type: 'string', title: 'Year / Period' },
+                          { name: 'title', type: 'string', title: 'Milestone Title' },
+                          { name: 'description', type: 'text', title: 'Description' },
+                          {
+                            name: 'colorTheme',
+                            type: 'string',
+                            title: 'Dot Color Theme',
+                            options: {
+                              list: [
+                                { title: 'Gold (#c9a84c)', value: 'gold' },
+                                { title: 'Green (#6bffb3)', value: 'green' }
+                              ]
+                            },
+                            initialValue: 'gold'
+                          }
+                        ]
+                      }]
+                    }
+                  ]
+                },
+                {
+                  name: 'compareTable',
+                  type: 'object',
+                  title: 'Comparison Table',
+                  fields: [
+                    { name: 'headers', type: 'array', title: 'Table Headers', of: [{ type: 'string' }] },
+                    {
+                      name: 'rows',
+                      type: 'array',
+                      title: 'Table Rows',
+                      of: [{
+                        type: 'object',
+                        fields: [
+                          { name: 'label', type: 'string', title: 'Trait / Row Label' },
+                          { name: 'col1', type: 'string', title: 'Column 1 Value' },
+                          { name: 'col2', type: 'string', title: 'Column 2 Value' }
+                        ]
+                      }]
+                    }
+                  ]
+                }
+              ]
+            }]
           }
         ]
       }
