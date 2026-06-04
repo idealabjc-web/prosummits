@@ -17,9 +17,9 @@ export default function SponsorsPage() {
   const [organizers, setOrganizers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
-    window.scrollTo(0, 0); 
-    
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
     const fetchData = async () => {
       try {
         const [spData, orgData] = await Promise.all([

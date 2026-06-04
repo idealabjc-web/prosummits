@@ -624,3 +624,259 @@
     grid-column: span 3 !important;
   }
 }
+
+/* ── Expandable Gallery Section Styles ── */
+.expandable-gallery-sec {
+  position: relative;
+  width: 100%;
+  padding: 20px 20px;
+  background: var(--d);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.expandable-gallery-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expandable-gallery-header {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 50;
+}
+
+.expandable-gallery-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  font-family: var(--fb);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+.expandable-gallery-back-btn:hover {
+  color: #fff;
+}
+
+.expandable-gallery-back-btn .icon-bg {
+  padding: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.expandable-gallery-back-btn:hover .icon-bg {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Grid & Collapsed stack container */
+.expandable-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.contents {
+  display: contents;
+}
+
+.expandable-gallery-collapsed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 16px;
+  width: 100%;
+}
+
+/* Stack Pile */
+.expandable-gallery-stack-wrapper {
+  position: relative;
+  height: 320px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .expandable-gallery-stack-wrapper {
+    height: 380px;
+  }
+}
+
+/* Cards */
+.expandable-gallery-card-expanded {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  border: 4px solid var(--d);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+  background: #111;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .expandable-gallery-card-expanded {
+    border-width: 6px;
+    border-radius: 32px;
+  }
+}
+
+.expandable-gallery-card-collapsed {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 28px;
+  border: 4px solid var(--d);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  overflow: hidden;
+  background: #111;
+}
+
+@media (min-width: 768px) {
+  .expandable-gallery-card-collapsed {
+    width: 200px;
+    height: 200px;
+    border-radius: 36px;
+    border-width: 6px;
+  }
+}
+
+.expandable-gallery-image-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.expandable-gallery-image-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Stack Content Text & Button */
+.expandable-gallery-stack-content {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.expandable-gallery-title {
+  font-family: var(--fb);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .expandable-gallery-title {
+    font-size: 1.8rem;
+  }
+}
+
+.expandable-gallery-explore-btn {
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 12px 28px;
+  font-family: var(--fb);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--w);
+  color: var(--d);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.expandable-gallery-explore-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.expandable-gallery-explore-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.expandable-gallery-explore-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── Gallery Sections Responsive Layout ── */
+.gallery-sections-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .gallery-sections-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: 20px 40px;
+  }
+
+  .gallery-sections-layout > * {
+    width: 100%;
+  }
+
+  /* The third item (Recent Highlights) spans both columns and is centered */
+  .gallery-sections-layout > *:nth-child(3):not(.is-expanded) {
+    grid-column: span 2;
+    justify-self: center;
+    max-width: 550px;
+  }
+
+  /* Expanded items take full width of the grid */
+  .gallery-sections-layout > *.is-expanded {
+    grid-column: span 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
