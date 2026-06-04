@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
+import TubesBackground from "../components/TubesBackground";
 import "../styles/pages.css";
 const CAT_COLORS = {
   "General": "#7B2FBE",
@@ -149,7 +150,7 @@ export default function Contact() {
   return (
     <div className="page-fade">
       {/* Hero */}
-      <section className="page-hero">
+      <TubesBackground className="page-hero">
         <Link to="/" className="page-hero-back">← Back to Home</Link>
         <span className="page-hero-tag" style={{ color: "#00A79D" }}>Get in Touch</span>
         <h1>
@@ -166,7 +167,7 @@ export default function Contact() {
           </div>
           <span className="scroll-text">Reach Out</span>
         </div>
-      </section>
+      </TubesBackground>
 
       <div className="page-content">
         {/* Contact Form Section */}

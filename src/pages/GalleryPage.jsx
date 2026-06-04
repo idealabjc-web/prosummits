@@ -419,12 +419,12 @@ export default function GalleryPage() {
             </div>
           ) : (
             <div className="gallery-sections-layout">
-              {categories["Highlights"]?.length > 0 && (
+              {categories["Recent"]?.length > 0 && (
                 <ExpandableGallerySection
-                  title="Gallery"
-                  subtitle="People don’t fall in love with components. They fall in love with how something feels."
-                  images={categories["Highlights"]}
-                  accentColor="#E01F5C"
+                  title="Recent Highlights"
+                  subtitle="The latest moments and updates from our most recent summits."
+                  images={categories["Recent"]}
+                  accentColor="#7B2FBE"
                   onImageClick={setSelectedImg}
                 />
               )}
@@ -439,12 +439,12 @@ export default function GalleryPage() {
                 />
               )}
 
-              {categories["Recent"]?.length > 0 && (
+              {categories["Highlights"]?.length > 0 && (
                 <ExpandableGallerySection
-                  title="Recent Highlights"
-                  subtitle="The latest moments and updates from our most recent summits."
-                  images={categories["Recent"]}
-                  accentColor="#7B2FBE"
+                  title="Gallery"
+                  subtitle="People don’t fall in love with components. They fall in love with how something feels."
+                  images={categories["Highlights"]}
+                  accentColor="#E01F5C"
                   onImageClick={setSelectedImg}
                 />
               )}
