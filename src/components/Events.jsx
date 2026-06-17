@@ -65,7 +65,7 @@ export default function Events() {
                     {e.price || "Free"}<small>Early Bird Access</small>
                   </div> */}
                   <Link
-                  to={`/events/${e.slug?.current || e._id}`}
+                    to={`/events/${e.slug?.current || e._id}`}
                     className="btn-sm"
                     onMouseEnter={ev => {
                       ev.currentTarget.style.background = (e.bdColor || "#7B2FBE") + "33";

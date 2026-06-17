@@ -84,6 +84,7 @@ section { position: relative; z-index: 1; }
   color: #fff; font-size: .7rem; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
   transition: background .2s, border-color .2s; font-family: var(--fb);
+  text-decoration: none;
 }
 .btn-sm:hover { background: rgba(244,123,32,.3); border-color: #F47B20; color: #F47B20; }
 
