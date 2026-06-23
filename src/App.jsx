@@ -12,6 +12,8 @@ import About           from "./pages/About";
 import Contact         from "./pages/Contact";
 import RegisterPage    from "./pages/RegisterPage";
 import PoliciesPage    from "./pages/PoliciesPage";
+import PaymentSuccess  from "./pages/PaymentSuccess";
+import PaymentCancel   from "./pages/PaymentCancel";
 import Navbar          from "./components/Navbar";
 import "./styles/global.css";
 
@@ -76,6 +78,8 @@ export default function App() {
         <Route path="/about"        element={<About />}           />
         <Route path="/contact"      element={<Contact />}         />
         <Route path="/register"     element={<RegisterPage />}    />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/payment-cancel"  element={<PaymentCancel />}  />
         <Route path="/policies"     element={<PoliciesPage />}    />
       </Routes>
     </BrowserRouter>

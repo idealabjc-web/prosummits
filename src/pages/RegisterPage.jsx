@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
 import "../styles/Register.css";
@@ -121,8 +120,6 @@ export default function RegisterPage() {
   const [events, setEvents] = useState([]);
   const [eventYears, setEventYears] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [regId, setRegId] = useState("");
 
   // Step 1: Personal & Conference State
   const [form, setForm] = useState({
@@ -148,7 +145,6 @@ export default function RegisterPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    emailjs.init("8Ka9LvGqor29zIVHa");
 
     Promise.all([
       client.fetch(`*[_type == "event"]{..., eventYear->} | order(date asc)`),
@@ -291,65 +287,66 @@ export default function RegisterPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const newRegId = `PS-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
-    setRegId(newRegId);
-
-    const templateParams = {
-      to_name: "ProSummits Team",
-      to_email: "contact@prosummits.org",
-      reply_to: form.email,
-      from_name: `${form.firstName} ${form.lastName}`,
-      user_email: form.email,
-      event_title: selectedEvent?.title || "Conference",
-      package_name: selectedPkg?.name || "N/A",
-      participation_type: participationType === "physical" ? "Physical Event" : "Virtual Event",
-      price: subtotal.toString(),
-      discount: discountAmount.toFixed(2),
-      coupon_code: appliedCoupon ? appliedCoupon.code : "None",
-      final_price: finalPrice.toFixed(2),
-      phone: `${form.countryCode} ${form.phone}`,
-      country: form.country,
-      organization: form.organization || "Not Specified",
-      job_title: form.jobTitle || "Not Specified",
-      requirements: form.specialRequirements || "None",
-      reg_id: newRegId
-    };
+    const registrationId =
+      typeof crypto !== "undefined" && crypto.randomUUID
+        ? `PS-${crypto.randomUUID().slice(0, 8).toUpperCase()}`
+        : `PS-${Date.now().toString(36).toUpperCase()}`;
 
     try {
-      // 1. Send Email via EmailJS
-      await emailjs.send(
-        'service_2ac0shf',
-        'template_mxjq749',
-        templateParams,
-        { publicKey: '8Ka9LvGqor29zIVHa' }
-      );
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          registrationId,
+          participant: {
+            name: `${form.firstName} ${form.lastName}`,
+            email: form.email,
+            phone: `${form.countryCode} ${form.phone}`,
+            country: form.country,
+            organization: form.organization || "Not Specified",
+            jobTitle: form.jobTitle || "Not Specified",
+          },
+          event: {
+            id: selectedEvent?._id || form.eventId,
+            title: selectedEvent?.title || "Conference",
+            date: selectedEvent?.date || "",
+            location: selectedEvent?.loc || selectedEvent?.location || "",
+          },
+          package: {
+            id: selectedPkg?.id,
+            name: selectedPkg?.name,
+          },
+          participationType:
+            participationType === "physical" ? "Physical Event" : "Virtual Event",
+          pricing: {
+            currency: "usd",
+            subtotal,
+            discount: Number(discountAmount.toFixed(2)),
+            finalPrice: Number(finalPrice.toFixed(2)),
+          },
+          coupon: appliedCoupon
+            ? { code: appliedCoupon.code, description: appliedCoupon.description }
+            : null,
+          specialRequirements: form.specialRequirements || "",
+        }),
+      });
 
-      // 2. Save to Google Sheets
-      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
-      if (GOOGLE_SCRIPT_URL) {
-        const formData = new FormData();
-        formData.append("timestamp", new Date().toISOString());
-        Object.keys(templateParams).forEach(key => {
-          formData.append(key, templateParams[key]);
-        });
+      const data = await response.json();
 
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors"
-        });
+      if (!response.ok || !data.url) {
+        throw new Error(data.error || "Unable to start payment.");
       }
 
-      setSubmitted(true);
+      window.location.href = data.url;
     } catch (err) {
-      console.error("Full Registration Error:", err.text || err);
-      alert("There was an error sending your registration. Please check your browser console for details.");
+      console.error("Payment checkout error:", err);
+      alert("There was an error starting payment. Please try again or contact support.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (submitted) {
+  if (false) {
     return (
       <div className="page-fade">
         <div className="reg-page">
@@ -889,7 +886,7 @@ export default function RegisterPage() {
                   className="reg-continue-btn"
                   style={{ flex: 1, width: 'auto' }}
                 >
-                  {isSubmitting ? "Processing..." : "Complete Registration"}
+                  {isSubmitting ? "Redirecting to Payment..." : "Pay & Complete Registration"}
                 </button>
               </div>
             </form>
