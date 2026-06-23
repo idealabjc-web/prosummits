@@ -17,16 +17,7 @@
 - Direct users to `/events` for specific agendas, 23 conference themes, and descriptions.
 
 ## Pricing & Registration
-Tickets can be bought on `/register`.
-- **Physical (In-Person)**:
-  - **Delegate**: **$399** (Lunches, handbook, venue access)
-  - **Speaker**: **$799** (Presentation slot, event kit, lunches)
-  - **Speaker + 2-Night Stay**: **$1099** (Includes hotel & VIP dinner)
-  - **Speaker + 3-Night Stay**: **$1299** (Includes hotel & VIP dinner)
-  - **Exhibitor**: **$1999** (Booth space + 2 passes)
-- **Virtual (Online)**:
-  - **Virtual Speaker**: **$399** (15-min Zoom slot + Q&A)
-  - **Audio-Video**: **$199** (Pre-recorded broadcast + listed online)
+Tickets can be bought on `/register`. Package availability, features, and prices are managed in Sanity and may change. Always direct users to `/register` for the current authoritative options and amounts; never quote a price from memory.
 
 ## Policies & Support
 - **Refunds**: Cancellations 45+ days prior get **50% refund**. Under 45 days or calamities: non-refundable, 100% credited to future events. Email **contact@prosummits.org**. Processing takes 7-10 working days to source account.
