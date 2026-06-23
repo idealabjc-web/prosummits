@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useParams, Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client, urlFor } from "../lib/sanity";
@@ -15,6 +16,7 @@ export default function EventDetails() {
   const { slug } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -223,11 +225,49 @@ export default function EventDetails() {
                 ← Back to {event.eventYear?.year ? `${event.eventYear.year} Events` : "All Events"}
               </Link>
             </div>
+
+            {event.date && event.date.toLowerCase().includes("jul") && event.date.includes("20") && event.date.includes("2026") && (
+              <div style={{ marginTop: "50px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "40px" }}>
+                <h2 style={{ textAlign: "center", marginBottom: "30px", fontSize: "2rem" }}>
+                  Tentative <em style={{ color: "#F47B20", fontStyle: "normal" }}>Agenda</em>
+                </h2>
+                <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}>
+                  <div style={{ flex: "1 1 400px", maxWidth: "600px", marginBottom: "20px" }}>
+                    <h3 style={{ marginBottom: "15px", color: "#F47B20", textAlign: "center", fontSize: "1.2rem" }}>EST Time Zone Schedule</h3>
+                    <div style={{ width: "100%", borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center", background: "rgba(255,255,255,0.02)", padding: "10px", cursor: "pointer" }} onClick={() => setZoomedImage("/VS-2026/EST.jpg")}>
+                      <img src="/VS-2026/EST.jpg" alt="EST Time Zone Schedule" style={{ maxWidth: "100%", height: "auto", display: "block", borderRadius: "8px" }} />
+                    </div>
+                  </div>
+                  <div style={{ flex: "1 1 400px", maxWidth: "600px", marginBottom: "20px" }}>
+                    <h3 style={{ marginBottom: "15px", color: "#F47B20", textAlign: "center", fontSize: "1.2rem" }}>Paris Time Zone Schedule</h3>
+                    <div style={{ width: "100%", borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center", background: "rgba(255,255,255,0.02)", padding: "10px", cursor: "pointer" }} onClick={() => setZoomedImage("/VS-2026/Paris.jpg")}>
+                      <img src="/VS-2026/Paris.jpg" alt="Paris Time Zone Schedule" style={{ maxWidth: "100%", height: "auto", display: "block", borderRadius: "8px" }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
       <Footer />
+
+      {/* Fullscreen Image Overlay */}
+      {zoomedImage && createPortal(
+        <div 
+          onClick={() => setZoomedImage(null)} 
+          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.85)', zIndex: 999999, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', cursor: 'pointer' }}
+        >
+          <button 
+            onClick={() => setZoomedImage(null)} 
+            style={{ position: 'absolute', top: '20px', right: '30px', background: 'none', border: 'none', color: '#fff', fontSize: '40px', cursor: 'pointer', zIndex: 1000000 }}
+          >
+            &times;
+          </button>
+          <img src={zoomedImage} alt="Zoomed Schedule" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '4px' }} />
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
