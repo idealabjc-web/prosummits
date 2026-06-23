@@ -43,6 +43,13 @@ export default async function handler(req, res) {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
 
+      // Only process webhook events intended for this specific website
+      if (session.metadata?.website !== "prosummits") {
+        console.log(`Ignoring webhook for another website: ${session.metadata?.website || 'unknown'}`);
+        res.statusCode = 200;
+        return res.end("ok");
+      }
+
       if (session.payment_status === "paid") {
         await fulfillPaidRegistration(stripe, session.id);
       }

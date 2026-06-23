@@ -80,6 +80,7 @@ export default async function handler(req, res) {
         },
       ],
       metadata: {
+        website: "prosummits",
         registrationId,
         participantName: participant.name,
         participantEmail: participant.email,
