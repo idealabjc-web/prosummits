@@ -53,12 +53,7 @@ export default function PaymentSuccess() {
           {confirmationStatus === "error" && (
             <p>
               Your payment was successful, but we could not deliver the confirmation email.
-              Please contact <strong>contact@prosummits.org</strong> with the session ID below.
-            </p>
-          )}
-          {sessionId && (
-            <p className="reg-success-id">
-              Stripe Session ID: <strong>{sessionId}</strong>
+              Please contact <strong>contact@prosummits.org</strong> using your registration email.
             </p>
           )}
           <Link to="/events" className="reg-back-link">

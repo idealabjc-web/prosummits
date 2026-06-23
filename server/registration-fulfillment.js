@@ -89,6 +89,14 @@ export async function fulfillPaidRegistration(stripe, sessionId) {
 
   const templateParams = buildTemplateParams(metadata, session, userEmail);
 
+  // Persist the registration first so an email-provider failure never loses data.
+  if (metadata.savedToSheets !== "true") {
+    await appendToSheets(metadata, session);
+    await stripe.checkout.sessions.update(session.id, {
+      metadata: { savedToSheets: "true" },
+    });
+  }
+
   if (metadata.userConfirmationSent !== "true") {
     await sendEmailJsMessage(userEmail, templateParams);
     await stripe.checkout.sessions.update(session.id, {
@@ -103,13 +111,6 @@ export async function fulfillPaidRegistration(stripe, sessionId) {
     });
     await stripe.checkout.sessions.update(session.id, {
       metadata: { adminConfirmationSent: "true" },
-    });
-  }
-
-  if (metadata.savedToSheets !== "true") {
-    await appendToSheets(metadata, session);
-    await stripe.checkout.sessions.update(session.id, {
-      metadata: { savedToSheets: "true" },
     });
   }
 
