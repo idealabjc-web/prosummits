@@ -32,9 +32,19 @@ export default defineConfig({
                   .title('Gallery')
               ),
             S.divider(),
+            S.listItem()
+              .title('Registration & Pricing')
+              .id('registrationSettings')
+              .child(
+                S.document()
+                  .schemaType('registrationSettings')
+                  .documentId('registrationSettings')
+                  .title('Registration & Pricing')
+              ),
+            S.divider(),
             // All other document types (auto-generated)
             ...S.documentTypeListItems().filter(
-              (item) => !['gallery', 'post'].includes(item.getId())
+              (item) => !['gallery', 'post', 'registrationSettings'].includes(item.getId())
             ),
           ]),
     }),
@@ -162,6 +172,124 @@ export default defineConfig({
           { name: 'name', type: 'string', title: 'Partner Name' },
           { name: 'description', type: 'text', title: 'Description' }
         ]
+      },
+      {
+        name: 'registrationSettings',
+        title: 'Registration & Pricing',
+        type: 'document',
+        fields: [
+          {
+            name: 'currency',
+            title: 'Payment Currency',
+            type: 'string',
+            initialValue: 'usd',
+            validation: (Rule) => Rule.required(),
+            options: {
+              list: [
+                { title: 'US Dollar (USD)', value: 'usd' },
+                { title: 'Euro (EUR)', value: 'eur' },
+                { title: 'British Pound (GBP)', value: 'gbp' },
+              ],
+            },
+          },
+          {
+            name: 'packages',
+            title: 'Registration Packages',
+            type: 'array',
+            validation: (Rule) => Rule.required().min(1),
+            of: [{
+              type: 'object',
+              name: 'registrationPackage',
+              title: 'Registration Package',
+              fields: [
+                { name: 'id', title: 'Package ID', type: 'string', validation: (Rule) => Rule.required() },
+                { name: 'name', title: 'Package Name', type: 'string', validation: (Rule) => Rule.required() },
+                {
+                  name: 'participationType',
+                  title: 'Participation Type',
+                  type: 'string',
+                  validation: (Rule) => Rule.required(),
+                  options: {
+                    list: [
+                      { title: 'Physical Event', value: 'physical' },
+                      { title: 'Virtual Event', value: 'virtual' },
+                    ],
+                    layout: 'radio',
+                  },
+                },
+                { name: 'price', title: 'Price', type: 'number', validation: (Rule) => Rule.required().positive() },
+                { name: 'icon', title: 'Icon (Emoji)', type: 'string' },
+                { name: 'popular', title: 'Mark as Popular', type: 'boolean', initialValue: false },
+                { name: 'active', title: 'Available for Registration', type: 'boolean', initialValue: true },
+                {
+                  name: 'features',
+                  title: 'Package Features',
+                  type: 'array',
+                  of: [{ type: 'string' }],
+                },
+              ],
+              preview: {
+                select: { title: 'name', price: 'price', type: 'participationType', active: 'active' },
+                prepare({ title, price, type, active }) {
+                  return {
+                    title: `${active === false ? '[Inactive] ' : ''}${title || 'Untitled package'}`,
+                    subtitle: `${type || 'No type'} · $${Number(price || 0).toFixed(2)}`,
+                  }
+                },
+              },
+            }],
+          },
+          {
+            name: 'coupons',
+            title: 'Coupon Codes',
+            type: 'array',
+            of: [{
+              type: 'object',
+              name: 'registrationCoupon',
+              title: 'Coupon',
+              fields: [
+                { name: 'code', title: 'Coupon Code', type: 'string', validation: (Rule) => Rule.required().uppercase() },
+                {
+                  name: 'discountType',
+                  title: 'Discount Type',
+                  type: 'string',
+                  validation: (Rule) => Rule.required(),
+                  options: {
+                    list: [
+                      { title: 'Percentage', value: 'percent' },
+                      { title: 'Fixed Amount', value: 'amount' },
+                    ],
+                    layout: 'radio',
+                  },
+                },
+                {
+                  name: 'value',
+                  title: 'Discount Value',
+                  type: 'number',
+                  description: 'Enter 20 for 20%, or 50 for a $50 discount.',
+                  validation: (Rule) => Rule.required().positive(),
+                },
+                { name: 'description', title: 'Description', type: 'string' },
+                { name: 'active', title: 'Coupon Active', type: 'boolean', initialValue: true },
+              ],
+              preview: {
+                select: { title: 'code', value: 'value', type: 'discountType', active: 'active' },
+                prepare({ title, value, type, active }) {
+                  const discount = type === 'percent' ? `${value}%` : `$${value}`
+                  return {
+                    title: `${active === false ? '[Inactive] ' : ''}${title || 'Untitled coupon'}`,
+                    subtitle: `${discount} discount`,
+                  }
+                },
+              },
+            }],
+          },
+        ],
+        preview: {
+          prepare() {
+            return { title: 'Registration & Pricing' }
+          },
+        },
       },
       {
         name: 'siteSettings',

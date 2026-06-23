@@ -4,114 +4,6 @@ import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
 import "../styles/Register.css";
 
-const PHYSICAL_PACKAGES = [
-  {
-    id: "speaker",
-    name: "Speaker Registration",
-    originalPrice: 799,
-    price: 799,
-    popular: false,
-    icon: "🎙️",
-    features: [
-      "Dedicated presentation slot at the conference",
-      "Access to all physical sessions and networking",
-      "Certificate of presentation and conference kit",
-      "Lunch and refreshments during the event"
-    ]
-  },
-  {
-    id: "speaker-2night",
-    name: "Speaker Registration plus 2 Nights Stay Addon",
-    originalPrice: 1099,
-    price: 1099,
-    popular: true,
-    icon: "🏨",
-    features: [
-      "Everything in Speaker Registration",
-      "4-Star / 5-Star Hotel Accommodation (2 Nights)",
-      "Complimentary breakfast & transfers suggestions",
-      "Access to exclusive Speaker VIP networking dinner"
-    ]
-  },
-  {
-    id: "speaker-3night",
-    name: "Speaker Registration plus 3 Nights Stay Addon",
-    originalPrice: 1299,
-    price: 1299,
-    popular: false,
-    icon: "🏢",
-    features: [
-      "Everything in Speaker Registration",
-      "4-Star / 5-Star Hotel Accommodation (3 Nights)",
-      "Complimentary breakfast & transfers suggestions",
-      "Access to exclusive Speaker VIP networking dinner"
-    ]
-  },
-  {
-    id: "exhibitor",
-    name: "Exhibitor Registration",
-    originalPrice: 1999,
-    price: 1999,
-    popular: false,
-    icon: "🎪",
-    features: [
-      "Standard presentation slot + Exhibitor Booth space",
-      "Logo and company profile featured on conference media",
-      "2 representative passes included",
-      "Access to sponsor VIP networking sessions"
-    ]
-  },
-  {
-    id: "delegate",
-    name: "Delegate Registration",
-    originalPrice: 399,
-    price: 399,
-    popular: false,
-    icon: "🎫",
-    features: [
-      "Attendee pass for all physical keynotes and panels",
-      "Full networking access and conference handbook",
-      "Lunch and refreshments included"
-    ]
-  }
-];
-
-const VIRTUAL_PACKAGES = [
-  {
-    id: "virtual",
-    name: "Virtual Speaker Registration",
-    originalPrice: 399,
-    price: 399,
-    popular: true,
-    icon: "💻",
-    features: [
-      "15-minute presentation slot via Zoom / Airmeet",
-      "Live Q&A session with global delegates",
-      "Electronic certificate of presentation & abstract publication",
-      "Full virtual access to all conference sessions"
-    ]
-  },
-  {
-    id: "av",
-    name: "Audio - Video Presentation",
-    originalPrice: 199,
-    price: 199,
-    popular: false,
-    icon: "🎥",
-    features: [
-      "Pre-recorded presentation broadcasted at the venue",
-      "Presentation file hosted on official conference portal",
-      "Electronic certificate of presentation & abstract publication"
-    ]
-  }
-];
-
-const VALID_COUPONS = {
-  "NAVA20": { type: "percent", value: 20, description: "20% Discount" },
-  "REDDY100": { type: "amount", value: 100, description: "100% Discount" },
-  "KUMAR50": { type: "amount", value: 50, description: "$50 Discount" },
-};
-
 export default function RegisterPage() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
@@ -120,6 +12,8 @@ export default function RegisterPage() {
   const [step, setStep] = useState(1);
   const [events, setEvents] = useState([]);
   const [eventYears, setEventYears] = useState([]);
+  const [registrationSettings, setRegistrationSettings] = useState(null);
+  const [pricingError, setPricingError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Step 1: Personal & Conference State
@@ -143,6 +37,7 @@ export default function RegisterPage() {
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [couponError, setCouponError] = useState("");
+  const [isCheckingCoupon, setIsCheckingCoupon] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -150,9 +45,18 @@ export default function RegisterPage() {
     Promise.all([
       client.fetch(`*[_type == "event"]{..., eventYear->} | order(date asc)`),
       client.fetch(`*[_type == "eventYear"]{..., events[]->} | order(year asc)`),
-    ]).then(([evData, yrData]) => {
+      client.fetch(`*[_type == "registrationSettings" && _id == "registrationSettings"][0]{
+        currency,
+        "packages": packages[active != false]{id, name, participationType, price, icon, popular, features}
+      }`),
+    ]).then(([evData, yrData, pricingData]) => {
       setEvents(evData);
       setEventYears(yrData);
+      if (!pricingData?.packages?.length) {
+        setPricingError("Registration pricing is not configured. Please contact ProSummits.");
+      } else {
+        setRegistrationSettings(pricingData);
+      }
 
       // Auto-set the year if pre-selected event is found
       if (preEvent) {
@@ -183,7 +87,10 @@ export default function RegisterPage() {
           setForm((f) => ({ ...f, yearId: matchedYearId, eventId: actualEventId }));
         }
       }
-    }).catch(console.error);
+    }).catch((error) => {
+      console.error(error);
+      setPricingError("Unable to load registration pricing. Please try again shortly.");
+    });
   }, [preEvent]);
 
   useEffect(() => {
@@ -206,6 +113,9 @@ export default function RegisterPage() {
 
   const handleParticipationChange = (type) => {
     setParticipationType(type);
+    setAppliedCoupon(null);
+    setCouponInput("");
+    setCouponError("");
     setForm((prev) => ({
       ...prev,
       package: ""
@@ -232,8 +142,13 @@ export default function RegisterPage() {
   const filteredEventsForYear = getFilteredEvents();
   const selectedEvent = filteredEventsForYear.find((e) => e._id === form.eventId);
 
-  const packagesList = participationType === "physical" ? PHYSICAL_PACKAGES : VIRTUAL_PACKAGES;
+  const packagesList = (registrationSettings?.packages || []).filter(
+    (pkg) => pkg.participationType === participationType
+  );
   const selectedPkg = packagesList.find((p) => p.id === form.package);
+  const currency = String(registrationSettings?.currency || "usd").toUpperCase();
+  const formatPrice = (amount) =>
+    new Intl.NumberFormat("en-US", { style: "currency", currency }).format(amount || 0);
 
   // Financial Calculations
   const subtotal = selectedPkg ? selectedPkg.price : 0;
@@ -248,21 +163,36 @@ export default function RegisterPage() {
   const finalPrice = Math.max(0, subtotal - discountAmount);
 
   // Coupon Handlers
-  const handleApplyCoupon = (e) => {
+  const handleApplyCoupon = async (e) => {
     e.preventDefault();
     setCouponError("");
     const trimmed = couponInput.trim().toUpperCase();
     if (!trimmed) return;
 
-    if (VALID_COUPONS[trimmed]) {
-      setAppliedCoupon({
-        code: trimmed,
-        ...VALID_COUPONS[trimmed]
+    if (!selectedPkg) {
+      setCouponError("Please select a registration package first.");
+      return;
+    }
+
+    setIsCheckingCoupon(true);
+    try {
+      const response = await fetch("/api/validate-coupon", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ packageId: selectedPkg.id, couponCode: trimmed }),
       });
+      const data = await response.json();
+      if (!response.ok || !data.coupon) {
+        throw new Error(data.error || "Invalid coupon code.");
+      }
+
+      setAppliedCoupon(data.coupon);
       setCouponInput("");
-    } else {
-      setCouponError("Invalid coupon code.");
+    } catch (error) {
+      setCouponError(error.message || "Unable to validate coupon.");
       setAppliedCoupon(null);
+    } finally {
+      setIsCheckingCoupon(false);
     }
   };
 
@@ -287,6 +217,9 @@ export default function RegisterPage() {
   };
 
   const handleNextStep2 = () => {
+    if (pricingError || !registrationSettings) {
+      return alert("Registration pricing is unavailable. Please try again shortly.");
+    }
     if (!participationType) return alert("Please select a Participation Type.");
     if (!form.package) return alert("Please choose a registration package.");
     setStep(3);
@@ -327,16 +260,8 @@ export default function RegisterPage() {
           },
           package: {
             id: selectedPkg?.id,
-            name: selectedPkg?.name,
           },
-          participationType:
-            participationType === "physical" ? "Physical Event" : "Virtual Event",
-          pricing: {
-            currency: "usd",
-            subtotal,
-            discount: Number(discountAmount.toFixed(2)),
-            finalPrice: Number(finalPrice.toFixed(2)),
-          },
+          participationType,
           coupon: appliedCoupon
             ? { code: appliedCoupon.code, description: appliedCoupon.description }
             : null,
@@ -610,12 +535,25 @@ export default function RegisterPage() {
               </p>
 
               <div className="packages-grid">
-                {packagesList.length > 0 ? (
+                {pricingError ? (
+                  <div className="coupon-feedback error" style={{ gridColumn: "1 / -1" }}>
+                    {pricingError}
+                  </div>
+                ) : !registrationSettings ? (
+                  <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "40px 20px" }}>
+                    Loading registration packages...
+                  </div>
+                ) : packagesList.length > 0 ? (
                   packagesList.map((pkg) => (
                     <div
                       key={pkg.id}
                       className={`package-card ${form.package === pkg.id ? "active" : ""}`}
-                      onClick={() => setForm((prev) => ({ ...prev, package: pkg.id }))}
+                      onClick={() => {
+                        setForm((prev) => ({ ...prev, package: pkg.id }));
+                        setAppliedCoupon(null);
+                        setCouponInput("");
+                        setCouponError("");
+                      }}
                     >
                       {pkg.popular && <span className="pop-badge">POPULAR</span>}
                       <div className="pkg-radio-circle">
@@ -626,15 +564,12 @@ export default function RegisterPage() {
                         <span className="pkg-icon">{pkg.icon}</span>
                         <h4>{pkg.name}</h4>
                         <div className="pkg-price-row">
-                          {pkg.originalPrice > pkg.price && (
-                            <span className="pkg-price-original">${pkg.originalPrice}</span>
-                          )}
-                          <span className="pkg-price-curr">${pkg.price}</span>
+                          <span className="pkg-price-curr">{formatPrice(pkg.price)}</span>
                         </div>
                       </div>
 
                       <ul className="pkg-feat-list">
-                        {pkg.features.map((feat, fIdx) => (
+                        {(pkg.features || []).map((feat, fIdx) => (
                           <li key={fIdx}>
                             <span className="feat-bullet">✓</span>
                             <span>{feat}</span>
@@ -683,17 +618,19 @@ export default function RegisterPage() {
                       <button
                         type="button"
                         onClick={handleApplyCoupon}
+                        disabled={isCheckingCoupon}
                         className="coupon-btn apply"
                       >
-                        Apply
+                        {isCheckingCoupon ? "Checking..." : "Apply"}
                       </button>
                     )}
                   </div>
 
                   {appliedCoupon && (
                     <div className="coupon-feedback success" style={{ marginTop: 12 }}>
-                      ✓ Applied <strong>{appliedCoupon.code}</strong> — {appliedCoupon.description} ({appliedCoupon.value}
-                      {appliedCoupon.type === "percent" ? "%" : "$"} off)
+                      ✓ Applied <strong>{appliedCoupon.code}</strong> — {appliedCoupon.description} ({appliedCoupon.type === "percent"
+                        ? `${appliedCoupon.value}%`
+                        : formatPrice(appliedCoupon.value)} off)
                     </div>
                   )}
                   {couponError && (
@@ -709,17 +646,17 @@ export default function RegisterPage() {
                 <div className="price-breakdown">
                   <div className="price-row">
                     <span>Subtotal</span>
-                    <span>${subtotal.toLocaleString()}</span>
+                    <span>{formatPrice(subtotal)}</span>
                   </div>
                   {appliedCoupon && (
                     <div className="price-row discount">
                       <span>Discount ({appliedCoupon.code})</span>
-                      <span>-${discountAmount.toLocaleString()}</span>
+                      <span>-{formatPrice(discountAmount)}</span>
                     </div>
                   )}
                   <div className="price-row total">
                     <span>Total Registration Fee</span>
-                    <span>${finalPrice.toLocaleString()}</span>
+                    <span>{formatPrice(finalPrice)}</span>
                   </div>
                 </div>
               )}
@@ -817,17 +754,17 @@ export default function RegisterPage() {
                     </div>
                     <div>
                       <span className="sum-label">Subtotal:</span>
-                      <span className="sum-val">${subtotal.toLocaleString()}</span>
+                      <span className="sum-val">{formatPrice(subtotal)}</span>
                     </div>
                     {appliedCoupon && (
                       <div>
                         <span className="sum-label">Coupon Code:</span>
-                        <span className="sum-val" style={{ color: '#6DBE45' }}>{appliedCoupon.code} (-${discountAmount.toLocaleString()})</span>
+                        <span className="sum-val" style={{ color: '#6DBE45' }}>{appliedCoupon.code} (-{formatPrice(discountAmount)})</span>
                       </div>
                     )}
                     <div className="total-highlight">
                       <span className="sum-label">Total Fee:</span>
-                      <span className="sum-val">${finalPrice.toLocaleString()}</span>
+                      <span className="sum-val">{formatPrice(finalPrice)}</span>
                     </div>
                   </div>
                 </div>

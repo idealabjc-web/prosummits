@@ -1,49 +1,9 @@
 /* global process */
 import Stripe from "stripe";
-
-const PACKAGES = {
-  speaker: {
-    name: "Speaker Registration",
-    unitAmount: 79900,
-    participationType: "Physical Event",
-  },
-  "speaker-2night": {
-    name: "Speaker Registration plus 2 Nights Stay Addon",
-    unitAmount: 109900,
-    participationType: "Physical Event",
-  },
-  "speaker-3night": {
-    name: "Speaker Registration plus 3 Nights Stay Addon",
-    unitAmount: 129900,
-    participationType: "Physical Event",
-  },
-  exhibitor: {
-    name: "Exhibitor Registration",
-    unitAmount: 199900,
-    participationType: "Physical Event",
-  },
-  delegate: {
-    name: "Delegate Registration",
-    unitAmount: 39900,
-    participationType: "Physical Event",
-  },
-  virtual: {
-    name: "Virtual Speaker Registration",
-    unitAmount: 39900,
-    participationType: "Virtual Event",
-  },
-  av: {
-    name: "Audio - Video Presentation",
-    unitAmount: 19900,
-    participationType: "Virtual Event",
-  },
-};
-
-const COUPONS = {
-  NAVA20: { type: "percent", value: 20 },
-  REDDY100: { type: "amount", value: 10000 },
-  KUMAR50: { type: "amount", value: 5000 },
-};
+import {
+  calculateRegistrationPrice,
+  getRegistrationSettings,
+} from "../server/registration-pricing.js";
 
 const sendJson = (res, status, payload) => {
   res.statusCode = status;
@@ -79,29 +39,22 @@ export default async function handler(req, res) {
       return sendJson(res, 400, { error: "Missing required checkout details." });
     }
 
-    const packageDetails = PACKAGES[selectedPackage.id];
-    if (!packageDetails || packageDetails.participationType !== participationType) {
-      return sendJson(res, 400, { error: "Invalid registration package." });
-    }
-
     const couponCode = String(coupon?.code || "").trim().toUpperCase();
-    const couponDetails = couponCode ? COUPONS[couponCode] : null;
-    if (couponCode && !couponDetails) {
-      return sendJson(res, 400, { error: "Invalid coupon code." });
+    const settings = await getRegistrationSettings();
+    let pricing;
+    try {
+      pricing = calculateRegistrationPrice(settings, selectedPackage.id, couponCode);
+    } catch (error) {
+      return sendJson(res, 400, { error: error.message });
     }
 
-    const subtotal = packageDetails.unitAmount;
-    let discount = 0;
-    if (couponDetails?.type === "percent") {
-      discount = Math.round((subtotal * couponDetails.value) / 100);
-    } else if (couponDetails?.type === "amount") {
-      discount = Math.min(couponDetails.value, subtotal);
+    const { packageDetails, currency, subtotal, discount, amount } = pricing;
+    if (packageDetails.participationType !== participationType) {
+      return sendJson(res, 400, { error: "Invalid participation type." });
     }
 
-    const amount = subtotal - discount;
-    if (amount < 50) {
-      return sendJson(res, 400, { error: "Invalid payment amount." });
-    }
+    const participationLabel =
+      packageDetails.participationType === "physical" ? "Physical Event" : "Virtual Event";
 
     const origin =
       process.env.SITE_URL ||
@@ -116,10 +69,10 @@ export default async function handler(req, res) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency,
             product_data: {
               name: packageDetails.name,
-              description: `${event.title} - ${participationType || "Registration"}`,
+              description: `${event.title} - ${participationLabel}`,
             },
             unit_amount: amount,
           },
@@ -140,7 +93,7 @@ export default async function handler(req, res) {
         eventLocation: event.location || "",
         packageId: selectedPackage.id,
         packageName: packageDetails.name,
-        participationType: packageDetails.participationType,
+        participationType: participationLabel,
         subtotal: toDollars(subtotal),
         discount: toDollars(discount),
         finalPrice: toDollars(amount),
