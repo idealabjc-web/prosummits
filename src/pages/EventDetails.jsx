@@ -4,8 +4,13 @@ import { useParams, Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client, urlFor } from "../lib/sanity";
 import { PortableText } from "@portabletext/react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import "../styles/EventDetails.css";
+
+const AGENDA_SLIDES = [
+  { src: "/VS-2026/EST.jpg", title: "EST Time Zone Schedule" },
+  { src: "/VS-2026/Paris.jpg", title: "Paris Time Zone Schedule" }
+];
 
 /**
  * EventDetails page
@@ -17,6 +22,44 @@ export default function EventDetails() {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [zoomedImage, setZoomedImage] = useState(null);
+  const [currentAgendaSlide, setCurrentAgendaSlide] = useState(0);
+
+  const nextSlide = (e) => {
+    if (e) e.stopPropagation();
+    setCurrentAgendaSlide((prev) => (prev + 1) % AGENDA_SLIDES.length);
+  };
+  
+  const prevSlide = (e) => {
+    if (e) e.stopPropagation();
+    setCurrentAgendaSlide((prev) => (prev - 1 + AGENDA_SLIDES.length) % AGENDA_SLIDES.length);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (zoomedImage) {
+         if (e.key === "ArrowRight") {
+            const currentIndex = AGENDA_SLIDES.findIndex(s => s.src === zoomedImage);
+            if(currentIndex !== -1) {
+                setZoomedImage(AGENDA_SLIDES[(currentIndex + 1) % AGENDA_SLIDES.length].src);
+            }
+         } else if (e.key === "ArrowLeft") {
+            const currentIndex = AGENDA_SLIDES.findIndex(s => s.src === zoomedImage);
+            if(currentIndex !== -1) {
+                setZoomedImage(AGENDA_SLIDES[(currentIndex - 1 + AGENDA_SLIDES.length) % AGENDA_SLIDES.length].src);
+            }
+         } else if (e.key === "Escape") {
+            setZoomedImage(null);
+         }
+         return;
+      }
+
+      // If we are showing the Tentative Agenda section (which is when event.date matches)
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [zoomedImage]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -227,22 +270,68 @@ export default function EventDetails() {
             </div>
 
             {event.date && event.date.toLowerCase().includes("jul") && event.date.includes("20") && event.date.includes("2026") && (
-              <div style={{ marginTop: "50px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "40px" }}>
+              <div style={{ marginTop: "50px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "40px", position: "relative" }}>
                 <h2 style={{ textAlign: "center", marginBottom: "30px", fontSize: "2rem" }}>
                   Tentative <em style={{ color: "#F47B20", fontStyle: "normal" }}>Agenda</em>
                 </h2>
-                <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}>
-                  <div style={{ flex: "1 1 400px", maxWidth: "600px", marginBottom: "20px" }}>
-                    <h3 style={{ marginBottom: "15px", color: "#F47B20", textAlign: "center", fontSize: "1.2rem" }}>EST Time Zone Schedule</h3>
-                    <div style={{ width: "100%", borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center", background: "rgba(255,255,255,0.02)", padding: "10px", cursor: "pointer" }} onClick={() => setZoomedImage("/VS-2026/EST.jpg")}>
-                      <img src="/VS-2026/EST.jpg" alt="EST Time Zone Schedule" style={{ maxWidth: "100%", height: "auto", display: "block", borderRadius: "8px" }} />
-                    </div>
+                
+                <div style={{ position: "relative", maxWidth: "800px", margin: "0 auto", padding: "0 50px" }}>
+                  <button 
+                    onClick={prevSlide}
+                    style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", fontSize: "2rem", width: "40px", height: "40px", borderRadius: "50%", cursor: "pointer", zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s" }}
+                    onMouseOver={(e) => e.target.style.background = "rgba(255,255,255,0.2)"}
+                    onMouseOut={(e) => e.target.style.background = "rgba(255,255,255,0.1)"}
+                  >
+                    &#8249;
+                  </button>
+
+                  <div style={{ overflow: "hidden" }}>
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentAgendaSlide}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -50 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h3 style={{ marginBottom: "15px", color: "#F47B20", textAlign: "center", fontSize: "1.2rem" }}>
+                          {AGENDA_SLIDES[currentAgendaSlide].title}
+                        </h3>
+                        <div 
+                          style={{ width: "100%", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center", background: "rgba(255,255,255,0.02)", padding: "10px", cursor: "pointer" }} 
+                          onClick={() => setZoomedImage(AGENDA_SLIDES[currentAgendaSlide].src)}
+                        >
+                          <img 
+                            src={AGENDA_SLIDES[currentAgendaSlide].src} 
+                            alt={AGENDA_SLIDES[currentAgendaSlide].title} 
+                            style={{ maxWidth: "100%", height: "auto", display: "block", borderRadius: "8px" }} 
+                          />
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
-                  <div style={{ flex: "1 1 400px", maxWidth: "600px", marginBottom: "20px" }}>
-                    <h3 style={{ marginBottom: "15px", color: "#F47B20", textAlign: "center", fontSize: "1.2rem" }}>Paris Time Zone Schedule</h3>
-                    <div style={{ width: "100%", borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center", background: "rgba(255,255,255,0.02)", padding: "10px", cursor: "pointer" }} onClick={() => setZoomedImage("/VS-2026/Paris.jpg")}>
-                      <img src="/VS-2026/Paris.jpg" alt="Paris Time Zone Schedule" style={{ maxWidth: "100%", height: "auto", display: "block", borderRadius: "8px" }} />
-                    </div>
+
+                  <button 
+                    onClick={nextSlide}
+                    style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", fontSize: "2rem", width: "40px", height: "40px", borderRadius: "50%", cursor: "pointer", zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s" }}
+                    onMouseOver={(e) => e.target.style.background = "rgba(255,255,255,0.2)"}
+                    onMouseOut={(e) => e.target.style.background = "rgba(255,255,255,0.1)"}
+                  >
+                    &#8250;
+                  </button>
+                  
+                  <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "25px" }}>
+                    {AGENDA_SLIDES.map((_, idx) => (
+                      <div 
+                        key={idx} 
+                        onClick={() => setCurrentAgendaSlide(idx)}
+                        style={{ 
+                          width: "12px", height: "12px", borderRadius: "50%", cursor: "pointer",
+                          background: currentAgendaSlide === idx ? "#F47B20" : "rgba(255,255,255,0.3)",
+                          transition: "background 0.3s"
+                        }}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -264,7 +353,42 @@ export default function EventDetails() {
           >
             &times;
           </button>
-          <img src={zoomedImage} alt="Zoomed Schedule" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '4px' }} />
+          
+          {AGENDA_SLIDES.find(s => s.src === zoomedImage) && (
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                const currentIndex = AGENDA_SLIDES.findIndex(s => s.src === zoomedImage);
+                if(currentIndex !== -1) {
+                  setZoomedImage(AGENDA_SLIDES[(currentIndex - 1 + AGENDA_SLIDES.length) % AGENDA_SLIDES.length].src);
+                }
+              }}
+              style={{ position: 'absolute', left: '30px', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: '3rem', width: '60px', height: '60px', borderRadius: '50%', cursor: 'pointer', zIndex: 1000000, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: "background 0.3s" }}
+              onMouseOver={(e) => e.target.style.background = "rgba(255,255,255,0.2)"}
+              onMouseOut={(e) => e.target.style.background = "rgba(255,255,255,0.1)"}
+            >
+              &#8249;
+            </button>
+          )}
+
+          <img src={zoomedImage} alt="Zoomed Schedule" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '4px' }} onClick={(e) => e.stopPropagation()} />
+
+          {AGENDA_SLIDES.find(s => s.src === zoomedImage) && (
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                const currentIndex = AGENDA_SLIDES.findIndex(s => s.src === zoomedImage);
+                if(currentIndex !== -1) {
+                  setZoomedImage(AGENDA_SLIDES[(currentIndex + 1) % AGENDA_SLIDES.length].src);
+                }
+              }}
+              style={{ position: 'absolute', right: '30px', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: '3rem', width: '60px', height: '60px', borderRadius: '50%', cursor: 'pointer', zIndex: 1000000, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: "background 0.3s" }}
+              onMouseOver={(e) => e.target.style.background = "rgba(255,255,255,0.2)"}
+              onMouseOut={(e) => e.target.style.background = "rgba(255,255,255,0.1)"}
+            >
+              &#8250;
+            </button>
+          )}
         </div>,
         document.body
       )}
