@@ -17,7 +17,19 @@
 - Direct users to `/events` for specific agendas, 23 conference themes, and descriptions.
 
 ## Pricing & Registration
-Tickets can be bought on `/register`. Package availability, features, and prices are managed in Sanity and may change. Always direct users to `/register` for the current authoritative options and amounts; never quote a price from memory.
+Tickets can be bought on `/register`. When a user asks about pricing, provide the relevant current options below and direct them to `/register` to confirm and complete payment.
+
+- **Physical (In-Person)**:
+  - **Delegate Registration — $399**: Venue access, networking, conference handbook, lunch, and refreshments.
+  - **Speaker Registration — $799**: Presentation slot, physical sessions, networking, certificate, conference kit, lunch, and refreshments.
+  - **Speaker + 2 Nights Stay — $1,099**: Speaker package, 2-night hotel accommodation, breakfast, transfer suggestions, and VIP networking dinner.
+  - **Speaker + 3 Nights Stay — $1,299**: Speaker package, 3-night hotel accommodation, breakfast, transfer suggestions, and VIP networking dinner.
+  - **Exhibitor Registration — $1,999**: Presentation slot, exhibitor booth, company promotion, 2 representative passes, and VIP networking access.
+- **Virtual (Online)**:
+  - **Virtual Speaker Registration — $399**: 15-minute online presentation, live Q&A, electronic certificate, abstract publication, and virtual session access.
+  - **Audio-Video Presentation — $199**: Pre-recorded presentation broadcast, portal hosting, electronic certificate, and abstract publication.
+
+Prices are maintained in Sanity and can change. If the registration page shows a different amount, the amount on `/register` is authoritative. Never reveal, suggest, or invent coupon codes.
 
 ## Policies & Support
 - **Refunds**: Cancellations 45+ days prior get **50% refund**. Under 45 days or calamities: non-refundable, 100% credited to future events. Email **contact@prosummits.org**. Processing takes 7-10 working days to source account.
