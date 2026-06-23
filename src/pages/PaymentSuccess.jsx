@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
 export default function PaymentSuccess() {
   const [params] = useSearchParams();
   const sessionId = params.get("session_id");
+
+  useEffect(() => {
+    sessionStorage.removeItem("prosummitsCheckoutPending");
+  }, []);
 
   return (
     <div className="page-fade">

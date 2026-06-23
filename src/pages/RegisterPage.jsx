@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
 import "../styles/Register.css";
@@ -114,6 +114,7 @@ const VALID_COUPONS = {
 
 export default function RegisterPage() {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const preEvent = params.get("event") || "";
 
   const [step, setStep] = useState(1);
@@ -184,6 +185,21 @@ export default function RegisterPage() {
       }
     }).catch(console.error);
   }, [preEvent]);
+
+  useEffect(() => {
+    const handleCheckoutReturn = () => {
+      if (sessionStorage.getItem("prosummitsCheckoutPending") === "true") {
+        sessionStorage.removeItem("prosummitsCheckoutPending");
+        navigate("/payment-cancel", { replace: true });
+      }
+    };
+
+    // `pageshow` also fires when Chrome restores this page from its back/forward cache.
+    window.addEventListener("pageshow", handleCheckoutReturn);
+    handleCheckoutReturn();
+
+    return () => window.removeEventListener("pageshow", handleCheckoutReturn);
+  }, [navigate]);
 
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -287,10 +303,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const registrationId =
-      typeof crypto !== "undefined" && crypto.randomUUID
-        ? `PS-${crypto.randomUUID().slice(0, 8).toUpperCase()}`
-        : `PS-${Date.now().toString(36).toUpperCase()}`;
+    const registrationId = `PS-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
 
     try {
       const response = await fetch("/api/create-checkout-session", {
@@ -337,7 +350,8 @@ export default function RegisterPage() {
         throw new Error(data.error || "Unable to start payment.");
       }
 
-      window.location.href = data.url;
+      sessionStorage.setItem("prosummitsCheckoutPending", "true");
+      window.location.assign(data.url);
     } catch (err) {
       console.error("Payment checkout error:", err);
       alert("There was an error starting payment. Please try again or contact support.");
@@ -345,33 +359,6 @@ export default function RegisterPage() {
       setIsSubmitting(false);
     }
   };
-
-  if (false) {
-    return (
-      <div className="page-fade">
-        <div className="reg-page">
-          <div className="reg-success">
-            <div className="reg-success-icon">✓</div>
-            <h2>Registration Submitted!</h2>
-            <p className="reg-success-id">Confirmation ID: <strong>{regId}</strong></p>
-            <p>
-              Thank you, <strong>{form.firstName}</strong>. Your{" "}
-              <strong>{selectedPkg?.name}</strong> ({participationType === "physical" ? "Physical" : "Virtual"}) for{" "}
-              <strong>{selectedEvent?.title}</strong> has been received.
-              We'll send a confirmation email to <strong>{form.email}</strong> shortly.
-            </p>
-            {finalPrice > 0 && (
-              <p style={{ marginTop: -20, opacity: 0.9, fontSize: '1.1rem' }}>
-                Total Registration Fee: <strong style={{ color: '#F9C515' }}>${finalPrice.toFixed(2)}</strong>
-              </p>
-            )}
-            <Link to="/events" className="reg-back-link">← Back to Events</Link>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
 
   return (
     <div className="page-fade">

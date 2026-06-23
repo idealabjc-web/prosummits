@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 export default function PaymentCancel() {
+  useEffect(() => {
+    sessionStorage.removeItem("prosummitsCheckoutPending");
+  }, []);
+
   return (
     <div className="page-fade">
       <div className="reg-page">
