@@ -182,7 +182,17 @@ export default function RegisterPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ packageId: selectedPkg.id, couponCode: trimmed }),
       });
-      const data = await response.json();
+      const responseText = await response.text();
+      let data = {};
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        throw new Error(
+          response.status === 404
+            ? "The payment service was not found. Please refresh the page and try again."
+            : "The payment service returned an invalid response. Please try again."
+        );
+      }
       if (!response.ok || !data.coupon) {
         throw new Error(data.error || "Invalid coupon code.");
       }
@@ -270,7 +280,17 @@ export default function RegisterPage() {
         }),
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
+      let data = {};
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        throw new Error(
+          response.status === 404
+            ? "The payment service was not found. Please refresh the page and try again."
+            : "The payment service returned an invalid response. Please try again."
+        );
+      }
 
       if (!response.ok || !data.url) {
         throw new Error(data.error || "Unable to start payment.");
@@ -280,7 +300,7 @@ export default function RegisterPage() {
       window.location.assign(data.url);
     } catch (err) {
       console.error("Payment checkout error:", err);
-      alert("There was an error starting payment. Please try again or contact support.");
+      alert(err.message || "There was an error starting payment. Please try again or contact support.");
     } finally {
       setIsSubmitting(false);
     }

@@ -13,6 +13,15 @@ const sendJson = (res, status, payload) => {
 
 const toDollars = (cents) => (cents / 100).toFixed(2);
 
+const cleanText = (value, maxLength = 500) => {
+  if (value === null || value === undefined) return "";
+
+  const text =
+    typeof value === "object" ? JSON.stringify(value) : String(value);
+
+  return text.trim().slice(0, maxLength);
+};
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -65,15 +74,15 @@ export default async function handler(req, res) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      customer_email: participant.email,
+      customer_email: cleanText(participant.email, 254),
       billing_address_collection: "auto",
       line_items: [
         {
           price_data: {
             currency,
             product_data: {
-              name: packageDetails.name,
-              description: `${event.title} - ${participationLabel}`,
+              name: cleanText(packageDetails.name, 250),
+              description: cleanText(`${event.title} - ${participationLabel}`, 500),
             },
             unit_amount: amount,
           },
@@ -82,35 +91,44 @@ export default async function handler(req, res) {
       ],
       metadata: {
         website: "prosummits",
-        registrationId,
-        participantName: participant.name,
-        participantEmail: participant.email,
-        participantPhone: participant.phone || "",
-        country: participant.country || "",
-        organization: participant.organization || "",
-        jobTitle: participant.jobTitle || "",
-        eventId: event.id || "",
-        eventTitle: event.title,
-        eventDate: event.date || "",
-        eventLocation: event.location || "",
-        packageId: selectedPackage.id,
-        packageName: packageDetails.name,
+        registrationId: cleanText(registrationId),
+        participantName: cleanText(participant.name),
+        participantEmail: cleanText(participant.email),
+        participantPhone: cleanText(participant.phone),
+        country: cleanText(participant.country),
+        organization: cleanText(participant.organization),
+        jobTitle: cleanText(participant.jobTitle),
+        eventId: cleanText(event.id),
+        eventTitle: cleanText(event.title),
+        eventDate: cleanText(event.date),
+        eventLocation: cleanText(event.location),
+        packageId: cleanText(selectedPackage.id),
+        packageName: cleanText(packageDetails.name),
         participationType: participationLabel,
         subtotal: toDollars(subtotal),
         discount: toDollars(discount),
         finalPrice: toDollars(amount),
-        couponCode: couponCode || "None",
-        specialRequirements: String(specialRequirements || "").slice(0, 450),
+        couponCode: cleanText(couponCode || "None"),
+        specialRequirements: cleanText(specialRequirements, 450),
       },
       success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      // Return through the always-available root route. The React app then
-      // redirects to Registration with the cancellation notice.
       cancel_url: `${origin}/?payment=cancelled`,
     });
 
     return sendJson(res, 200, { url: session.url });
   } catch (error) {
     console.error("Stripe checkout session error:", error);
-    return sendJson(res, 500, { error: "Unable to create checkout session." });
+    const paymentConfigurationError = [
+      "StripeAuthenticationError",
+      "StripePermissionError",
+    ].includes(error?.type);
+
+    return sendJson(res, 500, {
+      error: paymentConfigurationError
+        ? "The payment service is temporarily unavailable. Please contact ProSummits support."
+        : "Unable to create checkout session. Please check the registration details and try again.",
+      code: cleanText(error?.code || error?.type || "checkout_error", 100),
+      requestId: cleanText(error?.requestId, 100) || undefined,
+    });
   }
 }
