@@ -1,7 +1,6 @@
 /* global process */
 
-const ADMIN_EMAIL =
-  process.env.REGISTRATION_ADMIN_EMAIL || "prosummitsvirtual@gmail.com";
+const ADMIN_EMAIL = "contact@prosummits.org";
 
 const appendToSheets = async (metadata, session) => {
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK;
@@ -43,8 +42,16 @@ const sendEmailJsMessage = async (recipient, templateParams) => {
       accessToken: process.env.EMAILJS_PRIVATE_KEY || undefined,
       template_params: {
         ...templateParams,
+        // EmailJS templates sometimes use different field names for the
+        // destination. Force every recipient-like field to this one address
+        // so attendee and admin messages can never cross-deliver.
         to_email: recipient,
         user_email: recipient,
+        email: recipient,
+        recipient_email: recipient,
+        participant_email: recipient,
+        admin_email: recipient,
+        contact_email: recipient,
       },
     }),
   });
@@ -128,8 +135,7 @@ const buildAdminTemplateParams = (values) => {
     reply_to: values.participantEmail,
     from_name: values.participantName,
     participant_name: values.participantName,
-    participant_email: values.participantEmail,
-    email: values.participantEmail,
+    registered_participant_email: values.participantEmail,
     phone: values.phone,
     country: values.country,
     organization: values.organization,
