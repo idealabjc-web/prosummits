@@ -1,6 +1,7 @@
 /* global process */
 
-const ADMIN_EMAIL = process.env.REGISTRATION_ADMIN_EMAIL || "contact@prosummits.org";
+const ADMIN_EMAIL =
+  process.env.REGISTRATION_ADMIN_EMAIL || "prosummitsvirtual@gmail.com";
 
 const appendToSheets = async (metadata, session) => {
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK;
@@ -54,24 +55,99 @@ const sendEmailJsMessage = async (recipient, templateParams) => {
   }
 };
 
-const buildTemplateParams = (metadata, session, userEmail) => ({
-  to_name: metadata?.participantName || "ProSummits Attendee",
-  reply_to: userEmail,
-  from_name: metadata?.participantName || "ProSummits Attendee",
-  event_title: metadata?.eventTitle || "Conference",
-  package_name: metadata?.packageName || "N/A",
-  participation_type: metadata?.participationType || "N/A",
-  price: metadata?.subtotal || "0",
-  discount: metadata?.discount || "0.00",
-  coupon_code: metadata?.couponCode || "None",
-  final_price: metadata?.finalPrice || ((session.amount_total || 0) / 100).toFixed(2),
+const getRegistrationValues = (metadata, session, userEmail) => ({
+  participantName: metadata?.participantName || "ProSummits Attendee",
+  participantEmail: userEmail,
   phone: metadata?.participantPhone || "Not Specified",
   country: metadata?.country || "Not Specified",
   organization: metadata?.organization || "Not Specified",
-  job_title: metadata?.jobTitle || "Not Specified",
+  jobTitle: metadata?.jobTitle || "Not Specified",
+  eventTitle: metadata?.eventTitle || "Conference",
+  eventDate: metadata?.eventDate || "Not Specified",
+  eventLocation: metadata?.eventLocation || "Not Specified",
+  packageName: metadata?.packageName || "N/A",
+  participationType: metadata?.participationType || "N/A",
+  finalPrice:
+    metadata?.finalPrice || ((session.amount_total || 0) / 100).toFixed(2),
   requirements: metadata?.specialRequirements || "None",
-  reg_id: metadata?.registrationId || session.id,
+  registrationId: metadata?.registrationId || session.id,
+  stripeSessionId: session.id,
 });
+
+const buildUserTemplateParams = (values) => {
+  const registrationDetails = [
+    `Registration ID: ${values.registrationId}`,
+    `Conference: ${values.eventTitle}`,
+    `Event Date: ${values.eventDate}`,
+    `Event Location: ${values.eventLocation}`,
+    `Participation: ${values.participationType}`,
+    `Package: ${values.packageName}`,
+    `Total Paid: $${values.finalPrice}`,
+    "Payment Status: Paid",
+  ].join("\n");
+
+  return {
+    to_name: values.participantName,
+    reply_to: ADMIN_EMAIL,
+    from_name: values.participantName,
+    event_title: values.eventTitle,
+    event_date: values.eventDate,
+    event_location: values.eventLocation,
+    package_name: values.packageName,
+    participation_type: values.participationType,
+    final_price: values.finalPrice,
+    reg_id: values.registrationId,
+    payment_status: "paid",
+    registration_details: registrationDetails,
+    message: registrationDetails,
+  };
+};
+
+const buildAdminTemplateParams = (values) => {
+  const registrationDetails = [
+    `Registration ID: ${values.registrationId}`,
+    `Participant: ${values.participantName}`,
+    `Email: ${values.participantEmail}`,
+    `Phone: ${values.phone}`,
+    `Country: ${values.country}`,
+    `Organization: ${values.organization}`,
+    `Job Title: ${values.jobTitle}`,
+    `Conference: ${values.eventTitle}`,
+    `Event Date: ${values.eventDate}`,
+    `Event Location: ${values.eventLocation}`,
+    `Participation: ${values.participationType}`,
+    `Package: ${values.packageName}`,
+    `Total Paid: $${values.finalPrice}`,
+    `Special Requirements / Abstract: ${values.requirements}`,
+    "Payment Status: Paid",
+    `Stripe Payment Reference: ${values.stripeSessionId}`,
+  ].join("\n");
+
+  return {
+    to_name: "ProSummits Team",
+    reply_to: values.participantEmail,
+    from_name: values.participantName,
+    participant_name: values.participantName,
+    participant_email: values.participantEmail,
+    email: values.participantEmail,
+    phone: values.phone,
+    country: values.country,
+    organization: values.organization,
+    job_title: values.jobTitle,
+    event_title: values.eventTitle,
+    event_date: values.eventDate,
+    event_location: values.eventLocation,
+    package_name: values.packageName,
+    participation_type: values.participationType,
+    final_price: values.finalPrice,
+    requirements: values.requirements,
+    reg_id: values.registrationId,
+    payment_status: "paid",
+    stripe_session_id: values.stripeSessionId,
+    registration_details: registrationDetails,
+    message: registrationDetails,
+  };
+};
 
 export async function fulfillPaidRegistration(stripe, sessionId) {
   const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -87,7 +163,7 @@ export async function fulfillPaidRegistration(stripe, sessionId) {
     throw new Error("Registration email is missing from the paid Stripe session.");
   }
 
-  const templateParams = buildTemplateParams(metadata, session, userEmail);
+  const values = getRegistrationValues(metadata, session, userEmail);
 
   // Persist the registration first so an email-provider failure never loses data.
   if (metadata.savedToSheets !== "true") {
@@ -98,17 +174,14 @@ export async function fulfillPaidRegistration(stripe, sessionId) {
   }
 
   if (metadata.userConfirmationSent !== "true") {
-    await sendEmailJsMessage(userEmail, templateParams);
+    await sendEmailJsMessage(userEmail, buildUserTemplateParams(values));
     await stripe.checkout.sessions.update(session.id, {
       metadata: { userConfirmationSent: "true" },
     });
   }
 
   if (metadata.adminConfirmationSent !== "true") {
-    await sendEmailJsMessage(ADMIN_EMAIL, {
-      ...templateParams,
-      to_name: "ProSummits Team",
-    });
+    await sendEmailJsMessage(ADMIN_EMAIL, buildAdminTemplateParams(values));
     await stripe.checkout.sessions.update(session.id, {
       metadata: { adminConfirmationSent: "true" },
     });
