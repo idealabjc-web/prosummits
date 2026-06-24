@@ -102,7 +102,7 @@ export default async function handler(req, res) {
         specialRequirements: String(specialRequirements || "").slice(0, 450),
       },
       success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/payment-cancel`,
+      cancel_url: `${origin}/register?payment=cancelled`,
     });
 
     return sendJson(res, 200, { url: session.url });

@@ -8,6 +8,7 @@ export default function RegisterPage() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const preEvent = params.get("event") || "";
+  const paymentWasCancelled = params.get("payment") === "cancelled";
 
   const [step, setStep] = useState(1);
   const [events, setEvents] = useState([]);
@@ -97,7 +98,7 @@ export default function RegisterPage() {
     const handleCheckoutReturn = () => {
       if (sessionStorage.getItem("prosummitsCheckoutPending") === "true") {
         sessionStorage.removeItem("prosummitsCheckoutPending");
-        navigate("/payment-cancel", { replace: true });
+        navigate("/register?payment=cancelled", { replace: true });
       }
     };
 
@@ -296,6 +297,27 @@ export default function RegisterPage() {
             Join world-class experts. Select your event, choose a package, and fill in your details.
           </p>
         </div>
+
+        {paymentWasCancelled && (
+          <div className="payment-cancel-notice" role="status">
+            <div className="payment-cancel-notice-icon">!</div>
+            <div>
+              <h2>Payment cancelled</h2>
+              <p>
+                You returned without completing payment. No charge was made and
+                your registration is not confirmed. Review your details and try
+                payment again whenever you are ready.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate("/register", { replace: true })}
+              aria-label="Dismiss payment cancelled notice"
+            >
+              ×
+            </button>
+          </div>
+        )}
 
         {/* Wizard Steps Progress Indicator */}
         <div className="reg-steps-wizard">
