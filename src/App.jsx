@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Home            from "./pages/Home";
 import EventDetails    from "./pages/EventDetails";
 import EventsPage      from "./pages/EventsPage";
@@ -48,6 +48,20 @@ function ScrollToHash() {
   return null;
 }
 
+function PaymentCancellationRedirect() {
+  const { pathname, search } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const query = new URLSearchParams(search);
+    if (pathname === "/" && query.get("payment") === "cancelled") {
+      navigate("/register?payment=cancelled", { replace: true });
+    }
+  }, [navigate, pathname, search]);
+
+  return null;
+}
+
 /**
  * App
  * Root component — client-side routing for all pages:
@@ -64,6 +78,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToHash />
+      <PaymentCancellationRedirect />
       <Navbar />
       <Routes>
         <Route path="/"             element={<Home />}            />

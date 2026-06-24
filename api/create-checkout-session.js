@@ -56,11 +56,12 @@ export default async function handler(req, res) {
     const participationLabel =
       packageDetails.participationType === "physical" ? "Physical Event" : "Virtual Event";
 
-    const origin =
+    const origin = String(
       process.env.SITE_URL ||
-      process.env.VITE_SITE_URL ||
-      req.headers.origin ||
-      `https://${req.headers.host}`;
+        process.env.VITE_SITE_URL ||
+        req.headers.origin ||
+        `https://${req.headers.host}`
+    ).replace(/\/+$/, "");
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -102,7 +103,9 @@ export default async function handler(req, res) {
         specialRequirements: String(specialRequirements || "").slice(0, 450),
       },
       success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/register?payment=cancelled`,
+      // Return through the always-available root route. The React app then
+      // redirects to Registration with the cancellation notice.
+      cancel_url: `${origin}/?payment=cancelled`,
     });
 
     return sendJson(res, 200, { url: session.url });
