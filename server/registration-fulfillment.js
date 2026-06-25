@@ -28,7 +28,7 @@ const appendToSheets = async (metadata, session) => {
   }
 };
 
-const sendEmailJsMessage = async (recipient, templateParams) => {
+const sendEmailJsMessage = async (templateParams) => {
   const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
     method: "POST",
     headers: {
@@ -40,19 +40,7 @@ const sendEmailJsMessage = async (recipient, templateParams) => {
       template_id: process.env.EMAILJS_TEMPLATE_ID || "template_mxjq749",
       user_id: process.env.EMAILJS_PUBLIC_KEY || "8Ka9LvGqor29zIVHa",
       accessToken: process.env.EMAILJS_PRIVATE_KEY || undefined,
-      template_params: {
-        ...templateParams,
-        // EmailJS templates sometimes use different field names for the
-        // destination. Force every recipient-like field to this one address
-        // so attendee and admin messages can never cross-deliver.
-        to_email: recipient,
-        user_email: recipient,
-        email: recipient,
-        recipient_email: recipient,
-        participant_email: recipient,
-        admin_email: recipient,
-        contact_email: recipient,
-      },
+      template_params: templateParams,
     }),
   });
 
@@ -81,36 +69,7 @@ const getRegistrationValues = (metadata, session, userEmail) => ({
   stripeSessionId: session.id,
 });
 
-const buildUserTemplateParams = (values) => {
-  const registrationDetails = [
-    `Registration ID: ${values.registrationId}`,
-    `Conference: ${values.eventTitle}`,
-    `Event Date: ${values.eventDate}`,
-    `Event Location: ${values.eventLocation}`,
-    `Participation: ${values.participationType}`,
-    `Package: ${values.packageName}`,
-    `Total Paid: $${values.finalPrice}`,
-    "Payment Status: Paid",
-  ].join("\n");
-
-  return {
-    to_name: values.participantName,
-    reply_to: ADMIN_EMAIL,
-    from_name: values.participantName,
-    event_title: values.eventTitle,
-    event_date: values.eventDate,
-    event_location: values.eventLocation,
-    package_name: values.packageName,
-    participation_type: values.participationType,
-    final_price: values.finalPrice,
-    reg_id: values.registrationId,
-    payment_status: "paid",
-    registration_details: registrationDetails,
-    message: registrationDetails,
-  };
-};
-
-const buildAdminTemplateParams = (values) => {
+const buildRegistrationTemplateParams = (values) => {
   const registrationDetails = [
     `Registration ID: ${values.registrationId}`,
     `Participant: ${values.participantName}`,
@@ -132,6 +91,15 @@ const buildAdminTemplateParams = (values) => {
 
   return {
     to_name: "ProSummits Team",
+    to_email: ADMIN_EMAIL,
+    admin_email: ADMIN_EMAIL,
+    contact_email: ADMIN_EMAIL,
+    support_email: ADMIN_EMAIL,
+    user_name: values.participantName,
+    user_email: values.participantEmail,
+    email: values.participantEmail,
+    recipient_email: ADMIN_EMAIL,
+    participant_email: values.participantEmail,
     reply_to: values.participantEmail,
     from_name: values.participantName,
     participant_name: values.participantName,
@@ -179,17 +147,16 @@ export async function fulfillPaidRegistration(stripe, sessionId) {
     });
   }
 
-  if (metadata.userConfirmationSent !== "true") {
-    await sendEmailJsMessage(userEmail, buildUserTemplateParams(values));
+  if (
+    metadata.userConfirmationSent !== "true" ||
+    metadata.adminConfirmationSent !== "true"
+  ) {
+    await sendEmailJsMessage(buildRegistrationTemplateParams(values));
     await stripe.checkout.sessions.update(session.id, {
-      metadata: { userConfirmationSent: "true" },
-    });
-  }
-
-  if (metadata.adminConfirmationSent !== "true") {
-    await sendEmailJsMessage(ADMIN_EMAIL, buildAdminTemplateParams(values));
-    await stripe.checkout.sessions.update(session.id, {
-      metadata: { adminConfirmationSent: "true" },
+      metadata: {
+        userConfirmationSent: "true",
+        adminConfirmationSent: "true",
+      },
     });
   }
 
