@@ -17,10 +17,10 @@
 }
 
 .circle-1 {
-  width: 60vw;
-  max-width: 600px;
-  height: 60vw;
-  max-height: 600px;
+  width: 80vmin;
+  max-width: 800px;
+  height: 80vmin;
+  max-height: 800px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -34,10 +34,10 @@
 }
 
 .circle-2 {
-  width: 50vw;
-  max-width: 500px;
-  height: 50vw;
-  max-height: 500px;
+  width: 65vmin;
+  max-width: 650px;
+  height: 65vmin;
+  max-height: 650px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -52,10 +52,10 @@
 }
 
 .circle-3 {
-  width: 40vw;
-  max-width: 400px;
-  height: 40vw;
-  max-height: 400px;
+  width: 50vmin;
+  max-width: 500px;
+  height: 50vmin;
+  max-height: 500px;
   border-radius: 50%;
   background: linear-gradient(135deg, #7B2FBE, #E01F5C, #F47B20);
   padding: 2px;

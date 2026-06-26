@@ -5,6 +5,10 @@ import "../styles/AnimatedSpeakers.css";
 export default function AnimatedSpeakersGallery({ speakers = [] }) {
   const containerRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 1200,
+    height: typeof window !== "undefined" ? window.innerHeight : 800,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,15 +23,29 @@ export default function AnimatedSpeakersGallery({ speakers = [] }) {
       setScrollY(progress);
     };
 
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
     handleScroll(); // Initial check
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleResize();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   // Limit progress and calculate expansion
   // 500px scroll corresponds to full expansion
   const animationProgress = Math.min(scrollY / 500, 1);
-  const expandRadius = animationProgress * (window.innerWidth < 600 ? 150 : 300);
+  // Calculate max radius responsively based on viewport (40vmin up to 400px)
+  const maxRadius = Math.min(windowSize.width * 0.4, windowSize.height * 0.4, 400);
+  const expandRadius = animationProgress * maxRadius;
 
   // Use up to 8 speakers
   const circleSpeakers = speakers.slice(0, 8);
