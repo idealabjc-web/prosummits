@@ -1,6 +1,6 @@
-/* ══════════════════════════════════════════
-   Registration Page — ProSummits Dark Theme
-   ══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   Registration Page â€” ProSummits Dark Theme
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .reg-page {
   min-height: 100vh;
@@ -9,7 +9,7 @@
   color: #fff;
 }
 
-/* ── Hero ── */
+/* â”€â”€ Hero â”€â”€ */
 .reg-hero {
   text-align: center;
   margin-bottom: 50px;
@@ -88,7 +88,7 @@
   cursor: pointer;
 }
 
-/* ── Progress Wizard Steps ── */
+/* â”€â”€ Progress Wizard Steps â”€â”€ */
 .reg-steps-wizard {
   display: flex;
   align-items: center;
@@ -173,7 +173,7 @@
   color: #6DBE45;
 }
 
-/* ── Form Card ── */
+/* â”€â”€ Form Card â”€â”€ */
 .reg-card {
   max-width: 900px;
   margin: 0 auto;
@@ -185,7 +185,7 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
 }
 
-/* ── Section Divider ── */
+/* â”€â”€ Section Divider â”€â”€ */
 .reg-divider {
   display: flex;
   align-items: center;
@@ -214,7 +214,7 @@
   margin-top: 0;
 }
 
-/* ── Form Row ── */
+/* â”€â”€ Form Row â”€â”€ */
 .reg-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -226,7 +226,7 @@
   grid-template-columns: 1fr;
 }
 
-/* ── Field ── */
+/* â”€â”€ Field â”€â”€ */
 .reg-field {
   display: flex;
   flex-direction: column;
@@ -297,7 +297,7 @@
   min-height: 90px;
 }
 
-/* ── Phone Group ── */
+/* â”€â”€ Phone Group â”€â”€ */
 .reg-phone-wrap {
   display: flex;
   gap: 0;
@@ -333,7 +333,7 @@
   flex: 1;
 }
 
-/* ── STEP titles & descs ── */
+/* â”€â”€ STEP titles & descs â”€â”€ */
 .sec-step-title {
   display: flex;
   align-items: center;
@@ -367,7 +367,7 @@
   line-height: 1.5;
 }
 
-/* ── STEP 2: Participation Type Cards ── */
+/* â”€â”€ STEP 2: Participation Type Cards â”€â”€ */
 .participation-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -441,7 +441,7 @@
   box-shadow: 0 2px 8px rgba(244, 123, 32, 0.4);
 }
 
-/* ── STEP 2: Package Cards ── */
+/* â”€â”€ STEP 2: Package Cards â”€â”€ */
 .packages-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -579,7 +579,7 @@
   font-weight: bold;
 }
 
-/* ── STEP 2: Discount Coupons ── */
+/* â”€â”€ STEP 2: Discount Coupons â”€â”€ */
 .coupon-container {
   max-width: 520px;
   margin-bottom: 36px;
@@ -646,7 +646,7 @@
   color: #E01F5C;
 }
 
-/* ── STEP 2: Price Breakdown ── */
+/* â”€â”€ STEP 2: Price Breakdown â”€â”€ */
 .price-breakdown {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -686,7 +686,7 @@
   font-size: 1.4rem;
 }
 
-/* ── Nav Buttons ── */
+/* â”€â”€ Nav Buttons â”€â”€ */
 .step-nav-buttons {
   display: flex;
   justify-content: space-between;
@@ -730,7 +730,7 @@
   box-shadow: 0 12px 40px rgba(244, 123, 32, 0.35);
 }
 
-/* ── STEP 3: Summary Card ── */
+/* â”€â”€ STEP 3: Summary Card â”€â”€ */
 .summary-card {
   display: flex;
   flex-direction: column;
@@ -795,7 +795,7 @@
   font-family: var(--fd, inherit);
 }
 
-/* ── Consent Box ── */
+/* â”€â”€ Consent Box â”€â”€ */
 .consent-checkbox-wrap {
   display: flex;
   align-items: flex-start;
@@ -819,7 +819,7 @@
   cursor: pointer;
 }
 
-/* ── Continue Button (Step 3 Submit) ── */
+/* â”€â”€ Continue Button (Step 3 Submit) â”€â”€ */
 .reg-continue-btn {
   display: block;
   width: 100%;
@@ -865,7 +865,7 @@
   cursor: not-allowed;
 }
 
-/* ── Disclaimer ── */
+/* â”€â”€ Disclaimer â”€â”€ */
 .reg-disclaimer {
   text-align: center;
   margin-top: 20px;
@@ -877,7 +877,7 @@
   line-height: 1.6;
 }
 
-/* ══════════ Success State ══════════ */
+/* â•â•â•â•â•â•â•â•â•â• Success State â•â•â•â•â•â•â•â•â•â• */
 .reg-success {
   text-align: center;
   padding: 80px 20px 60px;
@@ -942,7 +942,7 @@
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* ── Animation Classes ── */
+/* â”€â”€ Animation Classes â”€â”€ */
 .page-fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
@@ -958,7 +958,7 @@
   }
 }
 
-/* ══════════ Responsive ══════════ */
+/* â•â•â•â•â•â•â•â•â•â• Responsive â•â•â•â•â•â•â•â•â•â• */
 @media (max-width: 850px) {
   .participation-grid,
   .packages-grid {
@@ -993,3 +993,4 @@
     grid-template-columns: 1fr;
   }
 }
+
