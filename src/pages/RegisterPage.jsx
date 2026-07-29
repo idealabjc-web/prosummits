@@ -40,12 +40,26 @@ export default function RegisterPage() {
   const [couponError, setCouponError] = useState("");
   const [isCheckingCoupon, setIsCheckingCoupon] = useState(false);
 
-  // Accommodation nights stepper (physical only, 0–3 nights)
-  const [accommodationNights, setAccommodationNights] = useState(0);
+  // Dynamically find base attendee / delegate package ID from Sanity data
+  const baseAttendeePkgDoc = (registrationSettings?.packages || []).find((p) => {
+    if (p.participationType !== "physical") return false;
+    const id = (p.id || "").toLowerCase();
+    const name = (p.name || "").toLowerCase();
+    return (
+      id === "attendee-base" ||
+      id === "attendee" ||
+      id === "delegate" ||
+      id === "delegate-base" ||
+      id === "delegate-registration" ||
+      name.includes("attendee") ||
+      name.includes("delegate")
+    );
+  });
+  const BASE_ATTENDEE_ID = baseAttendeePkgDoc?.id || "attendee-base";
 
   // Maps nights → package ID (must match what you enter in Sanity)
   const ACCOMMODATION_PACKAGE_IDS = [
-    "attendee-base",      // 0 nights → $399
+    BASE_ATTENDEE_ID,     // 0 nights → $399
     "attendee-1night",    // 1 night  → $599
     "attendee-2nights",   // 2 nights → $699
     "attendee-3nights",   // 3 nights → $899
@@ -661,116 +675,171 @@ export default function RegisterPage() {
                     Loading registration packages...
                   </div>
                 ) : packagesList.length > 0 ? (
-                  packagesList
-                    // Hide accommodation-tier packages — only reachable via the stepper
-                    .filter((pkg) => !ACCOMMODATION_PACKAGE_IDS.slice(1).includes(pkg.id))
-                    // Hide duplicate physical package with same price as base attendee
-                    .filter((pkg) => {
-                      if (participationType !== "physical") return true;
-                      if (pkg.id === ACCOMMODATION_PACKAGE_IDS[0]) return true;
-                      const basePkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[0]);
-                      return !basePkg || pkg.price !== basePkg.price;
-                    })
-                    // Ensure Attendee Registration card is always first at the top
-                    .sort((a, b) => {
-                      if (a.id === ACCOMMODATION_PACKAGE_IDS[0]) return -1;
-                      if (b.id === ACCOMMODATION_PACKAGE_IDS[0]) return 1;
-                      return 0;
-                    })
-                    .map((pkg) => (
-                    <Fragment key={pkg.id}>
-                      <div
-                        className={`package-card ${form.package === pkg.id ? "active" : ""}`}
-                        onClick={() => {
-                          if (pkg.id !== ACCOMMODATION_PACKAGE_IDS[0]) {
+                  (() => {
+                    const list = (registrationSettings?.packages || []).filter(
+                      (pkg) => pkg.participationType === participationType
+                    );
+                    if (participationType !== "physical") {
+                      return list.map((pkg) => (
+                        <div
+                          key={pkg.id}
+                          className={`package-card ${form.package === pkg.id ? "active" : ""}`}
+                          onClick={() => {
                             setAccommodationNights(0);
-                          }
-                          setForm((prev) => ({ ...prev, package: pkg.id }));
-                          setAppliedCoupon(null);
-                          setCouponInput("");
-                          setCouponError("");
-                        }}
-                      >
-                        {pkg.popular && <span className="pop-badge">POPULAR</span>}
-                        <div className="pkg-radio-circle">
-                          <div className="pkg-radio-dot" />
+                            setForm((prev) => ({ ...prev, package: pkg.id }));
+                            setAppliedCoupon(null);
+                            setCouponInput("");
+                            setCouponError("");
+                          }}
+                        >
+                          {pkg.popular && <span className="pop-badge">POPULAR</span>}
+                          <div className="pkg-radio-circle">
+                            <div className="pkg-radio-dot" />
+                          </div>
+                          <div className="pkg-header">
+                            <span className="pkg-icon">{pkg.icon}</span>
+                            <h4>{pkg.name}</h4>
+                            <div className="pkg-price-row">
+                              <span className="pkg-price-curr">{formatPrice(pkg.price)}</span>
+                            </div>
+                          </div>
+                          <ul className="pkg-feat-list">
+                            {(pkg.features?.length > 0
+                              ? pkg.features
+                              : PACKAGE_DEFAULT_FEATURES[pkg.id] || []
+                            ).map((feat, fIdx) => (
+                              <li key={fIdx}>
+                                <span className="feat-bullet">✓</span>
+                                <span>{feat}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
+                      ));
+                    }
 
-                        <div className="pkg-header">
-                          <span className="pkg-icon">{pkg.icon}</span>
-                          <h4>{pkg.name}</h4>
-                          <div className="pkg-price-row">
-                            <span className="pkg-price-curr">
-                              {formatPrice(
-                                pkg.id === ACCOMMODATION_PACKAGE_IDS[0]
-                                  ? (packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[accommodationNights])?.price || pkg.price)
-                                  : pkg.price
-                              )}
-                            </span>
-                          </div>
-                        </div>
+                    const nonTier = list.filter((pkg) => !ACCOMMODATION_PACKAGE_IDS.slice(1).includes(pkg.id));
+                    let seenBase = false;
+                    const uniqueList = nonTier.filter((pkg) => {
+                      const isBase = pkg.id === BASE_ATTENDEE_ID ||
+                        pkg.id.includes("delegate") || pkg.id.includes("attendee") ||
+                        (pkg.name && (pkg.name.toLowerCase().includes("attendee") || pkg.name.toLowerCase().includes("delegate")));
+                      if (isBase) {
+                        if (seenBase) return false;
+                        seenBase = true;
+                        return true;
+                      }
+                      return true;
+                    });
 
-                        <ul className="pkg-feat-list">
-                          {(pkg.features?.length > 0
-                            ? pkg.features
-                            : PACKAGE_DEFAULT_FEATURES[pkg.id] || []
-                          ).map((feat, fIdx) => (
-                            <li key={fIdx}>
-                              <span className="feat-bullet">✓</span>
-                              <span>{feat}</span>
-                            </li>
-                          ))}
-                        </ul>
+                    return uniqueList
+                      .sort((a, b) => {
+                        const aIsBase = a.id === BASE_ATTENDEE_ID || a.name?.toLowerCase().includes("attendee") || a.name?.toLowerCase().includes("delegate");
+                        const bIsBase = b.id === BASE_ATTENDEE_ID || b.name?.toLowerCase().includes("attendee") || b.name?.toLowerCase().includes("delegate");
+                        if (aIsBase && !bIsBase) return -1;
+                        if (!aIsBase && bIsBase) return 1;
+                        return 0;
+                      })
+                      .map((pkg) => {
+                        const isBaseCard = pkg.id === BASE_ATTENDEE_ID || pkg.name?.toLowerCase().includes("attendee") || pkg.name?.toLowerCase().includes("delegate");
+                        const isSelectedCard = form.package === pkg.id || (isBaseCard && form.package === BASE_ATTENDEE_ID);
 
-                        {pkg.id === ACCOMMODATION_PACKAGE_IDS[0] && (
-                          <div className="pkg-acc-hint">
-                            🛏️ <span>{accommodationNights === 0 ? "Select accommodation stay next card 👉" : `${accommodationNights} Night(s) Stay Selected`}</span>
-                          </div>
-                        )}
-                      </div>
+                        return (
+                          <Fragment key={pkg.id}>
+                            <div
+                              className={`package-card ${isSelectedCard ? "active" : ""}`}
+                              onClick={() => {
+                                if (!isBaseCard) {
+                                  setAccommodationNights(0);
+                                }
+                                setForm((prev) => ({ ...prev, package: isBaseCard ? BASE_ATTENDEE_ID : pkg.id }));
+                                setAppliedCoupon(null);
+                                setCouponInput("");
+                                setCouponError("");
+                              }}
+                            >
+                              {pkg.popular && <span className="pop-badge">POPULAR</span>}
+                              <div className="pkg-radio-circle">
+                                <div className="pkg-radio-dot" />
+                              </div>
 
-                      {/* Accommodation Card right next to Attendee Registration - visible only when Attendee Registration is selected */}
-                      {pkg.id === ACCOMMODATION_PACKAGE_IDS[0] && form.package === ACCOMMODATION_PACKAGE_IDS[0] && (
-                        <div className="package-card acc-companion-card page-fade-in">
-                          <span className="pop-badge acc-badge">HOTEL ADD-ON</span>
-                          <div className="pkg-header" style={{ marginBottom: 12 }}>
-                            <span className="pkg-icon">🛏️</span>
-                            <h4>Accommodation Stay</h4>
-                          </div>
-
-                          <div className="acc-card-options-list">
-                            {[0, 1, 2, 3].map((n) => {
-                              const tierPkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[n]);
-                              if (!tierPkg) return null;
-                              const isSelected = accommodationNights === n && form.package === ACCOMMODATION_PACKAGE_IDS[0];
-                              return (
-                                <div
-                                  key={n}
-                                  className={`acc-card-opt-row ${isSelected ? "selected" : ""}`}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setAccommodationNights(n);
-                                    setForm((prev) => ({ ...prev, package: ACCOMMODATION_PACKAGE_IDS[0] }));
-                                    setAppliedCoupon(null);
-                                    setCouponInput("");
-                                    setCouponError("");
-                                  }}
-                                >
-                                  <div className="acc-opt-radio">
-                                    <div className="acc-opt-dot" />
-                                  </div>
-                                  <div className="acc-opt-text">
-                                    <span className="acc-opt-title">{n === 0 ? "No Hotel Stay" : `${n} Night${n > 1 ? "s" : ""} Stay`}</span>
-                                  </div>
-                                  <span className="acc-opt-price">{formatPrice(tierPkg.price)}</span>
+                              <div className="pkg-header">
+                                <span className="pkg-icon">{pkg.icon}</span>
+                                <h4>{isBaseCard ? "Attendee Registration" : pkg.name}</h4>
+                                <div className="pkg-price-row">
+                                  <span className="pkg-price-curr">
+                                    {formatPrice(
+                                      isBaseCard
+                                        ? (packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[accommodationNights])?.price || pkg.price)
+                                        : pkg.price
+                                    )}
+                                  </span>
                                 </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </Fragment>
-                  ))
+                              </div>
+
+                              <ul className="pkg-feat-list">
+                                {(pkg.features?.length > 0
+                                  ? pkg.features
+                                  : PACKAGE_DEFAULT_FEATURES[pkg.id] || PACKAGE_DEFAULT_FEATURES["attendee-base"] || []
+                                ).map((feat, fIdx) => (
+                                  <li key={fIdx}>
+                                    <span className="feat-bullet">✓</span>
+                                    <span>{feat}</span>
+                                  </li>
+                                ))}
+                              </ul>
+
+                              {isBaseCard && (
+                                <div className="pkg-acc-hint">
+                                  🛏️ <span>{accommodationNights === 0 ? "Select accommodation stay next card 👉" : `${accommodationNights} Night(s) Stay Selected`}</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Accommodation Card right next to Attendee Registration - visible only when Attendee Registration is selected */}
+                            {isBaseCard && isSelectedCard && (
+                              <div className="package-card acc-companion-card page-fade-in">
+                                <span className="pop-badge acc-badge">HOTEL ADD-ON</span>
+                                <div className="pkg-header" style={{ marginBottom: 12 }}>
+                                  <span className="pkg-icon">🛏️</span>
+                                  <h4>Accommodation Stay</h4>
+                                </div>
+
+                                <div className="acc-card-options-list">
+                                  {[0, 1, 2, 3].map((n) => {
+                                    const tierPkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[n]);
+                                    const price = tierPkg ? tierPkg.price : (n === 0 ? 399 : n === 1 ? 599 : n === 2 ? 699 : 899);
+                                    const isSelected = accommodationNights === n;
+                                    return (
+                                      <div
+                                        key={n}
+                                        className={`acc-card-opt-row ${isSelected ? "selected" : ""}`}
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setAccommodationNights(n);
+                                          setForm((prev) => ({ ...prev, package: BASE_ATTENDEE_ID }));
+                                          setAppliedCoupon(null);
+                                          setCouponInput("");
+                                          setCouponError("");
+                                        }}
+                                      >
+                                        <div className="acc-opt-radio">
+                                          <div className="acc-opt-dot" />
+                                        </div>
+                                        <div className="acc-opt-text">
+                                          <span className="acc-opt-title">{n === 0 ? "No Hotel Stay" : `${n} Night${n > 1 ? "s" : ""} Stay`}</span>
+                                        </div>
+                                        <span className="acc-opt-price">{formatPrice(price)}</span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </Fragment>
+                        );
+                      });
+                  })()
                 ) : (
                   <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "40px 20px", color: "rgba(255,255,255,0.3)", border: "1px dashed rgba(255,255,255,0.08)", borderRadius: "16px" }}>
                     Please select your <strong>Participation Type</strong> above to see available packages.
