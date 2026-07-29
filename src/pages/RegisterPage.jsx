@@ -40,6 +40,9 @@ export default function RegisterPage() {
   const [couponError, setCouponError] = useState("");
   const [isCheckingCoupon, setIsCheckingCoupon] = useState(false);
 
+  // Accommodation nights stepper (physical only, 0–3 nights)
+  const [accommodationNights, setAccommodationNights] = useState(0);
+
   // Dynamically find base attendee / delegate package ID from Sanity data
   const baseAttendeePkgDoc = (registrationSettings?.packages || []).find((p) => {
     if (p.participationType !== "physical") return false;
