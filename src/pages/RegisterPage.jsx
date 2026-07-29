@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
@@ -661,56 +661,115 @@ export default function RegisterPage() {
                     Loading registration packages...
                   </div>
                 ) : packagesList.length > 0 ? (
-                  // Show ALL packages. The accommodation stepper appears below
-                  // only when the attendee-base package is selected.
                   packagesList
-                    // Hide the accommodation-tier packages from the card grid —
-                    // they are only reachable via the stepper.
+                    // Hide accommodation-tier packages — only reachable via the stepper
                     .filter((pkg) => !ACCOMMODATION_PACKAGE_IDS.slice(1).includes(pkg.id))
+                    // Hide duplicate physical package with same price as base attendee
+                    .filter((pkg) => {
+                      if (participationType !== "physical") return true;
+                      if (pkg.id === ACCOMMODATION_PACKAGE_IDS[0]) return true;
+                      const basePkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[0]);
+                      return !basePkg || pkg.price !== basePkg.price;
+                    })
+                    // Ensure Attendee Registration card is always first at the top
+                    .sort((a, b) => {
+                      if (a.id === ACCOMMODATION_PACKAGE_IDS[0]) return -1;
+                      if (b.id === ACCOMMODATION_PACKAGE_IDS[0]) return 1;
+                      return 0;
+                    })
                     .map((pkg) => (
-                    <div
-                      key={pkg.id}
-                      className={`package-card ${form.package === pkg.id ? "active" : ""}`}
-                      onClick={() => {
-                        setAccommodationNights(0);
-                        setForm((prev) => ({ ...prev, package: pkg.id }));
-                        setAppliedCoupon(null);
-                        setCouponInput("");
-                        setCouponError("");
-                      }}
-                    >
-                      {pkg.popular && <span className="pop-badge">POPULAR</span>}
-                      <div className="pkg-radio-circle">
-                        <div className="pkg-radio-dot" />
-                      </div>
-
-                      <div className="pkg-header">
-                        <span className="pkg-icon">{pkg.icon}</span>
-                        <h4>{pkg.name}</h4>
-                        <div className="pkg-price-row">
-                          <span className="pkg-price-curr">{formatPrice(pkg.price)}</span>
+                    <Fragment key={pkg.id}>
+                      <div
+                        className={`package-card ${form.package === pkg.id ? "active" : ""}`}
+                        onClick={() => {
+                          if (pkg.id !== ACCOMMODATION_PACKAGE_IDS[0]) {
+                            setAccommodationNights(0);
+                          }
+                          setForm((prev) => ({ ...prev, package: pkg.id }));
+                          setAppliedCoupon(null);
+                          setCouponInput("");
+                          setCouponError("");
+                        }}
+                      >
+                        {pkg.popular && <span className="pop-badge">POPULAR</span>}
+                        <div className="pkg-radio-circle">
+                          <div className="pkg-radio-dot" />
                         </div>
+
+                        <div className="pkg-header">
+                          <span className="pkg-icon">{pkg.icon}</span>
+                          <h4>{pkg.name}</h4>
+                          <div className="pkg-price-row">
+                            <span className="pkg-price-curr">
+                              {formatPrice(
+                                pkg.id === ACCOMMODATION_PACKAGE_IDS[0]
+                                  ? (packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[accommodationNights])?.price || pkg.price)
+                                  : pkg.price
+                              )}
+                            </span>
+                          </div>
+                        </div>
+
+                        <ul className="pkg-feat-list">
+                          {(pkg.features?.length > 0
+                            ? pkg.features
+                            : PACKAGE_DEFAULT_FEATURES[pkg.id] || []
+                          ).map((feat, fIdx) => (
+                            <li key={fIdx}>
+                              <span className="feat-bullet">✓</span>
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {pkg.id === ACCOMMODATION_PACKAGE_IDS[0] && (
+                          <div className="pkg-acc-hint">
+                            🛏️ <span>{accommodationNights === 0 ? "Select accommodation stay next card 👉" : `${accommodationNights} Night(s) Stay Selected`}</span>
+                          </div>
+                        )}
                       </div>
 
-                      <ul className="pkg-feat-list">
-                        {(pkg.features?.length > 0
-                          ? pkg.features
-                          : PACKAGE_DEFAULT_FEATURES[pkg.id] || []
-                        ).map((feat, fIdx) => (
-                          <li key={fIdx}>
-                            <span className="feat-bullet">✓</span>
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      {/* Accommodation Card right next to Attendee Registration - visible only when Attendee Registration is selected */}
+                      {pkg.id === ACCOMMODATION_PACKAGE_IDS[0] && form.package === ACCOMMODATION_PACKAGE_IDS[0] && (
+                        <div className="package-card acc-companion-card page-fade-in">
+                          <span className="pop-badge acc-badge">HOTEL ADD-ON</span>
+                          <div className="pkg-header" style={{ marginBottom: 12 }}>
+                            <span className="pkg-icon">🛏️</span>
+                            <h4>Accommodation Stay</h4>
+                          </div>
 
-                      {/* Accommodation hint — only on the base attendee package */}
-                      {pkg.id === ACCOMMODATION_PACKAGE_IDS[0] && (
-                        <div className="pkg-acc-hint">
-                          🛏️ <span>Select to add accommodation nights</span>
+                          <div className="acc-card-options-list">
+                            {[0, 1, 2, 3].map((n) => {
+                              const tierPkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[n]);
+                              if (!tierPkg) return null;
+                              const isSelected = accommodationNights === n && form.package === ACCOMMODATION_PACKAGE_IDS[0];
+                              return (
+                                <div
+                                  key={n}
+                                  className={`acc-card-opt-row ${isSelected ? "selected" : ""}`}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setAccommodationNights(n);
+                                    setForm((prev) => ({ ...prev, package: ACCOMMODATION_PACKAGE_IDS[0] }));
+                                    setAppliedCoupon(null);
+                                    setCouponInput("");
+                                    setCouponError("");
+                                  }}
+                                >
+                                  <div className="acc-opt-radio">
+                                    <div className="acc-opt-dot" />
+                                  </div>
+                                  <div className="acc-opt-text">
+                                    <span className="acc-opt-title">{n === 0 ? "No Hotel Stay" : `${n} Night${n > 1 ? "s" : ""} Stay`}</span>
+                                  </div>
+                                  <span className="acc-opt-price">{formatPrice(tierPkg.price)}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                       )}
-                    </div>
+                    </Fragment>
                   ))
                 ) : (
                   <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "40px 20px", color: "rgba(255,255,255,0.3)", border: "1px dashed rgba(255,255,255,0.08)", borderRadius: "16px" }}>
@@ -718,90 +777,6 @@ export default function RegisterPage() {
                   </div>
                 )}
               </div>
-
-              {/* ── Accommodation Nights Stepper (Physical only) ── */}
-              {showAccommodationStepper && (
-                <div className="accommodation-stepper page-fade-in">
-                  <div className="acc-stepper-header">
-                    <span className="acc-stepper-icon">🛏️</span>
-                    <div>
-                      <h4 className="acc-stepper-title">Add Accommodation Nights</h4>
-                      <p className="acc-stepper-desc">Optionally include hotel accommodation with your registration.</p>
-                    </div>
-                  </div>
-
-                  <div className="acc-stepper-controls">
-                    <button
-                      type="button"
-                      className="acc-stepper-btn"
-                      onClick={handleRemoveNight}
-                      disabled={accommodationNights === 0}
-                      aria-label="Remove one accommodation night"
-                    >
-                      −
-                    </button>
-
-                    <div className="acc-nights-display">
-                      <span className="acc-nights-number">{accommodationNights}</span>
-                      <span className="acc-nights-label">
-                        {accommodationNights === 0
-                          ? "Nights (No accommodation)"
-                          : accommodationNights === 1
-                          ? "Night of Accommodation"
-                          : "Nights of Accommodation"}
-                      </span>
-                    </div>
-
-                    <button
-                      type="button"
-                      className="acc-stepper-btn"
-                      onClick={handleAddNight}
-                      disabled={accommodationNights === MAX_NIGHTS}
-                      aria-label="Add one accommodation night"
-                    >
-                      +
-                    </button>
-                  </div>
-
-                  <div className="acc-price-summary">
-                    {accommodationNights === 0 ? (
-                      <span className="acc-price-base">Base registration: {formatPrice(baseAttendeePkg?.price || 0)}</span>
-                    ) : (
-                      <>
-                        <span className="acc-price-base">Base: {formatPrice(baseAttendeePkg?.price || 0)}</span>
-                        <span className="acc-price-sep">→</span>
-                        <span className="acc-price-total">
-                          {accommodationNights} night{accommodationNights > 1 ? "s" : ""} included: {formatPrice(selectedPkg?.price || 0)}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Night breakdown pills */}
-                  <div className="acc-tier-pills">
-                    {[0, 1, 2, 3].map((n) => {
-                      const tierPkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[n]);
-                      if (!tierPkg) return null;
-                      return (
-                        <button
-                          key={n}
-                          type="button"
-                          className={`acc-tier-pill ${accommodationNights === n ? "active" : ""}`}
-                          onClick={() => {
-                            setAccommodationNights(n);
-                            setAppliedCoupon(null);
-                            setCouponInput("");
-                            setCouponError("");
-                          }}
-                        >
-                          <span className="pill-nights">{n === 0 ? "No stay" : `${n} night${n > 1 ? "s" : ""}`}</span>
-                          <span className="pill-price">{formatPrice(tierPkg.price)}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
 
               {/* Coupons */}
               <div className="sec-step-title" style={{ marginTop: 48 }}>
