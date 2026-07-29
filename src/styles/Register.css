@@ -958,7 +958,238 @@
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â• Responsive â•â•â•â•â•â•â•â•â•â• */
+/* ── Accommodation card hint ── */
+.pkg-acc-hint {
+  margin-top: 14px;
+  padding: 8px 12px;
+  background: rgba(0, 167, 157, 0.08);
+  border: 1px dashed rgba(0, 167, 157, 0.3);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #00A79D;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pkg-acc-hint span {
+  font-weight: 600;
+}
+
+/* ── Accommodation Nights Stepper ── */
+.accommodation-stepper {
+  margin-bottom: 36px;
+  padding: 28px 28px 24px;
+  background: linear-gradient(135deg, rgba(0, 167, 157, 0.04), rgba(0, 167, 157, 0.01));
+  border: 1px solid rgba(0, 167, 157, 0.2);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.accommodation-stepper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00A79D, transparent);
+}
+
+.acc-stepper-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.acc-stepper-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.acc-stepper-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.acc-stepper-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* +/− Controls Row */
+.acc-stepper-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.acc-stepper-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 167, 157, 0.4);
+  background: rgba(0, 167, 157, 0.08);
+  color: #00A79D;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.acc-stepper-btn:hover:not(:disabled) {
+  background: rgba(0, 167, 157, 0.2);
+  border-color: #00A79D;
+  transform: scale(1.12);
+  box-shadow: 0 0 16px rgba(0, 167, 157, 0.3);
+}
+
+.acc-stepper-btn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.acc-stepper-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* Nights Display */
+.acc-nights-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 160px;
+}
+
+.acc-nights-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #00A79D;
+  font-family: var(--fd, inherit);
+  line-height: 1;
+  transition: all 0.25s;
+}
+
+.acc-nights-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Price Summary Line */
+.acc-price-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.acc-price-base {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.acc-price-sep {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.acc-price-total {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00A79D;
+}
+
+/* Quick-select Tier Pills */
+.acc-tier-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.acc-tier-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: inherit;
+  font-family: inherit;
+}
+
+.acc-tier-pill:hover {
+  border-color: rgba(0, 167, 157, 0.35);
+  background: rgba(0, 167, 157, 0.05);
+}
+
+.acc-tier-pill.active {
+  border-color: #00A79D;
+  background: rgba(0, 167, 157, 0.1);
+  box-shadow: 0 0 12px rgba(0, 167, 157, 0.15);
+}
+
+.pill-nights {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.acc-tier-pill.active .pill-nights {
+  color: #00A79D;
+}
+
+.pill-price {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #F9C515;
+  font-family: var(--fd, inherit);
+}
+
+@media (max-width: 600px) {
+  .acc-tier-pills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .acc-stepper-controls {
+    gap: 12px;
+  }
+  .acc-nights-number {
+    font-size: 2.2rem;
+  }
+}
+
+/* ══════════ Responsive ══════════ */
 @media (max-width: 850px) {
   .participation-grid,
   .packages-grid {

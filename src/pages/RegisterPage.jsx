@@ -40,6 +40,46 @@ export default function RegisterPage() {
   const [couponError, setCouponError] = useState("");
   const [isCheckingCoupon, setIsCheckingCoupon] = useState(false);
 
+  // Accommodation nights stepper (physical only, 0–3 nights)
+  const [accommodationNights, setAccommodationNights] = useState(0);
+
+  // Maps nights → package ID (must match what you enter in Sanity)
+  const ACCOMMODATION_PACKAGE_IDS = [
+    "attendee-base",      // 0 nights → $399
+    "attendee-1night",    // 1 night  → $599
+    "attendee-2nights",   // 2 nights → $699
+    "attendee-3nights",   // 3 nights → $899
+  ];
+  const MAX_NIGHTS = ACCOMMODATION_PACKAGE_IDS.length - 1;
+
+  // Default feature bullets shown when Sanity features are not yet configured
+  const PACKAGE_DEFAULT_FEATURES = {
+    "attendee-base": [
+      "Full access to all conference sessions",
+      "Lunch & refreshments included",
+      "Networking with global speakers & delegates",
+    ],
+    "attendee-1night": [
+      "Everything in Attendee Registration",
+      "1 night hotel accommodation included",
+      "Breakfast on day of check-out",
+      "Airport transfer assistance",
+    ],
+    "attendee-2nights": [
+      "Everything in Attendee Registration",
+      "2 nights hotel accommodation included",
+      "Daily breakfast included",
+      "Airport transfer assistance",
+    ],
+    "attendee-3nights": [
+      "Everything in Attendee Registration",
+      "3 nights hotel accommodation included",
+      "Daily breakfast included",
+      "Airport transfer assistance",
+      "Priority check-in & room upgrade (subject to availability)",
+    ],
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -117,10 +157,38 @@ export default function RegisterPage() {
     setAppliedCoupon(null);
     setCouponInput("");
     setCouponError("");
+    setAccommodationNights(0);
     setForm((prev) => ({
       ...prev,
       package: ""
     }));
+  };
+
+  // Derive the effective package ID based on accommodation nights (physical only)
+  const effectivePackageId = (() => {
+    if (participationType === "physical" && form.package === ACCOMMODATION_PACKAGE_IDS[0]) {
+      return ACCOMMODATION_PACKAGE_IDS[accommodationNights];
+    }
+    return form.package;
+  })();
+
+  // Accommodation stepper handlers
+  const handleAddNight = () => {
+    if (accommodationNights < MAX_NIGHTS) {
+      setAccommodationNights((n) => n + 1);
+      setAppliedCoupon(null);
+      setCouponInput("");
+      setCouponError("");
+    }
+  };
+
+  const handleRemoveNight = () => {
+    if (accommodationNights > 0) {
+      setAccommodationNights((n) => n - 1);
+      setAppliedCoupon(null);
+      setCouponInput("");
+      setCouponError("");
+    }
   };
 
   // Get merged events list (both referencing + manual events array)
@@ -146,7 +214,13 @@ export default function RegisterPage() {
   const packagesList = (registrationSettings?.packages || []).filter(
     (pkg) => pkg.participationType === participationType
   );
-  const selectedPkg = packagesList.find((p) => p.id === form.package);
+  // Base package (always the attendee-base for physical, or whatever is selected for virtual)
+  const selectedPkg = packagesList.find((p) => p.id === effectivePackageId);
+  // For accommodation stepper: the base attendee package (0 nights)
+  const baseAttendeePkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[0]);
+  // Show stepper only when the physical base attendee package is selected
+  const showAccommodationStepper =
+    participationType === "physical" && form.package === ACCOMMODATION_PACKAGE_IDS[0];
   const currency = String(registrationSettings?.currency || "usd").toUpperCase();
   const formatPrice = (amount) =>
     new Intl.NumberFormat("en-US", { style: "currency", currency }).format(amount || 0);
@@ -273,6 +347,7 @@ export default function RegisterPage() {
             id: selectedPkg?.id,
           },
           participationType,
+          accommodationNights: participationType === "physical" ? accommodationNights : 0,
           coupon: appliedCoupon
             ? { code: appliedCoupon.code, description: appliedCoupon.description }
             : null,
@@ -586,11 +661,18 @@ export default function RegisterPage() {
                     Loading registration packages...
                   </div>
                 ) : packagesList.length > 0 ? (
-                  packagesList.map((pkg) => (
+                  // Show ALL packages. The accommodation stepper appears below
+                  // only when the attendee-base package is selected.
+                  packagesList
+                    // Hide the accommodation-tier packages from the card grid —
+                    // they are only reachable via the stepper.
+                    .filter((pkg) => !ACCOMMODATION_PACKAGE_IDS.slice(1).includes(pkg.id))
+                    .map((pkg) => (
                     <div
                       key={pkg.id}
                       className={`package-card ${form.package === pkg.id ? "active" : ""}`}
                       onClick={() => {
+                        setAccommodationNights(0);
                         setForm((prev) => ({ ...prev, package: pkg.id }));
                         setAppliedCoupon(null);
                         setCouponInput("");
@@ -611,13 +693,23 @@ export default function RegisterPage() {
                       </div>
 
                       <ul className="pkg-feat-list">
-                        {(pkg.features || []).map((feat, fIdx) => (
+                        {(pkg.features?.length > 0
+                          ? pkg.features
+                          : PACKAGE_DEFAULT_FEATURES[pkg.id] || []
+                        ).map((feat, fIdx) => (
                           <li key={fIdx}>
                             <span className="feat-bullet">✓</span>
                             <span>{feat}</span>
                           </li>
                         ))}
                       </ul>
+
+                      {/* Accommodation hint — only on the base attendee package */}
+                      {pkg.id === ACCOMMODATION_PACKAGE_IDS[0] && (
+                        <div className="pkg-acc-hint">
+                          🛏️ <span>Select to add accommodation nights</span>
+                        </div>
+                      )}
                     </div>
                   ))
                 ) : (
@@ -626,6 +718,90 @@ export default function RegisterPage() {
                   </div>
                 )}
               </div>
+
+              {/* ── Accommodation Nights Stepper (Physical only) ── */}
+              {showAccommodationStepper && (
+                <div className="accommodation-stepper page-fade-in">
+                  <div className="acc-stepper-header">
+                    <span className="acc-stepper-icon">🛏️</span>
+                    <div>
+                      <h4 className="acc-stepper-title">Add Accommodation Nights</h4>
+                      <p className="acc-stepper-desc">Optionally include hotel accommodation with your registration.</p>
+                    </div>
+                  </div>
+
+                  <div className="acc-stepper-controls">
+                    <button
+                      type="button"
+                      className="acc-stepper-btn"
+                      onClick={handleRemoveNight}
+                      disabled={accommodationNights === 0}
+                      aria-label="Remove one accommodation night"
+                    >
+                      −
+                    </button>
+
+                    <div className="acc-nights-display">
+                      <span className="acc-nights-number">{accommodationNights}</span>
+                      <span className="acc-nights-label">
+                        {accommodationNights === 0
+                          ? "Nights (No accommodation)"
+                          : accommodationNights === 1
+                          ? "Night of Accommodation"
+                          : "Nights of Accommodation"}
+                      </span>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="acc-stepper-btn"
+                      onClick={handleAddNight}
+                      disabled={accommodationNights === MAX_NIGHTS}
+                      aria-label="Add one accommodation night"
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <div className="acc-price-summary">
+                    {accommodationNights === 0 ? (
+                      <span className="acc-price-base">Base registration: {formatPrice(baseAttendeePkg?.price || 0)}</span>
+                    ) : (
+                      <>
+                        <span className="acc-price-base">Base: {formatPrice(baseAttendeePkg?.price || 0)}</span>
+                        <span className="acc-price-sep">→</span>
+                        <span className="acc-price-total">
+                          {accommodationNights} night{accommodationNights > 1 ? "s" : ""} included: {formatPrice(selectedPkg?.price || 0)}
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Night breakdown pills */}
+                  <div className="acc-tier-pills">
+                    {[0, 1, 2, 3].map((n) => {
+                      const tierPkg = packagesList.find((p) => p.id === ACCOMMODATION_PACKAGE_IDS[n]);
+                      if (!tierPkg) return null;
+                      return (
+                        <button
+                          key={n}
+                          type="button"
+                          className={`acc-tier-pill ${accommodationNights === n ? "active" : ""}`}
+                          onClick={() => {
+                            setAccommodationNights(n);
+                            setAppliedCoupon(null);
+                            setCouponInput("");
+                            setCouponError("");
+                          }}
+                        >
+                          <span className="pill-nights">{n === 0 ? "No stay" : `${n} night${n > 1 ? "s" : ""}`}</span>
+                          <span className="pill-price">{formatPrice(tierPkg.price)}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Coupons */}
               <div className="sec-step-title" style={{ marginTop: 48 }}>
@@ -794,6 +970,14 @@ export default function RegisterPage() {
                       <span className="sum-label">Package:</span>
                       <span className="sum-val">{selectedPkg?.name}</span>
                     </div>
+                    {participationType === "physical" && accommodationNights > 0 && (
+                      <div>
+                        <span className="sum-label">Accommodation:</span>
+                        <span className="sum-val" style={{ color: '#00A79D' }}>
+                          {accommodationNights} night{accommodationNights > 1 ? "s" : ""} included
+                        </span>
+                      </div>
+                    )}
                     <div>
                       <span className="sum-label">Subtotal:</span>
                       <span className="sum-val">{formatPrice(subtotal)}</span>
