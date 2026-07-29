@@ -34,7 +34,7 @@ export default function RegisterPage() {
   });
 
   // Step 2: Package selection states
-  const [participationType, setParticipationType] = useState(""); // "" or "physical" or "virtual"
+  const [participationType, setParticipationType] = useState("physical"); // "physical" or "virtual"
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [couponError, setCouponError] = useState("");
@@ -324,6 +324,15 @@ export default function RegisterPage() {
     }
     if (!participationType) return alert("Please select a Participation Type.");
     if (!form.package) return alert("Please choose a registration package.");
+
+    // Validate Step 1 fields before allowing move to Step 3
+    if (!form.firstName.trim() || !form.lastName.trim() || !form.email.trim() || !form.phone.trim() || !form.country.trim() || !form.yearId || !form.eventId) {
+      alert("Please complete your Personal Information and select an Event in Step 1 before proceeding to payment.");
+      setStep(1);
+      window.scrollTo(0, 0);
+      return;
+    }
+
     setStep(3);
     window.scrollTo(0, 0);
   };
@@ -433,17 +442,33 @@ export default function RegisterPage() {
 
         {/* Wizard Steps Progress Indicator */}
         <div className="reg-steps-wizard">
-          <div className={`wizard-step ${step >= 1 ? 'completed' : ''} ${step === 1 ? 'active' : ''}`}>
+          <div
+            className={`wizard-step ${step >= 1 ? 'completed' : ''} ${step === 1 ? 'active' : ''}`}
+            onClick={() => { setStep(1); window.scrollTo(0, 0); }}
+            style={{ cursor: 'pointer' }}
+            title="Step 1: Personal & Conference Details"
+          >
             <div className="wizard-circle">{step > 1 ? "✓" : "1"}</div>
             <span className="wizard-label">Personal &amp; Conference</span>
           </div>
           <div className={`wizard-line ${step >= 2 ? 'active' : ''}`} />
-          <div className={`wizard-step ${step >= 2 ? 'completed' : ''} ${step === 2 ? 'active' : ''}`}>
+          <div
+            className={`wizard-step ${step >= 2 ? 'completed' : ''} ${step === 2 ? 'active' : ''}`}
+            onClick={() => { setStep(2); window.scrollTo(0, 0); }}
+            style={{ cursor: 'pointer' }}
+            title="Step 2: View Packages & Pricing"
+          >
             <div className="wizard-circle">{step > 2 ? "✓" : "2"}</div>
-            <span className="wizard-label">Package Selection</span>
+            <span className="wizard-label">Packages &amp; Pricing</span>
           </div>
           <div className={`wizard-line ${step >= 3 ? 'active' : ''}`} />
-          <div className={`wizard-step ${step === 3 ? 'active' : ''}`}>
+          <div
+            className={`wizard-step ${step === 3 ? 'active' : ''}`}
+            onClick={() => {
+              if (step === 2) handleNextStep2();
+            }}
+            style={{ cursor: step === 3 ? 'pointer' : 'default' }}
+          >
             <div className="wizard-circle">3</div>
             <span className="wizard-label">Confirm &amp; Pay</span>
           </div>
@@ -609,13 +634,23 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <div style={{ marginTop: 40 }}>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginTop: 40, alignItems: 'center' }}>
                 <button
                   type="button"
                   onClick={handleNextStep1}
                   className="reg-continue-btn"
                 >
-                  Choose Package →
+                  Continue to Packages →
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStep(2);
+                    window.scrollTo(0, 0);
+                  }}
+                  className="reg-quick-pricing-btn"
+                >
+                  🔍 Browse All Pricing &amp; Packages
                 </button>
               </div>
             </div>

@@ -1440,6 +1440,201 @@
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
+.acc-sep-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.acc-sep-icon {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 167, 157, 0.12);
+  border: 1px solid rgba(0, 167, 157, 0.25);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.acc-sep-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.acc-sep-desc {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 2px 0 0;
+}
+
+.acc-sep-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.acc-sep-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.acc-sep-card:hover {
+  background: rgba(0, 167, 157, 0.08);
+  border-color: rgba(0, 167, 157, 0.35);
+  transform: translateY(-2px);
+}
+
+.acc-sep-card.selected {
+  background: linear-gradient(135deg, rgba(0, 167, 157, 0.22), rgba(0, 167, 157, 0.08));
+  border-color: #00A79D;
+  box-shadow: 0 0 16px rgba(0, 167, 157, 0.25);
+}
+
+.acc-sep-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.acc-sep-card.selected .acc-sep-radio {
+  border-color: #00A79D;
+}
+
+.acc-sep-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00A79D;
+  transform: scale(0);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.acc-sep-card.selected .acc-sep-dot {
+  transform: scale(1);
+}
+
+.acc-sep-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.acc-sep-nights {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acc-sep-card.selected .acc-sep-nights {
+  color: #00A79D;
+}
+
+.acc-sep-sub {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acc-sep-price {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #F9C515;
+  font-family: var(--fd, inherit);
+  white-space: nowrap;
+}
+
+/* ── Companion Accommodation Card inside Package Grid ── */
+.acc-companion-card {
+  background: rgba(0, 167, 157, 0.03);
+  border: 1px solid rgba(0, 167, 157, 0.25);
+  border-radius: 18px;
+  padding: 30px 26px 26px;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.acc-companion-card:hover {
+  border-color: rgba(0, 167, 157, 0.4);
+  background: rgba(0, 167, 157, 0.05);
+}
+
+.acc-badge {
+  background: #00A79D !important;
+  color: #04101C !important;
+}
+
+.acc-card-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  flex: 1;
+  justify-content: center;
+}
+
+.acc-card-opt-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.acc-card-opt-row:hover {
+  background: rgba(0, 167, 157, 0.1);
+  border-color: rgba(0, 167, 157, 0.35);
+}
+
+.acc-card-opt-row.selected {
+  background: rgba(0, 167, 157, 0.15);
+  border-color: #00A79D;
+  box-shadow: 0 0 14px rgba(0, 167, 157, 0.2);
+}
+
+.acc-opt-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
 
 .acc-card-opt-row.selected .acc-opt-radio {
   border-color: #00A79D;
@@ -1529,3 +1724,25 @@
   }
 }
 
+.reg-quick-pricing-btn {
+  background: rgba(0, 167, 157, 0.1);
+  border: 1px solid rgba(0, 167, 157, 0.35);
+  color: #00A79D;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reg-quick-pricing-btn:hover {
+  background: rgba(0, 167, 157, 0.2);
+  border-color: #00A79D;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 167, 157, 0.2);
+}
