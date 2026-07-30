@@ -1,10 +1,3 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs) {
-  return twMerge(clsx(inputs));
-}
-
 const monthNames = {
   january: 0, jan: 0,
   february: 1, feb: 1,
@@ -20,15 +13,6 @@ const monthNames = {
   december: 11, dec: 11
 };
 
-/**
- * Parses an event date string into a timestamp for sorting.
- * Handles formats like:
- * - "September 08–10, 2027" -> "September 08, 2027"
- * - "March 08-09, 2027"     -> "March 08, 2027"
- * - "July 20–23, 2026"      -> "July 20, 2026"
- * - "2026-07-20"           -> "2026-07-20"
- * - "July 20-23" (with eventYear fallback)
- */
 export function parseEventDate(dateStr, yearFallback) {
   if (!dateStr || typeof dateStr !== "string") return Infinity;
 
@@ -39,7 +23,7 @@ export function parseEventDate(dateStr, yearFallback) {
   // e.g. "July 20–23, 2026" -> "July 20, 2026"
   let cleaned = str.replace(/\b(\d+)\s*[-–—]\s*\d+\b/, "$1");
 
-  // 2. Try parsing cleaned string with explicit Month Day Year extraction
+  // 2. Try parsing cleaned string with explicit Month Day Year extraction if possible
   // Match e.g. "March 08, 2027", "July 20 2026", "Nov 12, 2026"
   const m = cleaned.match(/([a-zA-Z]+)\s+(\d+)(?:,?\s*(\d{4}))?/);
   if (m) {
@@ -68,20 +52,16 @@ export function parseEventDate(dateStr, yearFallback) {
   return Infinity;
 }
 
-/**
- * Sorts array of events in ascending order by date.
- */
-export function sortEventsByDate(events) {
-  if (!Array.isArray(events)) return [];
-  return [...events].sort((a, b) => {
-    const tA = parseEventDate(a.date, a.eventYear?.year || a.year);
-    const tB = parseEventDate(b.date, b.eventYear?.year || b.year);
-    if (tA !== tB) {
-      return tA - tB;
-    }
-    const titleA = a.title || "";
-    const titleB = b.title || "";
-    return titleA.localeCompare(titleB);
-  });
-}
+const testDates = [
+  "September 08–10, 2027",
+  "March 08-09, 2027",
+  "November 12-13, 2026",
+  "July 20–23, 2026",
+  "July 20-23, 2026",
+  "May 10–11, 2027"
+];
 
+const items = testDates.map(d => ({ date: d, time: parseEventDate(d), dateObj: new Date(parseEventDate(d)).toDateString() }));
+items.sort((a, b) => a.time - b.time);
+
+console.log(items);

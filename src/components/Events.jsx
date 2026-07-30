@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFadeUp } from "../hooks/useFadeUp";
 import { client, urlFor } from "../lib/sanity";
+import { sortEventsByDate, parseEventDate } from "../lib/utils";
 import "../styles/Events.css";
 
 /**
@@ -16,10 +17,12 @@ export default function Events() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const data = await client.fetch(`*[_type == "event" && eventYear->year in ["2026", "2027"]]{ ..., slug }`);
-        // Shuffle the events randomly
-        const shuffled = [...data].sort(() => 0.5 - Math.random());
-        setEvents(shuffled.slice(0, 6));
+        const data = await client.fetch(`*[_type == "event"]{ ..., slug, eventYear-> }`);
+        // Start from November 2026 onwards
+        const nov2026Cutoff = new Date(2026, 10, 1).getTime();
+        const fromNov = data.filter(e => parseEventDate(e.date, e.eventYear?.year) >= nov2026Cutoff);
+        const sorted = sortEventsByDate(fromNov);
+        setEvents(sorted.slice(0, 6));
       } catch (err) {
         console.error("Error fetching events:", err);
       }

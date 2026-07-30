@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client, urlFor } from "../lib/sanity";
+import { sortEventsByDate, parseEventDate } from "../lib/utils";
 import { PortableText } from "@portabletext/react";
 import { motion, AnimatePresence } from "framer-motion";
 import "../styles/pages.css";
@@ -26,10 +27,12 @@ export default function EventsPage() {
     const fetchContent = async () => {
       try {
         const [eventsData, yearsData] = await Promise.all([
-          client.fetch(`*[_type == "event"]{ ..., slug, eventYear-> } | order(date asc)`),
+          client.fetch(`*[_type == "event"]{ ..., slug, eventYear-> }`),
           client.fetch(`*[_type == "eventYear"]{..., events[]->} | order(year asc)`)
         ]);
-        setEvents(eventsData);
+        const nov2026Cutoff = new Date(2026, 10, 1).getTime();
+        const fromNov = eventsData.filter(e => parseEventDate(e.date, e.eventYear?.year) >= nov2026Cutoff);
+        setEvents(sortEventsByDate(fromNov));
         setEventYears(yearsData);
       } catch (err) {
         console.error("Error fetching content:", err);

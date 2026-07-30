@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { client } from "../lib/sanity";
+import { sortEventsByDate, parseEventDate } from "../lib/utils";
 import "../styles/Register.css";
 
 export default function RegisterPage() {
@@ -101,14 +102,16 @@ export default function RegisterPage() {
     window.scrollTo(0, 0);
 
     Promise.all([
-      client.fetch(`*[_type == "event"]{..., eventYear->} | order(date asc)`),
+      client.fetch(`*[_type == "event"]{..., eventYear->}`),
       client.fetch(`*[_type == "eventYear"]{..., events[]->} | order(year asc)`),
       client.fetch(`*[_type == "registrationSettings" && _id == "registrationSettings"][0]{
         currency,
         "packages": packages[active != false]{id, name, participationType, price, icon, popular, features}
       }`),
     ]).then(([evData, yrData, pricingData]) => {
-      setEvents(evData);
+      const nov2026Cutoff = new Date(2026, 10, 1).getTime();
+      const fromNov = evData.filter(e => parseEventDate(e.date, e.eventYear?.year) >= nov2026Cutoff);
+      setEvents(sortEventsByDate(fromNov));
       setEventYears(yrData);
       if (!pricingData?.packages?.length) {
         setPricingError("Registration pricing is not configured. Please contact ProSummits.");
