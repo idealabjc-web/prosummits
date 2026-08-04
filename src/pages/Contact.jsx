@@ -291,7 +291,7 @@ export default function Contact() {
                   <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
                     <a href="https://www.linkedin.com/company/prosummits-events/" target="_blank" rel="noreferrer" className="soc-a" style={{ width: '36px', height: '36px', borderRadius: '8px' }}>in</a>
                     <a href="https://x.com/prosummits" target="_blank" rel="noreferrer" className="soc-a" style={{ width: '36px', height: '36px', borderRadius: '8px' }}>𝕏</a>
-                    <a href="https://www.facebook.com/prosummits" target="_blank" rel="noreferrer" className="soc-a" style={{ width: '36px', height: '36px', borderRadius: '8px' }}>f</a>
+                    <a href="https://www.facebook.com/profile.php?id=61592430047699" target="_blank" rel="noreferrer" className="soc-a" style={{ width: '36px', height: '36px', borderRadius: '8px' }}>f</a>
                     <a href="https://www.instagram.com/prosummits" target="_blank" rel="noreferrer" className="soc-a" style={{ width: '36px', height: '36px', borderRadius: '8px' }}>📷</a>
                   </div>
                 </div>

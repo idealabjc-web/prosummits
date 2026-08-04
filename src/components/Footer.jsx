@@ -37,7 +37,7 @@ export default function Footer() {
     },
     {
       name: "Facebook",
-      url: "https://www.facebook.com/prosummits",
+      url: "https://www.facebook.com/profile.php?id=61592430047699",
       color: "#1877F2",
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
