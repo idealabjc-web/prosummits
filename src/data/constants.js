@@ -144,6 +144,7 @@ import giselle from '../assets/Giselle Arellano - Geronimo.jpeg';
 import lydia from '../assets/Lydia gray.jpeg';
 import debra from '../assets/Debra Diana.jpeg';
 import amanda from '../assets/Dr. Amanda Fernandez.jpeg';
+import melody from '../assets/Melody Wilder.jpeg';
 
 export const SPEAKERS = [
   { init: "JE", name: "Julia Evans", role: "Guest Speaker", loc: "New York, USA", img: julia },
@@ -152,6 +153,7 @@ export const SPEAKERS = [
   { init: "LG", name: "Lydia gray", role: "Guest Speaker", loc: "Tokyo, Japan", img: lydia },
   { init: "DD", name: "Debra Diana", role: "Guest Speaker", loc: "Toronto, Canada", img: debra },
   { init: "AF", name: "Dr. Amanda Fernandez", role: "Guest Speaker", loc: "Miami, FL, USA", img: amanda },
+  { init: "MW", name: "Melody Wilder", role: "Guest Speaker", loc: "Los Angeles, USA", img: melody },
 ];
 
 export const TEST_COLORS = [

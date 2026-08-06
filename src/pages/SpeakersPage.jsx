@@ -35,7 +35,14 @@ export default function SpeakersPage() {
         const fallbackData = SPEAKERS.filter(s => 
           isAmbassadorsPage ? s.personType === "ambassador" : s.personType !== "ambassador"
         );
-        setSpeakers(data && data.length > 0 ? data : fallbackData);
+        if (data && data.length > 0) {
+          // Merge: use Sanity data + any local speakers not already in Sanity (by name)
+          const sanityNames = new Set(data.map(s => s.name?.toLowerCase()));
+          const extras = fallbackData.filter(s => !sanityNames.has(s.name?.toLowerCase()));
+          setSpeakers([...data, ...extras]);
+        } else {
+          setSpeakers(fallbackData);
+        }
       } catch (err) {
         console.error("Error fetching speakers:", err);
         setSpeakers(SPEAKERS.filter(s => 

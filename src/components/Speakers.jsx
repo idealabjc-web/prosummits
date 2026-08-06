@@ -17,7 +17,15 @@ export default function Speakers() {
     const fetchSpeakers = async () => {
       try {
         const data = await client.fetch(`*[_type == "speaker" && (personType == "speaker" || !defined(personType))]`);
-        setSpeakers(data && data.length > 0 ? data : SPEAKERS.filter(s => s.personType !== 'ambassador'));
+        const localSpeakers = SPEAKERS.filter(s => s.personType !== 'ambassador');
+        if (data && data.length > 0) {
+          // Merge: use Sanity data + any local speakers not already in Sanity (by name)
+          const sanityNames = new Set(data.map(s => s.name?.toLowerCase()));
+          const extras = localSpeakers.filter(s => !sanityNames.has(s.name?.toLowerCase()));
+          setSpeakers([...data, ...extras]);
+        } else {
+          setSpeakers(localSpeakers);
+        }
       } catch (err) {
         console.error("Error fetching speakers:", err);
         setSpeakers(SPEAKERS);
