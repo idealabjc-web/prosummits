@@ -17,6 +17,7 @@ export default function RegisterPage() {
   const [registrationSettings, setRegistrationSettings] = useState(null);
   const [pricingError, setPricingError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("card"); // "card" | "bank"
 
   // Step 1: Personal & Conference State
   const [form, setForm] = useState({
@@ -96,8 +97,34 @@ export default function RegisterPage() {
       "Airport transfer assistance",
       "Priority check-in & room upgrade (subject to availability)",
     ],
+    "virtual-speaker": [
+      "Live virtual presentation via Zoom / Airmeet",
+      "Full access to all online conference sessions",
+      "Digital certificate of participation",
+      "Networking with global speakers & delegates",
+      "Recording of your session shared post-event",
+    ],
+    "virtual-keynote-speaker": [
+      "Dedicated keynote presentation slot via Zoom / Airmeet",
+      "Full access to all online conference sessions",
+      "Featured speaker profile on the event page",
+      "Digital certificate of keynote participation",
+      "Networking with global speakers & delegates",
+      "Priority Q&A session with attendees",
+      "Recording of your keynote shared post-event",
+    ],
   };
 
+  // Flexible lookup: try exact ID match, then match by name keywords
+  const getDefaultFeatures = (pkg) => {
+    if (pkg.features?.length > 0) return pkg.features;
+    if (PACKAGE_DEFAULT_FEATURES[pkg.id]) return PACKAGE_DEFAULT_FEATURES[pkg.id];
+    const name = (pkg.name || "").toLowerCase();
+    const id = (pkg.id || "").toLowerCase();
+    if (name.includes("keynote") || id.includes("keynote")) return PACKAGE_DEFAULT_FEATURES["virtual-keynote-speaker"];
+    if ((name.includes("virtual") && name.includes("speaker")) || id.includes("virtual-speaker")) return PACKAGE_DEFAULT_FEATURES["virtual-speaker"];
+    return [];
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -345,13 +372,83 @@ export default function RegisterPage() {
     window.scrollTo(0, 0);
   };
 
-  // Final Submit
+  // Final Submit — branches on payment method
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const registrationId = `PS-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+    const participantName = `${form.firstName} ${form.lastName}`;
 
+    // ── BANK TRANSFER path ──────────────────────────────────────────────
+    if (paymentMethod === "bank") {
+      try {
+        const response = await fetch("/api/request-bank-transfer", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            registrationId,
+            participant: {
+              name: participantName,
+              email: form.email,
+              phone: `${form.countryCode} ${form.phone}`,
+              country: form.country,
+              organization: form.organization || "Not Specified",
+              jobTitle: form.jobTitle || "Not Specified",
+            },
+            event: {
+              id: selectedEvent?._id || form.eventId,
+              title: selectedEvent?.title || "Conference",
+              date: selectedEvent?.date || "",
+              location: selectedEvent?.loc || selectedEvent?.location || "",
+            },
+            package: { id: selectedPkg?.id },
+            packageName: selectedPkg?.name || "",
+            participationType,
+            finalPrice: finalPrice.toFixed(2),
+            coupon: appliedCoupon
+              ? { code: appliedCoupon.code, description: appliedCoupon.description }
+              : null,
+            specialRequirements: form.specialRequirements || "",
+          }),
+        });
+
+        const responseText = await response.text();
+        let data = {};
+        try {
+          data = responseText ? JSON.parse(responseText) : {};
+        } catch {
+          console.warn("Bank transfer API returned non-JSON response — proceeding anyway.");
+        }
+
+        if (!response.ok && data.error) throw new Error(data.error);
+
+        // Redirect to bank transfer page — details shown immediately
+        const params = new URLSearchParams({
+          ref: registrationId,
+          email: form.email,
+          name: participantName,
+        });
+        navigate(`/bank-transfer?${params.toString()}`);
+      } catch (err) {
+        console.error("Bank transfer request error:", err);
+        if (err.message && !err.message.includes("JSON") && !err.message.includes("fetch")) {
+          alert(err.message);
+        }
+        // Still redirect so customer can always see bank details
+        const params = new URLSearchParams({
+          ref: registrationId,
+          email: form.email,
+          name: participantName,
+        });
+        navigate(`/bank-transfer?${params.toString()}`);
+      } finally {
+        setIsSubmitting(false);
+      }
+      return;
+    }
+
+    // ── STRIPE CARD path ─────────────────────────────────────────────────
     try {
       const response = await fetch("/api/create-checkout-session", {
         method: "POST",
@@ -359,7 +456,7 @@ export default function RegisterPage() {
         body: JSON.stringify({
           registrationId,
           participant: {
-            name: `${form.firstName} ${form.lastName}`,
+            name: participantName,
             email: form.email,
             phone: `${form.countryCode} ${form.phone}`,
             country: form.country,
@@ -372,11 +469,8 @@ export default function RegisterPage() {
             date: selectedEvent?.date || "",
             location: selectedEvent?.loc || selectedEvent?.location || "",
           },
-          package: {
-            id: selectedPkg?.id,
-          },
+          package: { id: selectedPkg?.id },
           participationType,
-          accommodationNights: participationType === "physical" ? accommodationNights : 0,
           coupon: appliedCoupon
             ? { code: appliedCoupon.code, description: appliedCoupon.description }
             : null,
@@ -396,9 +490,7 @@ export default function RegisterPage() {
         );
       }
 
-      if (!response.ok || !data.url) {
-        throw new Error(data.error || "Unable to start payment.");
-      }
+      if (!response.ok || !data.url) throw new Error(data.error || "Unable to start payment.");
 
       sessionStorage.setItem("prosummitsCheckoutPending", "true");
       window.location.assign(data.url);
@@ -745,10 +837,7 @@ export default function RegisterPage() {
                             </div>
                           </div>
                           <ul className="pkg-feat-list">
-                            {(pkg.features?.length > 0
-                              ? pkg.features
-                              : PACKAGE_DEFAULT_FEATURES[pkg.id] || []
-                            ).map((feat, fIdx) => (
+                            {getDefaultFeatures(pkg).map((feat, fIdx) => (
                               <li key={fIdx}>
                                 <span className="feat-bullet">✓</span>
                                 <span>{feat}</span>
@@ -819,10 +908,7 @@ export default function RegisterPage() {
                               </div>
 
                               <ul className="pkg-feat-list">
-                                {(pkg.features?.length > 0
-                                  ? pkg.features
-                                  : PACKAGE_DEFAULT_FEATURES[pkg.id] || PACKAGE_DEFAULT_FEATURES["attendee-base"] || []
-                                ).map((feat, fIdx) => (
+                                {getDefaultFeatures(pkg).map((feat, fIdx) => (
                                   <li key={fIdx}>
                                     <span className="feat-bullet">✓</span>
                                     <span>{feat}</span>
@@ -1093,6 +1179,57 @@ export default function RegisterPage() {
                 />
               </div>
 
+              {/* Payment Method Selector */}
+              <div className="pay-method-section">
+                <div className="reg-divider" style={{ margin: '32px 0 20px' }}>
+                  <span>Choose Payment Method</span>
+                </div>
+                <div className="pay-method-grid">
+                  <div
+                    className={`pay-method-card ${paymentMethod === 'card' ? 'active' : ''}`}
+                    onClick={() => setPaymentMethod('card')}
+                  >
+                    {paymentMethod === 'card' && <div className="pay-method-check">✓</div>}
+                    <span className="pay-method-icon">💳</span>
+                    <div className="pay-method-meta">
+                      <h4>Pay by Card</h4>
+                      <p>Secure online payment via Stripe. Instant confirmation.</p>
+                    </div>
+                    <div className="pay-method-badges">
+                      <span className="pay-badge visa">VISA</span>
+                      <span className="pay-badge mc">MC</span>
+                      <span className="pay-badge amex">AMEX</span>
+                    </div>
+                  </div>
+
+                  <div
+                    className={`pay-method-card ${paymentMethod === 'bank' ? 'active bank' : ''}`}
+                    onClick={() => setPaymentMethod('bank')}
+                  >
+                    {paymentMethod === 'bank' && <div className="pay-method-check bank">✓</div>}
+                    <span className="pay-method-icon">🏦</span>
+                    <div className="pay-method-meta">
+                      <h4>Bank Transfer (Wire)</h4>
+                      <p>Transfer directly to our US bank account. No extra fees. Details shown immediately — available 24/7.</p>
+                    </div>
+                    <div className="pay-method-badges">
+                      <span className="pay-badge wire">WIRE</span>
+                      <span className="pay-badge ach">ACH</span>
+                    </div>
+                  </div>
+                </div>
+
+                {paymentMethod === 'bank' && (
+                  <div className="pay-bank-info-strip">
+                    <span className="pay-bank-strip-icon">✅</span>
+                    <div>
+                      <strong>Bank details revealed instantly</strong> — no waiting for admin approval.
+                      Transfer at any time (day or night) and upload your receipt to complete registration.
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Consent Box */}
               <div className="consent-checkbox-wrap">
                 <input
@@ -1118,10 +1255,13 @@ export default function RegisterPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="reg-continue-btn"
+                  className={`reg-continue-btn ${paymentMethod === 'bank' ? 'bank-transfer-btn' : ''}`}
                   style={{ flex: 1, width: 'auto' }}
                 >
-                  {isSubmitting ? "Redirecting to Payment..." : "Pay & Complete Registration"}
+                  {isSubmitting
+                    ? (paymentMethod === 'bank' ? 'Processing...' : 'Redirecting to Payment...')
+                    : (paymentMethod === 'bank' ? '🏦 Get Bank Details & Pay by Transfer' : '💳 Pay & Complete Registration')
+                  }
                 </button>
               </div>
             </form>
