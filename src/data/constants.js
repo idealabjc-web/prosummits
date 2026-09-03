@@ -145,6 +145,7 @@ import lydia from '../assets/Lydia gray.jpeg';
 import debra from '../assets/Debra Diana.jpeg';
 import amanda from '../assets/Dr. Amanda Fernandez.jpeg';
 import melody from '../assets/Melody Wilder.jpeg';
+import helen from '../assets/Helen Perry.jpeg';
 
 export const SPEAKERS = [
   { init: "JE", name: "Julia Evans", role: "Guest Speaker", loc: "New York, USA", img: julia },
@@ -154,6 +155,7 @@ export const SPEAKERS = [
   { init: "DD", name: "Debra Diana", role: "Guest Speaker", loc: "Toronto, Canada", img: debra },
   { init: "AF", name: "Dr. Amanda Fernandez", role: "Guest Speaker", loc: "Miami, FL, USA", img: amanda },
   { init: "MW", name: "Melody Wilder", role: "Guest Speaker", loc: "Los Angeles, USA", img: melody },
+  { init: "HP", name: "Helen Perry", role: "Guest Speaker", loc: "London, UK", img: helen },
 ];
 
 export const TEST_COLORS = [
